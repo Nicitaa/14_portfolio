@@ -1,0 +1,9 @@
+body {
+  background-color: #202020;
+  min-height: 100vh;
+  list-style: none;
+}
+
+#root {
+  max-height: 100vh;
+}

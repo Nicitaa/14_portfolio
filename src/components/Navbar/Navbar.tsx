@@ -1,5 +1,5 @@
 import './Navbar.css'
-import {repos} from '../../data/repos.ts'
+import {repos} from './../../data/repos'
 import {Link} from "react-router-dom";
 import {useEffect, useRef} from "react";
 
@@ -16,18 +16,23 @@ export function Navbar(){
 
     if (slider) {
       slider.addEventListener("mousedown", (e) => {
+      console.log('touched/swiped down')
+
         isDown = true;
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
       });
 
       window.addEventListener("mouseup", () => {
+      console.log('touched/swiped up')
         isDown = false;
       });
 
       window.addEventListener("mousemove", (e) => {
         if (!isDown) return;
         e.preventDefault();
+        console.log('touched/swiped mousemove')
+
         const x = e.pageX - slider.offsetLeft;
         const speed = 1;
         const walk = (x - startX) * speed;
