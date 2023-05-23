@@ -1,8 +1,8 @@
 # Clone repository
 
-!(https://prnt.sc/kQ74nRzjSts_)
+![alt text](https://i.imgur.com/9KSgjaN.png)
 
-or
+## or
 
 ```
 git clone https://github.com/Nicitaa/14_portfolio
