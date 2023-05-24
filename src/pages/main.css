@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 86vh;
+  height: 85vh;
 }
 
 .skills {
@@ -42,14 +42,7 @@ li h1 {
 }
 
 .skill-progress {
-  width: 0;
   height: 100%;
   background-color: #e91e63;
-  transition: 1s ease;
-}
-
-@keyframes skill {
-  100% {
-    width:15%;
-  }
+  transition: 4s ease;
 }
