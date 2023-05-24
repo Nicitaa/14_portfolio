@@ -2,47 +2,47 @@ const skills = [
   {
     id:1,
     title:'html',
-    hours:5000
+    hours:9000
   },
   {
     id:2,
     title:'css',
-    hours:1000
+    hours:8000
   },
   {
     id:3,
     title:'js',
-    hours:700
+    hours:7000
   },
   {
     id:4,
     title:'react',
-    hours:340
+    hours:5000
   },
   {
     id:5,
     title:'vite',
-    hours:320
+    hours:4000
   },
   {
     id:6,
     title:'typescript',
-    hours:200
+    hours:3000
   },
   {
     id:7,
     title:'redux',
-    hours:50
+    hours:2000
   },
   {
     id:8,
     title:'RTK query',
-    hours:50
+    hours:1000
   },
   {
     id:9,
     title:'tailwind',
-    hours:270
+    hours:6500
   },
   {
     id:10,
