@@ -4,11 +4,17 @@
 
 # Clone repository
 
+## Step 1.1 - clone repository (variant 1)
 ![alt text](https://i.imgur.com/9KSgjaN.png)
 
-## or
+## or Step 1.1 - clone repository (variant 2)
 
 ```
 git clone https://github.com/Nicitaa/14_portfolio
 ```
 
+## Step 1.2 - install deps
+
+```
+yarn
+```
