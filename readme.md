@@ -1,5 +1,5 @@
 # What inside?
-![work in progress](https://i.imgur.com/w4Kr2bl.jpg)
+![work in progress](https://i.imgur.com/2hHq62J.jpg)
 
 
 # Clone repository
