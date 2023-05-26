@@ -42,11 +42,12 @@ export function Navbar(){
   }, []);
 return (
 
-  <nav ref={sliderRef} className='nav'>
+  <nav  className='nav'>
     <div className='portfolio-container'>
     <Link to={'/'} className='portfolio'>Portfolio</Link>
     </div>
 
+      <div ref={sliderRef} className='slider'>
       {repos.map((repo)=>{
         return <ul key={repo.id} className='sites-ul'>
            <li>
@@ -55,6 +56,7 @@ return (
            </li>
         </ul>
       })}
+      </div>
   </nav>
 
 

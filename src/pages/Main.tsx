@@ -4,11 +4,11 @@ import './main.css'
 import gsap from "gsap";
 
 
-
 export function Main () {
 
 function Skill(skill:any) {
   const progressRef:React.MutableRefObject<any> = useRef();
+  const hoursRef:React.MutableRefObject<any> = useRef();
 
   
   useLayoutEffect(() => {
@@ -33,10 +33,24 @@ function Skill(skill:any) {
     if (percent > wn8*5) {
       background='#d042f3' //violet
     }
-    gsap.to(progressRef.current, {
-      width: `${percent}%`,
-      background,
-    });
+
+
+  
+      gsap.timeline()
+        .to(progressRef.current, {
+          width: `${percent}%`,
+        })
+        .set(progressRef.current, {
+          background
+        },);
+    
+
+    // gsap.to(progressRef.current, {
+    //   width: `${percent}%`,
+    //   background,
+    // });
+
+
   }, []);
   
 return (
@@ -45,6 +59,7 @@ return (
       <div className="progress-bar">
         <div className="skill-progress" ref={progressRef}></div>
       </div>
+      <h2 ref={hoursRef}>0</h2>
     </li>
 )
 }

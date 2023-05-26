@@ -5,7 +5,6 @@
   background-color: #303030;
   transition: height 0.6s;
   overflow-x:hidden;
-
 }
 
  .nav:hover {
@@ -42,8 +41,10 @@
 
 
 
-
-
+.slider {
+  display: flex;
+  overflow-x:hidden;
+}
 
 .sites-ul {
   list-style: none;

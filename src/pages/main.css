@@ -32,6 +32,11 @@ li h1 {
   text-align: end;
   min-width: 25%;
 }
+li h2 {
+  display: flex;
+  align-items: center;
+  min-width: 5%;
+}
 
 .progress-bar {
   width: 100%;
