@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
 import { skills } from "../data/skills";
-import './main.css'
 import gsap from "gsap";
 
 
@@ -35,33 +34,28 @@ export function Main() {
       }
 
 
-
-
-
       gsap.to(progressRef.current, {
         width: `${percent}%`,
         background,
       })
-
-
     }, [])
 
     return (
-      <li key={skill.id}>
-        <h1>{skill.title}</h1>
-        <div className="progress-bar">
-          <div className="skill-progress" ref={progressRef}></div>
+      <li className="flex w-[30vw] h-lg gap-xs" key={skill.id}>
+        <h1 className="flex justify-end items-center text-end min-w-[25%]">{skill.title}</h1>
+        <div className="w-full rounded-md bg-primary-darker border-2 border-solid border-primary overflow-hidden">
+          <div className="w-[0px] h-full transition-all duration-[4000ms]" ref={progressRef}></div>
         </div>
-        <h2 ref={hoursRef}>0</h2>
+        <h2 className="flex items-center min-w-[5%]" ref={hoursRef}>0</h2>
       </li>
     )
   }
 
 
   return (
-    <div className="main">
-      <div className="skills">
-        <ul>
+    <div className="flex justify-center items-center h-[85vh]">
+      <div className="flex justify-center items-center">
+        <ul className="flex flex-col gap-y-xs">
           {skills.map(skill => {
             return (
               <Skill key={skill.id} {...skill} />

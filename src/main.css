@@ -1,7 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .line {
+    @apply border-r-[1px] border-solid border-secondary;
+    border-image: linear-gradient(to bottom, #202020, rgb(197 197 197), #202020) 1 100%;
+  }
+}
+
+
 body {
   background-color: #202020;
   min-height: 100vh;
-  list-style: none;
 }
 
 #root {
