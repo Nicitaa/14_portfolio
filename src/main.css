@@ -2,19 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* something you can't do with tailwind that's why I another classes exists here */
+  --primary: #202020;
+  --secondary: rgb(197 197 197);
+  --cta: #C15DFF;
+}
+
 @layer components {
   .line {
     @apply border-r-[1px] border-solid border-secondary;
-    border-image: linear-gradient(to bottom, #202020, rgb(197 197 197), #202020) 1 100%;
+    border-image: linear-gradient(to bottom, var(--primary), var(--secondary), var(--primary)) 1 100%;
   }
 }
 
 
 body {
-  background-color: #202020;
+  background-color: var(--primary);
   min-height: 100vh;
 }
 
-#root {
-  max-height: 100vh;
+.active {
+  /* cta */
+  background-color: var(--cta);
 }

@@ -15,7 +15,8 @@ export default {
       xs: "clamp(0.25rem, 0.1364rem + 0.5682vw, 0.5rem)", //320-1024px
       sm: "clamp(0.5rem, 0.3864rem + 0.5682vw, 0.75rem)", //320-1024px
       md: "1rem",
-      lg: "1.5rem;"
+      lg: "3rem;",
+      xl: "4rem"
     },
     borderRadius: {
       xs: "0.25rem",
@@ -33,7 +34,7 @@ export default {
         primary: "#202020",
         "primary-darker": "rgba(22,21,22,0.95)",
         secondary: "#C5C5C5",
-        cta: "#C1D5FF"
+        cta: "#C15DFF"
       }
     }
   },

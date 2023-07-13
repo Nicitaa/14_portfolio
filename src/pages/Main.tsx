@@ -41,7 +41,7 @@ export function Main() {
     }, [])
 
     return (
-      <li className="flex w-[30vw] h-lg gap-xs" key={skill.id}>
+      <li className="flex w-[30vw] h-md gap-xs" key={skill.id}>
         <h1 className="flex justify-end items-center text-end min-w-[25%]">{skill.title}</h1>
         <div className="w-full rounded-md bg-primary-darker border-2 border-solid border-primary overflow-hidden">
           <div className="w-[0px] h-full transition-all duration-[4000ms]" ref={progressRef}></div>
