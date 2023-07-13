@@ -15,7 +15,7 @@ export function Navbar() {
     py-sm'>
 
       <div className='flex items-center pr-md line'>
-        <Link to={'/'} className='text-secondary font-bold text-lg'>Portfolio</Link>
+        <Link to={'/'} className='font-bold text-lg inner-shadow text-transparent'>Portfolio</Link>
       </div>
 
 

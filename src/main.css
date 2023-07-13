@@ -6,7 +6,7 @@
   /* something you can't do with tailwind that's why I another classes exists here */
   --primary: #202020;
   --secondary: rgb(197 197 197);
-  --cta: #C15DFF;
+  --cta: #c15dff;
 }
 
 @layer components {
@@ -14,8 +14,26 @@
     @apply border-r-[1px] border-solid border-secondary;
     border-image: linear-gradient(to bottom, var(--primary), var(--secondary), var(--primary)) 1 100%;
   }
-}
 
+  .inner-shadow::before {
+    content: "Portfolio";
+    position: absolute;
+    left: 0.9%;
+    top: 1%;
+    color: transparent;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9;
+  }
+
+  .inner-shadow::after {
+    content: "Portfolio";
+    position: absolute;
+    left: 0.9%;
+    top: 1%;
+    color: transparent;
+    text-shadow: 0px 0px 0px var(--secondary), 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
 
 body {
   background-color: var(--primary);
