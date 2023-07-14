@@ -33,7 +33,8 @@ export default {
       colors: {
         primary: "#202020",
         "primary-dark": "rgba(22,21,22,0.95)",
-        secondary: "#C5C5C5",
+        secondary: "#DDDDDD",
+        "secondary-dark": "#C5C5C5",
         cta: "#C15DFF"
       }
     }

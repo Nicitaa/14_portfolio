@@ -11,4 +11,4 @@ Frontend on:
 React + Vite + tailwind
 Responsive
 yarn
-v.0.0.0.0
+v.0.1.0.1
