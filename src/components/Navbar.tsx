@@ -15,7 +15,7 @@ export function Navbar() {
     py-sm'>
 
       <div className='flex items-center pr-md line'>
-        <Link data-text="Portfolio" to={'/'} className='font-bold text-lg text-shadow text-transparent' />
+        <Link data-text="Portfolio" to={'/'} className='text-shadow text-lg before:text-secondary' />
       </div>
 
 
@@ -24,7 +24,7 @@ export function Navbar() {
         onTouchStart={handleTouchDown}
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}>
-        <ul className='hidden laptop:inline-flex items-center gap-md text-secondary'>
+        <ul className='hidden laptop:inline-flex items-center gap-md'>
           {repos.map((repo) => (
             <li key={repo.id} className='flex flex-col items-center w-[10rem] select-none'>
               <p className='flex justify-center'>{repo.id}</p>

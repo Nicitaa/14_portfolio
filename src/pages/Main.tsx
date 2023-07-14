@@ -18,7 +18,7 @@ export function Main() {
           <Skill id={4} label="other" hours={34} tooltip tooltiptext={<TooltipOther />} />
         </ul>
         <div className="laptop:max-w-[650px]">
-          <h1 data-text="WEB Frontend developer" className="text-shadow text-lg whitespace-nowrap" />
+          <h1 data-text="WEB Frontend developer" className="text-shadow text-lg whitespace-nowrap before:text-secondary" />
           <p className="text-md font-bold">I’m going to be WEB FullStack Developer. I see a lot of things to improve in WEB and I
             have knowledge about <div className="relative inline-block">
               <span data-text="conversion" className="text-tooltip tooltip">
@@ -55,7 +55,7 @@ export function Main() {
               </h1>
             </div>
             <div className="absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col text-center">
-              <h1 className="text-lg font-b">16_gericht-restaurant</h1>
+              <h1 className="text-lg font-bold text-secondary">16_gericht-restaurant</h1>
               <p className="text-sm font-b">Whole site</p>
             </div>
             <div>

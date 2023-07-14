@@ -5,12 +5,12 @@ import { Main } from "./pages"
 function App() {
 
   return (
-    <div className="font-primary text-secondary">
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
-    </div>
+    </>
   )
 }
 
