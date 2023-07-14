@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,26 +18,42 @@
   }
 
   .inner-shadow::before {
-    content: "Portfolio";
-    position: absolute;
-    left: 0.9%;
-    top: 1%;
-    color: transparent;
+    @apply absolute left-[0.9%] text-transparent z-10;
+    content: "Protfolio";
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-    z-index: 9;
   }
 
   .inner-shadow::after {
-    content: "Portfolio";
-    position: absolute;
-    left: 0.9%;
-    top: 1%;
-    color: transparent;
+    @apply after:content-[Protfolio] absolute left-[0.9%] text-transparent;
+    content: "Protfolio";
     text-shadow: 0px 0px 0px var(--secondary), 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow::before {
+    @apply absolute text-transparent z-10;
+    content: attr(data-text);
+    text-shadow: 0px 0px 4px rgba(193, 93, 255, 0.2);
+  }
+  .text-shadow::after {
+    @apply absolute text-transparent;
+    content: attr(data-text);
+    text-shadow: 0px 0px 0px var(--secondary), 2px 2px 4px rgba(193, 93, 255, 0.2);
+  }
+
+  .tooltip:hover .tooltiptext {
+    @apply opacity-100 visible translate-y-[-105%] transition-all duration-300 
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext {
+    @apply opacity-0 invisible translate-y-[-110%] transition-all duration-300
+    absolute top-[0px] left-[50%] translate-x-[-45%] text-sm bg-primary-dark
+    text-center rounded-sm z-[99];
   }
 }
 
 body {
+  font-family: "Inter", sans-serif;
   background-color: var(--primary);
   min-height: 100vh;
 }

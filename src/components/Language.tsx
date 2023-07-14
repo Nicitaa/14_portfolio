@@ -56,7 +56,7 @@ export function Language() {
       <div className={`dropdown absolute top-[100%] left-[-1px] right-[-1px]
       border-[1px] border-solid border-secondary z-10 
        flex flex-col text-md text-center text-secondary ${showDropdown
-          ? 'opacity-100 visible translate-y-0 transition-all duration-300'
+          ? 'opacity-100 visible translate-y-[0px] transition-all duration-300'
           : 'opacity-0 invisible translate-y-[-20px] transition-all duration-300'}`}
         onMouseLeave={() => setHover(null)}>
 

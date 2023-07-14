@@ -32,7 +32,7 @@ export default {
     extend: {
       colors: {
         primary: "#202020",
-        "primary-darker": "rgba(22,21,22,0.95)",
+        "primary-dark": "rgba(22,21,22,0.95)",
         secondary: "#C5C5C5",
         cta: "#C15DFF"
       }
