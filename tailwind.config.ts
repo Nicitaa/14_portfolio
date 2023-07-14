@@ -35,7 +35,8 @@ export default {
         "primary-dark": "rgba(22,21,22,0.95)",
         secondary: "#DDDDDD",
         "secondary-dark": "#C5C5C5",
-        cta: "#C15DFF"
+        cta: "#C15DFF",
+        "cta-tooltip": "rgba(193,93,255,0.2)"
       }
     }
   },

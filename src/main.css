@@ -7,8 +7,9 @@
 :root {
   /* something you can't do with tailwind that's why I another classes exists here */
   --primary: #202020;
-  --secondary: rgb(197 197 197);
+  --secondary: #dddddd;
   --cta: #c15dff;
+  --cta-tooltip: rgba(193, 93, 255, 0.2);
 }
 
 @layer components {
@@ -32,12 +33,16 @@
   .text-tooltip::before {
     @apply absolute text-transparent z-10;
     content: attr(data-text);
-    text-shadow: 0px 0px 4px rgba(193, 93, 255, 0.2);
+    text-shadow: 0px 0px 4px var(--cta-tooltip);
   }
   .text-tooltip::after {
     @apply text-transparent;
     content: attr(data-text);
-    text-shadow: 0px 0px 0px var(--secondary), 2px 2px 4px rgba(193, 93, 255, 0.2);
+    text-shadow: 0px 0px 0px var(--secondary), 2px 2px 4px var(--cta-tooltip);
+  }
+
+  .collaboration-tooltip::before {
+    @apply content-[""] w-[48px] h-[48px] absolute rounded-[50%] shadow-[0px_4px_12px_var(--cta-tooltip),_inset_0px_4px_12px_var(--cta-tooltip)];
   }
 
   .tooltip:hover .tooltiptext {
@@ -49,7 +54,7 @@
   .tooltiptext {
     @apply opacity-0 invisible transition-all duration-300
     fixed top-[50%] translate-y-[110%]
-    laptop:absolute laptop:top-[0px] left-[50%] translate-x-[-45%] laptop:translate-y-[-110%]
+    laptop:absolute laptop:top-[0px] left-[50%] translate-x-[-50%] laptop:translate-y-[-110%]
     text-sm bg-primary-dark
     text-center rounded-sm z-[99];
   }
@@ -62,6 +67,5 @@ body {
 }
 
 .active {
-  /* cta */
   background-color: var(--cta);
 }
