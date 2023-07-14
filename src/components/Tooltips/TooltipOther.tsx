@@ -2,7 +2,7 @@ import { Skill } from "../Skills/Skill";
 
 function TooltipGithub() {
   return (
-    <div className="tooltiptext">
+    <div className="tooltiptext top-[6%] left-[40%] laptop:top-[0px] laptop:left-[50%]">
       <h1 className="text-secondary text-xs">I don't calculate this skill in hours - just know that I can work with github</h1>
     </div>
   )

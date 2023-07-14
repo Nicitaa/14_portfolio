@@ -7,7 +7,7 @@ export default {
       primary: ["Inter", "sans-serif"]
     },
     fontSize: {
-      xs: "0.6rem",
+      xs: "clamp(0.6rem, 0.4571rem + 0.7143vw, 0.8rem);",
       sm: "1rem",
       lg: "2rem"
     },

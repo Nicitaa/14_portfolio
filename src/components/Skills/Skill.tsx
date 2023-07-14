@@ -42,12 +42,12 @@ export function Skill(skill: ISkill) {
 
 
   return (
-    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
+    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[300px] tablet:w-[450px] laptop:w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
       <h1 data-text={skill.label} className={`relative flex justify-end items-center text-end text-secondary font-bold whitespace-nowrap
         ${skill.small ? skill.labelClassName : 'min-w-[25%]'}
-        ${skill.tooltip && 'text-shadow tooltip'} `}>
-        {skill.tooltip ? '' : skill.label}
+        ${skill.tooltip && 'text-tooltip tooltip'} `}>
         {skill.tooltiptext}
+        {skill.tooltip ? '' : skill.label}
       </h1>
       <div className={`relative w-full rounded-md ${skill.small ? 'bg-primary' : 'bg-primary-dark'} overflow-hidden`}>
         <div className="w-[0px] h-full transition-all duration-[5000ms] shadow-[inset_0px_2px_2px_rgba(0,0,0,0.3)]" ref={progressRef} />
