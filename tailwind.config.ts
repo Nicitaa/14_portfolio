@@ -26,7 +26,7 @@ export default {
     screens: {
       tablet: "768px",
       // => @media (min-width: 768px) { ... }
-      laptop: "1024px"
+      laptopL: "1440px"
       // => @media (min-width: 1024px) { ... }
     },
     extend: {

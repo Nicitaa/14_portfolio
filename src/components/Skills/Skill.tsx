@@ -1,11 +1,10 @@
-import { useLayoutEffect, useRef } from "react"
+import { RefObject, useLayoutEffect, useRef } from "react"
 import { ISkill } from "../../interfaces/Skill"
 import CountUp from "react-countup"
 import gsap from "gsap"
 
 export function Skill(skill: ISkill) {
-  const progressRef: React.MutableRefObject<any> = useRef()
-
+  const progressRef: RefObject<HTMLDivElement> = useRef(null);
 
   useLayoutEffect(() => {
     const wn8 = 100 / 6
@@ -42,7 +41,7 @@ export function Skill(skill: ISkill) {
 
 
   return (
-    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[300px] tablet:w-[450px] laptop:w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
+    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[300px] tablet:w-[450px] laptopL:w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
       <h1 data-text={skill.label} className={`relative flex justify-end items-center text-end text-secondary font-bold whitespace-nowrap
         ${skill.small ? skill.labelClassName : 'min-w-[25%]'}
         ${skill.tooltip && 'text-tooltip tooltip'} `}>

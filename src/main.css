@@ -42,7 +42,7 @@
   }
 
   .collaboration-tooltip::before {
-    @apply content-[""] w-[48px] h-[48px] absolute rounded-[50%] shadow-[0px_4px_12px_var(--cta-tooltip),_inset_0px_4px_12px_var(--cta-tooltip)];
+    @apply content-[""] w-[48px] h-[48px] absolute rounded-[50%] -translate-x-1/2 shadow-[0px_4px_12px_var(--cta-tooltip),_inset_0px_4px_12px_var(--cta-tooltip)];
   }
 
   .tooltip:hover .tooltiptext {
@@ -54,9 +54,21 @@
   .tooltiptext {
     @apply opacity-0 invisible transition-all duration-300
     fixed top-[50%] translate-y-[110%]
-    laptop:absolute laptop:top-[0px] left-[50%] translate-x-[-50%] laptop:translate-y-[-110%]
+    laptopL:absolute laptopL:top-[0px] left-[50%] translate-x-[-50%] laptopL:translate-y-[-110%]
     text-sm bg-primary-dark
     text-center rounded-sm z-[99];
+  }
+
+   .tooltip-modal:hover .tooltiptext-modal {
+    @apply opacity-100 visible transition-all duration-300
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext-modal {
+    @apply opacity-0 invisible transition-all duration-300
+    absolute inset-[0] 
+    text-sm bg-primary-dark rounded-sm
+    z-[99] pointer-events-none;
   }
 }
 
