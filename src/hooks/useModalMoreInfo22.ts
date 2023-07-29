@@ -1,15 +1,15 @@
 import { create } from "zustand"
 
-interface ModalMoreInfoStore {
+interface ModalMoreInfo22Store {
   isOpen:boolean
   onClose:() => void
   onOpen:() => void
 }
 
-const useModalMoreInfo = create<ModalMoreInfoStore>((set) => ({
+const useModalMoreInfo22 = create<ModalMoreInfo22Store>((set) => ({
   isOpen:false,
   onOpen:() => set({isOpen:true}),
   onClose:() => set({isOpen:false})
 }))
 
-export default useModalMoreInfo
+export default useModalMoreInfo22

@@ -5,19 +5,20 @@ import { PiTelegramLogoBold } from 'react-icons/pi'
 import { RiDiscordLine } from 'react-icons/ri'
 
 interface ModalInfoProps {
+  isOpen: boolean
+  onClose: () => void
   label: string
   collaborationChildren: React.ReactNode
   taskLabel?: string
   deadline?: string
   price: string
-  onClose: () => void
-  isOpen: boolean
 }
 
-export function ModalMoreInfo({ label, taskLabel, deadline, price, collaborationChildren, onClose, isOpen }: ModalInfoProps) {
+export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, price, collaborationChildren }: ModalInfoProps) {
 
   return (
-    <ModalContainer className="w-[400px] h-fit border-2 border-solid border-secondary-dark" onClose={onClose} isOpen={isOpen}>
+    <ModalContainer className="w-[400px] h-fit border-2 border-solid border-secondary-dark"
+      isOpen={isOpen} onClose={() => onClose()} >
       <div className="flex flex-col justify-between items-center text-center gap-y-md h-full py-md px-md">
         <div className="flex flex-col gap-y-md">
 

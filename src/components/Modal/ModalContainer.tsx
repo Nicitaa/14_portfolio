@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
-
-import useNavbar from "../../hooks/useNavbar";
+import { gsap } from 'gsap'
 
 import { IoMdClose } from 'react-icons/io'
 
@@ -13,12 +12,9 @@ interface ModalContainerProps {
   className?: string
 }
 
-export function ModalContainer({ children, isOpen, onClose, className }: ModalContainerProps) {
-
+export function ModalContainer({ isOpen, onClose, children, className }: ModalContainerProps) {
 
   const modalBgRef = useRef(null)
-
-  const navbar = useNavbar()
 
   const [showModal, setShowModal] = useState(isOpen)
 
@@ -29,8 +25,6 @@ export function ModalContainer({ children, isOpen, onClose, className }: ModalCo
       document.body.style.overflow = 'hidden';
       document.body.style.width = 'calc(100% - 17px)';
 
-      navbar.onClose()
-
       const modalBg = modalBgRef.current
       if (modalBg) {
         gsap.to(modalBg, {
@@ -39,12 +33,11 @@ export function ModalContainer({ children, isOpen, onClose, className }: ModalCo
         })
       }
     }
-  }, [isOpen, navbar])
+  }, [isOpen])
 
   /* onClose - close modal - show navbar - show scrollbar */
   function closeModal() {
     onClose()
-    navbar.onOpen()
     document.body.removeAttribute('style');
   }
 
@@ -67,14 +60,16 @@ export function ModalContainer({ children, isOpen, onClose, className }: ModalCo
   return (
     <AnimatePresence>
       {showModal &&
-        <div className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] flex justify-center items-center z-[99]"  {...modalBgHandler} ref={modalBgRef}>
+        <div className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] z-[99]
+         flex justify-center items-center" {...modalBgHandler} ref={modalBgRef}>
           <motion.div className={`relative bg-primary flex justify-center items-center rounded-sm z-[100] ${className}`}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.5 }}
             {...modalHandler}>
-            <IoMdClose className='absolute right-[0] top-[0] cursor-pointer border-b-[1px] border-l-[1px] border-solid border-cta rounded-bl-sm' size={32} onClick={() => closeModal()} />
+            <IoMdClose className='absolute right-[0] top-[0] border-b-[1px] border-l-[1px] border-solid border-cta rounded-bl-sm cursor-pointer'
+              size={32} onClick={closeModal} />
             {children}
           </motion.div>
         </div>}

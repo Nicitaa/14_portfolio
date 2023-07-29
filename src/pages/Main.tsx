@@ -3,13 +3,13 @@ import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "../components/Toolti
 import { Project } from "../components/Project";
 import { ModalMoreInfo } from "../components/Modal/ModalMoreInfo";
 import { CollaborationIcon } from "../components/CollaborationIcon";
-import { useState } from "react";
+import { useModalMoreInfo15, useModalMoreInfo16, useModalMoreInfo22 } from "../hooks";
 
 export function Main() {
 
-  const [moreInfo22, setMoreInfo22] = useState(false)
-  const [moreInfo16, setMoreInfo16] = useState(false)
-  const [moreInfo15, setMoreInfo15] = useState(false)
+  const moreInfo22 = useModalMoreInfo22()
+  const moreInfo16 = useModalMoreInfo16()
+  const moreInfo15 = useModalMoreInfo15()
 
   return (
     <div className="flex flex-col justify-center items-center gap-y-xl my-xl">
@@ -51,10 +51,10 @@ export function Main() {
             Responsive + Fluid<br />
             v.1.0.0.0
           </>}
-          onClick={() => setMoreInfo22(true)}
+          onClick={moreInfo22.onOpen}
           siteUrl=""
           figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
-        <ModalMoreInfo isOpen={moreInfo22} onClose={() => setMoreInfo22(false)}
+        <ModalMoreInfo isOpen={moreInfo22.isOpen} onClose={moreInfo22.onClose}
           label="22_aer"
           taskLabel="Create web site which will sell begs"
           deadline="1 month"
@@ -120,10 +120,10 @@ export function Main() {
             Responsive + Fluid<br />
             v.1.0.0.0
           </>}
-          onClick={() => setMoreInfo16(true)}
+          onClick={moreInfo16.onOpen}
           siteUrl="https://16-gericht-restaurant.vercel.app"
           figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
-        <ModalMoreInfo isOpen={moreInfo16} onClose={() => setMoreInfo16(false)}
+        <ModalMoreInfo isOpen={moreInfo16.isOpen} onClose={moreInfo16.onClose}
           label="16_gericht-restaurant"
           taskLabel="Create site with high conversion rate for restaurant with booking system and delivery option"
           deadline="1 month"
@@ -148,10 +148,10 @@ export function Main() {
             Responsive<br />
             v.1.0.0.0
           </>}
-          onClick={() => setMoreInfo15(true)}
+          onClick={moreInfo15.onOpen}
           siteUrl="https://15-hoo-bank.vercel.app"
           figmaUrl="https://www.figma.com/file/QRQCYjU0PxVyMJW2MjZ50p/HooBank-(Copy)?type=design&node-id=0%3A1&mode=design&t=jJPu1kzoLGIwvFKk-1" />
-        <ModalMoreInfo isOpen={moreInfo15} onClose={() => setMoreInfo15(false)}
+        <ModalMoreInfo isOpen={moreInfo15.isOpen} onClose={moreInfo15.onClose}
           label="15_HooBank"
           taskLabel="Create frontend part for bank"
           deadline="2 weeks"
