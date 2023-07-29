@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Navbar } from "./components/Navbar"
 import { Main } from "./pages"
+import { Footer } from "./components/Footer"
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
