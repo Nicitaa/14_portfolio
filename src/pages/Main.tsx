@@ -53,7 +53,8 @@ export function Main() {
           </>}
           onClick={moreInfo22.onOpen}
           siteUrl=""
-          figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
+          githubUrl="https://github.com/Nicitaa/22_aer"
+          figmaUrl="https://www.figma.com/file/llWyCvntsW1ZdIHgyVybUW/Untitled?type=design&node-id=0%3A1&t=iJdxmi7OnRcPZ8dg-1" />
         <ModalMoreInfo isOpen={moreInfo22.isOpen} onClose={moreInfo22.onClose}
           label="22_aer"
           taskLabel="Create web site which will sell begs"
@@ -122,6 +123,7 @@ export function Main() {
           </>}
           onClick={moreInfo16.onOpen}
           siteUrl="https://16-gericht-restaurant.vercel.app"
+          githubUrl="https://github.com/Nicitaa/16_gericht-restaurant"
           figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
         <ModalMoreInfo isOpen={moreInfo16.isOpen} onClose={moreInfo16.onClose}
           label="16_gericht-restaurant"
@@ -150,6 +152,7 @@ export function Main() {
           </>}
           onClick={moreInfo15.onOpen}
           siteUrl="https://15-hoo-bank.vercel.app"
+          githubUrl="https://github.com/Nicitaa/15_HooBank"
           figmaUrl="https://www.figma.com/file/QRQCYjU0PxVyMJW2MjZ50p/HooBank-(Copy)?type=design&node-id=0%3A1&mode=design&t=jJPu1kzoLGIwvFKk-1" />
         <ModalMoreInfo isOpen={moreInfo15.isOpen} onClose={moreInfo15.onClose}
           label="15_HooBank"

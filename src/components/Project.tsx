@@ -1,9 +1,11 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
+import { AiFillGithub } from 'react-icons/ai'
 
 interface ProjectProps {
   figmaUrl: string
+  githubUrl: string
   siteUrl: string
   title: string
   subTitle: string
@@ -11,15 +13,23 @@ interface ProjectProps {
   onClick: () => void
 }
 
-export function Project({ figmaUrl, siteUrl, title, subTitle, leftInfo, onClick }: ProjectProps) {
+export function Project({ figmaUrl, githubUrl, siteUrl, title, subTitle, leftInfo, onClick }: ProjectProps) {
   return (
     <div className="relative w-full h-[720px]">
-      <Link className="absolute top-sm right-sm w-[48px] h-[48px] rounded-[50%] bg-primary-dark cursor-pointer hidden laptopL:flex" target="_blank"
-        to={figmaUrl}>
-        <div className="relative w-[48px] h-[48px]">
-          <img className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[32px] h-[32px]" src="/figma.png" alt="figma" />
-        </div>
-      </Link>
+      <div className="absolute top-sm right-sm flex gap-x-md">
+        <Link className=" w-[48px] h-[48px] rounded-[50%] bg-primary-dark cursor-pointer hidden laptopL:flex" target="_blank"
+          to={figmaUrl}>
+          <div className="relative w-[48px] h-[48px]">
+            <img className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[32px] h-[32px]" src="/figma.png" alt="figma" />
+          </div>
+        </Link>
+        <Link className="w-[48px] h-[48px] rounded-[50%] bg-primary-dark cursor-pointer hidden laptopL:flex" target="_blank"
+          to={githubUrl}>
+          <div className="relative">
+            <AiFillGithub className='text-secondary-dark' size={48} />
+          </div>
+        </Link>
+      </div>
       <div className="w-full h-[640px] border-[1px] border-solid border-secondary rounded-t-md overflow-hidden">
         <iframe className="w-full h-full" src={siteUrl} />
       </div>
