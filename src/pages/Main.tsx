@@ -49,7 +49,7 @@ export function Main() {
           leftInfo={<>
             T3 Next App + TypeScript + tailwind + css<br />
             Responsive + Fluid<br />
-            v.1.0.0.0
+            19.06.2023 - now
           </>}
           onClick={moreInfo22.onOpen}
           siteUrl=""
@@ -119,7 +119,7 @@ export function Main() {
           leftInfo={<>
             React TS + Vite + tailwind + css<br />
             Responsive + Fluid<br />
-            v.1.0.0.0
+            05.2023 - 31.07.2023
           </>}
           onClick={moreInfo16.onOpen}
           siteUrl="https://16-gericht-restaurant.vercel.app"
@@ -148,7 +148,7 @@ export function Main() {
           leftInfo={<>
             React TS + Vite + tailwind<br />
             Responsive<br />
-            v.1.0.0.0
+            05.2023 - 05.2023
           </>}
           onClick={moreInfo15.onOpen}
           siteUrl="https://15-hoo-bank.vercel.app"
