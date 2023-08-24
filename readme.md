@@ -1,6 +1,6 @@
 # What inside?
 
-![work in progress](https://i.imgur.com/2hHq62J.jpg)
+![14_portfolio](https://i.imgur.com/rQ0NPhp.png)
 
 # Clone repository
 
