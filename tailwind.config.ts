@@ -26,8 +26,10 @@ export default {
     screens: {
       tablet: "768px",
       // => @media (min-width: 768px) { ... }
-      laptopL: "1440px"
+      laptop:"1024px",
       // => @media (min-width: 1024px) { ... }
+      desktop: "1440px"
+      // => @media (min-width: 1440px) { ... }
     },
     extend: {
       colors: {

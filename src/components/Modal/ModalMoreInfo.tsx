@@ -17,8 +17,8 @@ interface ModalInfoProps {
 export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, price, collaborationChildren }: ModalInfoProps) {
 
   return (
-    <ModalContainer className="w-[400px] h-fit border-2 border-solid border-secondary-dark"
-      isOpen={isOpen} onClose={() => onClose()} >
+    <ModalContainer className="w-[400px] h-fit flex justify-center items-center"
+      isOpen={isOpen} onClose={onClose} >
       <div className="flex flex-col justify-between items-center text-center gap-y-md h-full py-md px-md">
         <div className="flex flex-col gap-y-md">
 

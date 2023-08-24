@@ -20,7 +20,7 @@ export function Navbar() {
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ ease: 'circIn', duration: 0.5 }}
-          className='flex justify-between laptopL:justify-stretch items-center transition-[height] duration-[600ms] px-md
+          className='flex justify-between desktop:justify-stretch items-center transition-[height] duration-[600ms] px-md
     py-sm'>
 
           <div className='flex items-center pr-md line'>
@@ -28,12 +28,12 @@ export function Navbar() {
           </div>
 
 
-          <div className='hidden laptopL:inline-flex overflow-x-hidden w-[90%]'
+          <div className='hidden desktop:inline-flex overflow-x-hidden w-[90%]'
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchDown}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}>
-            <ul className='hidden laptopL:inline-flex items-center gap-md'>
+            <ul className='hidden desktop:inline-flex items-center gap-md'>
               {repos.map((repo) => (
                 <li key={repo.id} className='flex flex-col items-center w-[10rem] select-none'>
                   <p className='flex justify-center'>{repo.id}</p>

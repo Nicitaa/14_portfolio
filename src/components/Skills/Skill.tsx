@@ -41,7 +41,7 @@ export function Skill(skill: ISkill) {
 
 
   return (
-    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[300px] tablet:w-[450px] laptopL:w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
+    <li className={`flex ${skill.small ? 'w-[200px] h-[15px]' : 'w-[300px] tablet:w-[450px] desktop:w-[425px] h-[22.5px]'} gap-xs select-none`} key={skill.id}>
       <h1 data-text={skill.label} className={`relative flex justify-end items-center text-end text-secondary font-bold whitespace-nowrap
         ${skill.small ? skill.labelClassName : 'min-w-[25%]'}
         ${skill.tooltip && 'text-tooltip tooltip'} `}>

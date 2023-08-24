@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
+
 import { AnimatePresence, motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
-import { gsap } from 'gsap'
-
 import { IoMdClose } from 'react-icons/io'
+
 
 interface ModalContainerProps {
   isOpen: boolean
@@ -14,8 +14,6 @@ interface ModalContainerProps {
 
 export function ModalContainer({ isOpen, onClose, children, className }: ModalContainerProps) {
 
-  const modalBgRef = useRef(null)
-
   const [showModal, setShowModal] = useState(isOpen)
 
   /* onOpen - show modal - disable scroll and scrollbar - hide navbar - show bg */
@@ -25,13 +23,6 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
       document.body.style.overflow = 'hidden';
       document.body.style.width = 'calc(100% - 17px)';
 
-      const modalBg = modalBgRef.current
-      if (modalBg) {
-        gsap.to(modalBg, {
-          duration: 0.5,
-          backgroundColor: 'rgba(0,0,0,0.4)',
-        })
-      }
     }
   }, [isOpen])
 
@@ -57,22 +48,28 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
     },
     trackMouse: true
   })
+
   return (
     <AnimatePresence>
       {showModal &&
-        <div className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] z-[99]
-         flex justify-center items-center" {...modalBgHandler} ref={modalBgRef}>
-          <motion.div className={`relative bg-primary flex justify-center items-center rounded-sm z-[100] ${className}`}
+        <motion.div className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] z-[99]
+         flex justify-center items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          {...modalBgHandler}>
+          <motion.div className={`relative bg-primary border-2 border-secondary-dark rounded-sm z-[100] ${className}`}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.5 }}
             {...modalHandler}>
-            <IoMdClose className='absolute right-[0] top-[0] border-b-[1px] border-l-[1px] border-solid border-cta rounded-bl-sm cursor-pointer'
+            <IoMdClose className='absolute right-[0] top-[0] border-b-[1px] border-l-[1px] border-cta rounded-bl-sm cursor-pointer'
               size={32} onClick={closeModal} />
             {children}
           </motion.div>
-        </div>}
+        </motion.div>}
     </AnimatePresence>
   )
 }

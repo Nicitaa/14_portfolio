@@ -108,7 +108,28 @@ const repos = [
     id: 22,
     description: "aer",
     url: "https://github.com/Nicitaa/22_aer"
-  }
+  },
+
+    {
+    id: 23,
+    description: "23_store",
+    url: "https://github.com/Nicitaa/23_store-zustand-supabase"
+  },
+    {
+    id: 24,
+    description: "dashboard MUI",
+    url: "https://github.com/Nicitaa/24_dashboard-mui"
+  },
+    {
+    id: 25,
+    description: "bottle energy",
+    url: "https://github.com/Nicitaa/25_bottle-energy"
+  },
+    {
+    id: 26,
+    description: "linktree clone",
+    url: "https://github.com/Nicitaa/26_linktree-clone"
+  },
 ]
 
 export { repos }

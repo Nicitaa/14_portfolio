@@ -1,30 +1,31 @@
-import { Skill } from "../components/Skills/Skill";
+import { useModalsStore } from "../store/modalsStore";
 import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "../components/Tooltips";
-import { Project } from "../components/Project";
-import { ModalMoreInfo } from "../components/Modal/ModalMoreInfo";
+import { TooltipBackend } from "../components/Tooltips/TooltipBackend";
 import { CollaborationIcon } from "../components/CollaborationIcon";
-import { useModalMoreInfo15, useModalMoreInfo16, useModalMoreInfo22 } from "../hooks";
+import { ModalMoreInfo } from "../components/Modal/ModalMoreInfo";
+import { Skill } from "../components/Skills/Skill";
+import { Project } from "../components/Project";
 
 export function Main() {
 
-  const moreInfo22 = useModalMoreInfo22()
-  const moreInfo16 = useModalMoreInfo16()
-  const moreInfo15 = useModalMoreInfo15()
+    const { isOpen,closeModal,openModal } = useModalsStore()
+
 
   return (
     <div className="flex flex-col justify-center items-center gap-y-xl my-xl">
 
       {/* Skills + Text */}
-      <div className="flex flex-col laptopL:flex-row justify-between items-center gap-lg w-full px-sm
+      <div className="flex flex-col desktop:flex-row justify-between items-center gap-lg w-full px-sm
       tablet:px-md
-      laptopL:max-w-[80%] laptopL:h-[40rem]">
+      desktop:max-w-[80%] desktop:h-[40rem]">
         <ul className="flex flex-col gap-y-sm">
-          <Skill id={1} label="html&css" hours={1080} tooltip tooltiptext={<TooltipHTMLCSS />} />
-          <Skill id={2} label="react" hours={950} tooltip tooltiptext={<TooltipReact />} />
-          <Skill id={3} label="typescript" hours={650} />
-          <Skill id={4} label="other" hours={34} tooltip tooltiptext={<TooltipOther />} />
+          <Skill id={1} label="html&css" hours={1668} tooltip tooltiptext={<TooltipHTMLCSS />} />
+          <Skill id={2} label="react" hours={1335} tooltip tooltiptext={<TooltipReact />} />
+          <Skill id={3} label="typescript" hours={1181} />
+          <Skill id={4} label="backend" hours={84} tooltip tooltiptext={<TooltipBackend />}/>
+          <Skill id={5} label="other" hours={54} tooltip tooltiptext={<TooltipOther />} />
         </ul>
-        <div className="tablet:px-md text-center laptopL:max-w-[650px] laptopL:px-[0] laptopL:text-start">
+        <div className="tablet:px-md text-center desktop:max-w-[650px] desktop:px-[0] desktop:text-start">
           <h1 data-text="WEB Frontend developer" className="text-shadow text-lg min-[380px]:whitespace-nowrap before:text-secondary" />
           <div className="text-md font-bold">I’m going to be WEB FullStack Developer. I see a lot of things to improve in WEB and I
             have knowledge about <div className="relative inline-block">
@@ -42,20 +43,20 @@ export function Main() {
 
 
       {/* Protfolio projects */}
-      <div className="flex flex-col gap-xl w-[1440px] max-w-[80%]">
+      <div className="flex flex-col gap-xl max-w-[80vw] w-full">
 
         <Project title="22_aer"
-          subTitle="Team leader - main page"
+          subTitle="Team leader - home&about page"
           leftInfo={<>
             T3 Next App + TypeScript + tailwind + css<br />
             Responsive + Fluid<br />
             19.06.2023 - now
           </>}
-          onClick={moreInfo22.onOpen}
-          siteUrl=""
+          onClick={() => openModal('22MoreInfo')}
+          siteUrl="https://22-aer-nicitaa.vercel.app/"
           githubUrl="https://github.com/Nicitaa/22_aer"
           figmaUrl="https://www.figma.com/file/llWyCvntsW1ZdIHgyVybUW/Untitled?type=design&node-id=0%3A1&t=iJdxmi7OnRcPZ8dg-1" />
-        <ModalMoreInfo isOpen={moreInfo22.isOpen} onClose={moreInfo22.onClose}
+        <ModalMoreInfo isOpen={isOpen['22MoreInfo']} onClose={() => closeModal('22MoreInfo')}
           label="22_aer"
           taskLabel="Create web site which will sell begs"
           deadline="1 month"
@@ -112,6 +113,39 @@ export function Main() {
 
 
 
+        <Project title="24_dashboard-mui"
+          subTitle="Whole site"
+          leftInfo={<>
+            React + Vite + TypeScript + MUI<br />
+            No Responsive<br />
+            07.2023 - 08.2023 (30h)
+          </>}
+          onClick={() => openModal('24MoreInfo')}
+          siteUrl="https://24-dashboard-c06zh8ry5-nicitaa.vercel.app"
+          githubUrl="https://github.com/Nicitaa/24_dashboard-mui"
+          figmaUrl="https://www.figma.com/file/ugi51UXz9ehKvXR1CSz1CJ/Purity-UI-Dashboard---Chakra-UI-Dashboard-(Community)?type=design&node-id=1516-368&mode=design&t=4eHHT6vtEqZZq67S-0" />
+        <ModalMoreInfo isOpen={isOpen['24MoreInfo']} onClose={() => closeModal('24MoreInfo')}
+          label="24_dashboard-mui"
+          taskLabel="Create dashboard using MUI"
+          deadline="2 weeks"
+          price="400-2500$"
+          collaborationChildren={
+            <>
+              <CollaborationIcon tooltiptext={
+                <div className="flex flex-col gap-y-md">
+                  <h1>Whole site</h1>
+                  <div>
+                    <h1>Functionalify:</h1>
+                    <h1>Advanced dark mode</h1>
+                    <h1>Auth with Clerk</h1>
+                  </div>
+                </div>} />
+            </>
+          } />
+
+
+
+
 
 
         <Project title="16_gericht-restaurant"
@@ -121,11 +155,11 @@ export function Main() {
             Responsive + Fluid<br />
             05.2023 - 31.07.2023
           </>}
-          onClick={moreInfo16.onOpen}
+          onClick={() => openModal('16MoreInfo')}
           siteUrl="https://16-gericht-restaurant.vercel.app"
           githubUrl="https://github.com/Nicitaa/16_gericht-restaurant"
           figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
-        <ModalMoreInfo isOpen={moreInfo16.isOpen} onClose={moreInfo16.onClose}
+        <ModalMoreInfo isOpen={isOpen['16MoreInfo']} onClose={() => closeModal('16MoreInfo')}
           label="16_gericht-restaurant"
           taskLabel="Create site with high conversion rate for restaurant with booking system and delivery option"
           deadline="1 month"
@@ -150,11 +184,11 @@ export function Main() {
             Responsive<br />
             05.2023 - 05.2023
           </>}
-          onClick={moreInfo15.onOpen}
+          onClick={() => openModal('15MoreInfo')}
           siteUrl="https://15-hoo-bank.vercel.app"
           githubUrl="https://github.com/Nicitaa/15_HooBank"
           figmaUrl="https://www.figma.com/file/QRQCYjU0PxVyMJW2MjZ50p/HooBank-(Copy)?type=design&node-id=0%3A1&mode=design&t=jJPu1kzoLGIwvFKk-1" />
-        <ModalMoreInfo isOpen={moreInfo15.isOpen} onClose={moreInfo15.onClose}
+        <ModalMoreInfo isOpen={isOpen['15MoreInfo']} onClose={() => closeModal('15MoreInfo')}
           label="15_HooBank"
           taskLabel="Create frontend part for bank"
           deadline="2 weeks"

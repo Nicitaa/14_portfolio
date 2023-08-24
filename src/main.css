@@ -54,7 +54,7 @@
   .tooltiptext {
     @apply opacity-0 invisible transition-all duration-300
     fixed top-[50%] translate-y-[110%]
-    laptopL:absolute laptopL:top-[0px] left-[50%] translate-x-[-50%] laptopL:translate-y-[-110%]
+    desktop:absolute desktop:top-[0px] left-[50%] translate-x-[-50%] desktop:translate-y-[-110%]
     text-sm bg-primary-dark
     text-center rounded-sm z-[99];
   }
