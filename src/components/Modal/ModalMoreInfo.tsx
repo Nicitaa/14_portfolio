@@ -12,9 +12,10 @@ interface ModalInfoProps {
   taskLabel?: string
   deadline?: string
   price: string
+  siteUrl:string
 }
 
-export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, price, collaborationChildren }: ModalInfoProps) {
+export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, price, collaborationChildren ,siteUrl}: ModalInfoProps) {
 
   return (
     <ModalContainer className="w-[400px] h-fit flex justify-center items-center"
@@ -22,7 +23,11 @@ export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, pri
       <div className="flex flex-col justify-between items-center text-center gap-y-md h-full py-md px-md">
         <div className="flex flex-col gap-y-md">
 
-          <h1 className="text-lg">{label}</h1>
+          <div className="text-lg">
+            <a className="text-secondary hover:brightness-75 transition-all duration-300" href={siteUrl} target="_blank">
+              {label}
+            </a>
+          </div>
           {/* Collaboration */}
           <div className="flex flex-col items-center">
             <h1 className="text-lg">Collaboration</h1>
@@ -50,7 +55,7 @@ export function ModalMoreInfo({ isOpen, onClose, label, taskLabel, deadline, pri
             <h1 className="mt-md">Want more info or want similar site?<br />
               Message me:</h1>
             <div className="flex justify-center gap-x-md">
-              <Button onClick={() => window.open('https://t.me/icpcedu')}>Telegram <PiTelegramLogoBold /></Button>
+              <Button onClick={() => window.open('https://t.me/nicitaacom')}>Telegram <PiTelegramLogoBold /></Button>
               <Button onClick={() => window.open('https://discord.com/users/780002958380498955')}>Discord <RiDiscordLine /></Button>
             </div>
           </div>

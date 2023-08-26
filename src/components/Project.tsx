@@ -31,7 +31,7 @@ export function Project({ figmaUrl, githubUrl, siteUrl, title, subTitle, leftInf
         </Link>
       </div>
       <div className="w-full h-[640px] border-[1px] border-solid border-secondary rounded-t-md overflow-hidden">
-        <iframe className="w-full h-full" src={siteUrl} />
+        <iframe className="w-full h-full" title={title} src={siteUrl} />
       </div>
       {/* Footer */}
       <div className="relative flex justify-end desktop:justify-between items-center 
@@ -40,7 +40,8 @@ export function Project({ figmaUrl, githubUrl, siteUrl, title, subTitle, leftInf
           {leftInfo}
         </h1>
         <div className="hidden tablet:flex flex-col text-center absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 ">
-          <h1 className="text-md desktop:text-lg font-bold text-secondary">{title}</h1>
+          <a className="text-md desktop:text-lg font-bold text-secondary hover:text-secondary-dark
+          transition-all duration-300" href={siteUrl} target="_blank">{title}</a>
           <p className="text-xs desktop:text-sm font-bold">{subTitle}</p>
         </div>
         <Button onClick={onClick}>More info</Button>

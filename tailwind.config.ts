@@ -38,7 +38,8 @@ export default {
         secondary: "#DDDDDD",
         "secondary-dark": "#C5C5C5",
         cta: "#C15DFF",
-        "cta-tooltip": "rgba(193,93,255,0.2)"
+        "cta-tooltip": "rgba(193,93,255,0.2)",
+        info:"#348bd0"
       }
     }
   },

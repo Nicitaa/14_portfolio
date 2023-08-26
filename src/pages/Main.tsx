@@ -11,6 +11,8 @@ export function Main() {
     const { isOpen,closeModal,openModal } = useModalsStore()
 
 
+
+
   return (
     <div className="flex flex-col justify-center items-center gap-y-xl my-xl">
 
@@ -26,7 +28,7 @@ export function Main() {
           <Skill id={5} label="other" hours={54} tooltip tooltiptext={<TooltipOther />} />
         </ul>
         <div className="tablet:px-md text-center desktop:max-w-[650px] desktop:px-[0] desktop:text-start">
-          <h1 data-text="WEB Frontend developer" className="text-shadow text-lg min-[380px]:whitespace-nowrap before:text-secondary" />
+          <h1 data-text="WEB Frontend developer" className="text-shadow text-lg min-[380px]:whitespace-nowrap before:text-secondary">WEB Frontend developer</h1>
           <div className="text-md font-bold">I’m going to be WEB FullStack Developer. I see a lot of things to improve in WEB and I
             have knowledge about <div className="relative inline-block">
               <span data-text="conversion" className="text-tooltip tooltip">
@@ -50,7 +52,7 @@ export function Main() {
           leftInfo={<>
             T3 Next App + TypeScript + tailwind + css<br />
             Responsive + Fluid<br />
-            19.06.2023 - now
+            19.06.2023 - now (~51h)
           </>}
           onClick={() => openModal('22MoreInfo')}
           siteUrl="https://22-aer-nicitaa.vercel.app/"
@@ -58,9 +60,10 @@ export function Main() {
           figmaUrl="https://www.figma.com/file/llWyCvntsW1ZdIHgyVybUW/Untitled?type=design&node-id=0%3A1&t=iJdxmi7OnRcPZ8dg-1" />
         <ModalMoreInfo isOpen={isOpen['22MoreInfo']} onClose={() => closeModal('22MoreInfo')}
           label="22_aer"
+          siteUrl="https://22-aer-nicitaa.vercel.app/"
           taskLabel="Create web site which will sell begs"
           deadline="1 month"
-          price="200-500$"
+          price="500-2900$"
           collaborationChildren={
             <>
               <CollaborationIcon tooltiptext={
@@ -77,6 +80,7 @@ export function Main() {
                     <h1>root - navbar + animations</h1>
                     <h1>/ - whole page</h1>
                     <h1>/products - dropdown</h1>
+                    <h1>/about - whole page</h1>
                   </div>
                 </div>} />
               <CollaborationIcon imgSrc="/collaborations/22_aer/ottakist.png" profileUrl="https://github.com/ottakist" tooltiptext={
@@ -114,11 +118,11 @@ export function Main() {
 
 
         <Project title="24_dashboard-mui"
-          subTitle="Whole site"
+          subTitle="Now I'm collaborating with clerk to fix this"
           leftInfo={<>
             React + Vite + TypeScript + MUI<br />
             No Responsive<br />
-            07.2023 - 08.2023 (30h)
+            07.2023 - 08.2023 (~30h)
           </>}
           onClick={() => openModal('24MoreInfo')}
           siteUrl="https://24-dashboard-c06zh8ry5-nicitaa.vercel.app"
@@ -126,6 +130,7 @@ export function Main() {
           figmaUrl="https://www.figma.com/file/ugi51UXz9ehKvXR1CSz1CJ/Purity-UI-Dashboard---Chakra-UI-Dashboard-(Community)?type=design&node-id=1516-368&mode=design&t=4eHHT6vtEqZZq67S-0" />
         <ModalMoreInfo isOpen={isOpen['24MoreInfo']} onClose={() => closeModal('24MoreInfo')}
           label="24_dashboard-mui"
+          siteUrl="https://24-dashboard-c06zh8ry5-nicitaa.vercel.app"
           taskLabel="Create dashboard using MUI"
           deadline="2 weeks"
           price="400-2500$"
@@ -153,7 +158,7 @@ export function Main() {
           leftInfo={<>
             React TS + Vite + tailwind + css<br />
             Responsive + Fluid<br />
-            05.2023 - 31.07.2023
+            05.2023 - 31.07.2023 (~128h)
           </>}
           onClick={() => openModal('16MoreInfo')}
           siteUrl="https://16-gericht-restaurant.vercel.app"
@@ -161,6 +166,7 @@ export function Main() {
           figmaUrl="https://www.figma.com/file/at7kfXpaRagcwAwkkRVviz/Modern-UI%2FUX%3A-Gericht-(Copy)?type=design&node-id=0%3A1&mode=design&t=qbkbNwCPoXCSdZM4-1" />
         <ModalMoreInfo isOpen={isOpen['16MoreInfo']} onClose={() => closeModal('16MoreInfo')}
           label="16_gericht-restaurant"
+          siteUrl="https://16-gericht-restaurant.vercel.app"
           taskLabel="Create site with high conversion rate for restaurant with booking system and delivery option"
           deadline="1 month"
           price="100$-2000$"
@@ -182,7 +188,7 @@ export function Main() {
           leftInfo={<>
             React TS + Vite + tailwind<br />
             Responsive<br />
-            05.2023 - 05.2023
+            05.2023 - 05.2023 (~50h)
           </>}
           onClick={() => openModal('15MoreInfo')}
           siteUrl="https://15-hoo-bank.vercel.app"
@@ -190,6 +196,7 @@ export function Main() {
           figmaUrl="https://www.figma.com/file/QRQCYjU0PxVyMJW2MjZ50p/HooBank-(Copy)?type=design&node-id=0%3A1&mode=design&t=jJPu1kzoLGIwvFKk-1" />
         <ModalMoreInfo isOpen={isOpen['15MoreInfo']} onClose={() => closeModal('15MoreInfo')}
           label="15_HooBank"
+          siteUrl="https://15-hoo-bank.vercel.app"
           taskLabel="Create frontend part for bank"
           deadline="2 weeks"
           price="60$-100$"
