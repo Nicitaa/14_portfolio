@@ -1,49 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --brand: 137deg 82% 49%;
-    --background: 0deg 0% 93%;
-    --foreground: 0deg 0% 84%;
-    --title: 0deg 0% 12%;
-    --title-foreground: 0deg 0% 10%;
-    --subTitle: 0deg 0% 40%;
+:root {
+  /* something you can't do with tailwind that's why I another classes exists here */
+  --primary: #202020;
+  --primary-foregorund: #303030;
+  --secondary: #dddddd;
+  --cta: #c15dff;
+  --cta-tooltip: rgba(193, 93, 255, 0.2);
+}
 
-    /* The same colors */
-    --border-color: 0deg 0% 40%; /*subTitle*/
-    --icon-color: 0deg 0% 12%; /* title */
-
-    /* Support colors */
-    --info: 239deg 83% 21%;
-    --warning: 22deg 84% 27%;
-    --danger: 0deg 80% 24%;
-    --success: 118deg 80% 23%;
+@layer components {
+  .line {
+    @apply border-r-[1px] border-solid border-secondary;
+    border-image: linear-gradient(to bottom, var(--primary), var(--secondary), var(--primary)) 1 100%;
   }
-  /* inverted colors (HSL - L) */
-  .dark {
-    --brand: 137deg 82% 51%;
-    --background: 0deg 0% 7%;
-    --foreground: 0deg 0% 16%;
-    --title: 0deg 0% 88%;
-    --title-foreground: 0deg 0% 10%;
-    --subTitle: 0deg 0% 60%;
 
-    /* The same colors */
-    --border-color: 0deg 0% 60%; /*subTitle*/
-    --icon-color: 0deg 0% 88%; /* title */
+  .text-shadow::before {
+    @apply absolute text-transparent z-10;
+    content: attr(data-text);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
 
-    /* Support colors */
-    --info: 239deg 83% 79%;
-    --warning: 22deg 84% 73%;
-    --danger: 0deg 80% 76%;
-    --success: 118deg 80% 77%;
+  .text-tooltip::before {
+    @apply absolute text-transparent z-10;
+    content: attr(data-text);
+    text-shadow: 0px 0px 4px var(--cta-tooltip);
+  }
+  .text-tooltip::after {
+    @apply text-transparent;
+    content: attr(data-text);
+    text-shadow:
+      0px 0px 0px var(--secondary),
+      2px 2px 4px var(--cta-tooltip);
+  }
+
+  .collaboration-tooltip::before {
+    @apply content-[""] w-[48px] h-[48px] absolute rounded-[50%] -translate-x-1/2 shadow-[0px_4px_12px_var(--cta-tooltip),_inset_0px_4px_12px_var(--cta-tooltip)];
+  }
+
+  .tooltip:hover .tooltiptext {
+    @apply opacity-100 visible transition-all duration-300
+    translate-y-[-105%] 
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext {
+    @apply opacity-0 invisible transition-all duration-300
+    fixed top-[50%] translate-y-[110%]
+    desktop:absolute desktop:top-[0px] left-[50%] translate-x-[-50%] desktop:translate-y-[-110%]
+    text-sm bg-primary-dark
+    text-center rounded-sm z-[99];
+  }
+
+  .tooltip-modal:hover .tooltiptext-modal {
+    @apply opacity-100 visible transition-all duration-300
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext-modal {
+    @apply opacity-0 invisible transition-all duration-300
+    absolute inset-[0] 
+    text-sm bg-primary-dark rounded-sm
+    z-[99] pointer-events-none;
   }
 }
 
-* {
-  border-color: hsl(var(--subTitle));
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--primary);
+  min-height: 100vh;
 }
 
 h1,
@@ -52,22 +81,29 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsl(var(--title));
+  color: var(--secondary);
 }
 
-p,
-span {
-  color: hsl(var(--subTitle));
+.active {
+  background-color: var(--cta);
 }
 
-body {
-  list-style: none;
-  background-color: hsl(var(--background));
-  font-family: "Inter", sans-serif;
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
 }
 
-#root {
-  display: flex;
-  flex-flow: column;
-  min-height: 100vh;
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary-foregorund);
+  border-radius: 10px;
 }
