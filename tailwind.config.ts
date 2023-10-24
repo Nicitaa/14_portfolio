@@ -1,7 +1,7 @@
-import { type Config } from "tailwindcss"
-const plugin = require("tailwindcss/plugin")
-export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+import type { Config } from "tailwindcss"
+
+const config: Config = {
+  content: ["./app/**/*.{tsx,mdx}"],
   theme: {
     fontFamily: {
       primary: ["Inter", "sans-serif"],
@@ -44,4 +44,5 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config
+}
+export default config
