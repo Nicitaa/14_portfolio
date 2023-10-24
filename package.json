@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "framer-motion": "^10.16.4",
+    "gsap": "^3.12.2",
     "next": "13.5.7-canary.23",
     "react": "latest",
+    "react-countup": "^6.4.2",
     "react-dom": "latest",
     "zustand": "^4.4.4"
   },
