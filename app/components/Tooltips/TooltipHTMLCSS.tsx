@@ -1,4 +1,4 @@
-import { Skill } from "../Skills/Skill";
+import { Skill } from "../Skill"
 
 export function TooltipHTMLCSS() {
   return (

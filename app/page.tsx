@@ -1,6 +1,7 @@
-import { Skill } from "@/components/Skills/Skill"
+import { Skill } from "@/components/Skill"
 import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "./components/Tooltips"
 import { TooltipBackend } from "./components/Tooltips/TooltipBackend"
+import { Project15, Project16, Project22, Project24 } from "./components/Projects"
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
             className="text-shadow text-lg min-[380px]:whitespace-nowrap before:text-secondary">
             WEB Frontend developer
           </h1>
-          <div className="text-md font-bold text-secondary-dark">
+          <div className="text-md font-bold text-secondary-foreground">
             I’m going to be WEB FullStack Developer. I see a lot of things to improve in WEB and I have knowledge about{" "}
             <div className="relative inline-block">
               <span data-text="conversion" className="text-tooltip tooltip">
@@ -38,6 +39,14 @@ export default function Home() {
             that’s why I create web-site for you which will have high conversion rate - so you will sell more.{" "}
           </div>
         </div>
+      </div>
+
+      {/* Protfolio projects */}
+      <div className="flex flex-col gap-xl max-w-[80vw] w-full">
+        <Project22 />
+        <Project24 />
+        <Project16 />
+        <Project15 />
       </div>
     </div>
   )

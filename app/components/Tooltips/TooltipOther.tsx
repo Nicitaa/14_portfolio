@@ -1,4 +1,4 @@
-import { Skill } from "../Skills/Skill"
+import { Skill } from "../Skill"
 
 function TooltipGithub() {
   return (

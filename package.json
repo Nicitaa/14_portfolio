@@ -1,5 +1,5 @@
 {
-  "name": "codesandbox-project",
+  "name": "14_portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,8 @@
     "react": "latest",
     "react-countup": "^6.4.2",
     "react-dom": "latest",
+    "react-icons": "^4.11.0",
+    "react-swipeable": "^7.0.1",
     "zustand": "^4.4.4"
   },
   "devDependencies": {

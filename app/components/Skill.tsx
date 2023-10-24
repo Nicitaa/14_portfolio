@@ -1,7 +1,7 @@
 "use client"
 
 import { RefObject, useLayoutEffect, useRef } from "react"
-import { ISkill } from "../../interfaces/Skill"
+import { ISkill } from "../interfaces/Skill"
 import CountUp from "react-countup"
 import gsap from "gsap"
 
@@ -53,13 +53,16 @@ export function Skill(skill: ISkill) {
         {skill.tooltiptext}
         {skill.tooltip ? "" : skill.label}
       </h1>
-      <div className={`relative w-full rounded-md ${skill.small ? "bg-primary" : "bg-primary-dark"} overflow-hidden`}>
+      <div
+        className={`relative w-full rounded-md ${
+          skill.small ? "bg-primary" : "bg-primary-foreground"
+        } overflow-hidden`}>
         <div
           className="w-[0px] h-full transition-all duration-[5000ms] shadow-[inset_0px_2px_2px_rgba(0,0,0,0.3)]"
           ref={progressRef}
         />
         <CountUp
-          className="absolute top-[50%] right-[4%] -translate-y-1/2 text-xs font-bold text-secondary-dark"
+          className="absolute top-[50%] right-[4%] -translate-y-1/2 text-xs font-bold text-secondary-foreground"
           end={skill.hours}
           duration={5}
           delay={0.5}
