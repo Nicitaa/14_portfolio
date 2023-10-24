@@ -1,16 +1,29 @@
-import type { Config } from "tailwindcss"
-
-const config: Config = {
-  content: ["./app/**/*.{tsx,mdx}"],
-
+import { type Config } from "tailwindcss"
+const plugin = require("tailwindcss/plugin")
+export default {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
       primary: ["Inter", "sans-serif"],
-      secondary: ["Proxima Nova", "sans-serif"],
+    },
+    fontSize: {
+      xs: "clamp(0.6rem, 0.4571rem + 0.7143vw, 0.8rem);",
+      sm: "1rem",
+      lg: "2rem",
+    },
+    spacing: {
+      xs: "clamp(0.25rem, 0.1364rem + 0.5682vw, 0.5rem)", //320-1024px
+      sm: "clamp(0.5rem, 0.3864rem + 0.5682vw, 0.75rem)", //320-1024px
+      md: "1rem",
+      lg: "3rem;",
+      xl: "4rem",
+    },
+    borderRadius: {
+      xs: "0.25rem",
+      sm: "0.5rem",
+      md: "0.75rem",
     },
     screens: {
-      mobile: "415px",
-      // => @media (min-width: 415px) { ... }
       tablet: "768px",
       // => @media (min-width: 768px) { ... }
       laptop: "1024px",
@@ -20,25 +33,15 @@ const config: Config = {
     },
     extend: {
       colors: {
-        brand: "hsl(var(--brand) / 1)",
-        background: "hsl(var(--background) / 1)",
-        foreground: "hsl(var(--foreground) / 1)",
-        title: "hsl(var(--title) / 1)",
-        "title-foreground": "hsl(var(--title-foreground) / 1)",
-        subTitle: "hsl(var(--subTitle) / 1)",
-
-        /* The same colors */
-        "border-color": "hsl(var(--border-color) / 1)" /*subTitle*/,
-        "icon-color": "hsl(var(--icon-color) / 1)" /* title */,
-
-        /* Support colors */
-        info: "hsl(var(--info) / 1)",
-        danger: "hsl(var(--danger) / 1)",
-        warning: "hsl(var(--warning) / 1)",
-        success: "hsl(var(--success) / 1)",
+        primary: "#202020",
+        "primary-dark": "rgba(22,21,22,0.95)",
+        secondary: "#DDDDDD",
+        "secondary-dark": "#C5C5C5",
+        cta: "#C15DFF",
+        "cta-tooltip": "rgba(193,93,255,0.2)",
+        info: "#348bd0",
       },
     },
   },
   plugins: [],
-}
-export default config
+} satisfies Config

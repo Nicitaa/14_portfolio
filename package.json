@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.5.7-canary.14",
+    "framer-motion": "^10.16.4",
+    "next": "13.5.7-canary.23",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@types/node": "latest",
