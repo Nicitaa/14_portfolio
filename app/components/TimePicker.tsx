@@ -24,17 +24,17 @@ export function TimePicker({
       }
     }
 
-    document.addEventListener("mousedown", handler)
-  }, [])
-
-  /* for closing on esc */
-  if (typeof document !== undefined) {
-    document.onkeydown = function (evt) {
-      if (evt.keyCode == 27) {
-        setShowDropdown(false)
+    /* for closing on esc */
+    if (typeof document !== undefined) {
+      document.onkeydown = function (evt) {
+        if (evt.keyCode == 27) {
+          setShowDropdown(false)
+        }
       }
     }
-  }
+
+    document.addEventListener("mousedown", handler)
+  }, [])
 
   const [currentTime, setCurrentTime] = useState("10:00")
   const [hover, setHover] = useState<string | null>(null)
@@ -56,7 +56,7 @@ export function TimePicker({
     h-lg w-[150px] cursor-pointer"
       onClick={() => setShowDropdown(!showDropdown)}
       ref={dropdownContainerRef}>
-      <BiTimeFive />
+      <BiTimeFive className="text-secondary-foreground" />
       <div className="flex items-center w-[7rem]">
         <h1 className="text-xs text-secondary">Time:{currentTime}</h1>
         <Image className="w-md h-md" src="/tringle.png" alt="tringle" width={32} height={32} />

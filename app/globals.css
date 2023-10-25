@@ -154,10 +154,11 @@ p {
   color: #777777;
 }
 .rdrPprevButton i {
-  border-color: transparent #777777 transparent transparent;
+  border-color: transparent #777777 transparent transparent !important;
   margin-left: 0px 5px 0px 5px !important;
 }
 .rdrNextButton i {
+  border-color: transparent transparent transparent #777777 !important;
   margin-left: 6px !important;
 }
 .rdrDayStartPreview,
