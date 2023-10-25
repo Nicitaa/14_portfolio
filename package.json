@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-date-range": "^1.4.7",
     "framer-motion": "^10.16.4",
     "gsap": "^3.12.2",
     "next": "13.5.7-canary.23",
     "react": "latest",
     "react-countup": "^6.4.2",
+    "react-date-range": "^1.4.0",
     "react-dom": "latest",
     "react-icons": "^4.11.0",
     "react-swipeable": "^7.0.1",
