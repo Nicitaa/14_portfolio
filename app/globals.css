@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* something you can't do with tailwind that's why I another classes exists here */
+  --primary: 0deg 0% 13%;
+  --primary-foreground: 0deg 0% 19%;
+  --secondary: 0deg 0% 87%;
+  --secondary-foreground: 0deg 0% 77%;
+  --cta: 277deg 100% 68%;
+  --cta-tooltip: 277deg 100% 68%;
+  --info: 207deg 62% 51%;
+}
+
+@layer components {
+  .line {
+    @apply border-r-[1px] border-solid border-secondary;
+    border-image: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary))) 1 100%;
+  }
+
+  .text-shadow::before {
+    @apply absolute text-transparent z-10;
+    content: attr(data-text);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-tooltip::before {
+    @apply absolute text-transparent z-10;
+    content: attr(data-text);
+    text-shadow: 0px 0px 4px hsl(var(--cta-tooltip));
+  }
+  .text-tooltip::after {
+    @apply text-transparent;
+    content: attr(data-text);
+    text-shadow:
+      0px 0px 0px hsl(var(--secondary)),
+      2px 2px 4px hsla(var(--cta-tooltip) / 0.2);
+  }
+
+  .collaboration-tooltip::before {
+    @apply content-[""] w-[48px] h-[48px] absolute rounded-[50%] -translate-x-1/2 shadow-[0px_4px_12px_var(--cta-tooltip),_inset_0px_4px_12px_var(--cta-tooltip)];
+  }
+
+  .tooltip:hover .tooltiptext {
+    @apply opacity-100 visible transition-all duration-300
+    translate-y-[-105%] 
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext {
+    @apply opacity-0 invisible transition-all duration-300
+    fixed top-[50%] translate-y-[110%]
+    desktop:absolute desktop:top-[0px] left-[50%] translate-x-[-50%] desktop:translate-y-[-110%]
+    text-sm bg-primary-foreground
+    text-center rounded-sm z-[99];
+  }
+
+  .tooltip-modal:hover .tooltiptext-modal {
+    @apply opacity-100 visible transition-all duration-300
+    whitespace-nowrap w-auto h-auto p-sm text-secondary z-[99];
+  }
+
+  .tooltiptext-modal {
+    @apply opacity-0 invisible transition-all duration-300
+    absolute inset-[0] 
+    text-sm bg-primary-foreground rounded-sm
+    z-[99] pointer-events-none;
+  }
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: hsl(var(--primary));
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsl(var(--secondary));
+}
+
+p {
+  color: hsl(var(--secondary-foreground));
+}
+
+.active {
+  background-color: hsl(var(--cta));
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Calendar */
+.rdrCalendarWrapper {
+  width: 100%;
+  height: 100%;
+}
+.rdrMonthAndYearWrapper {
+  padding-top: 0;
+  background-color: hsl(var(--primary));
+}
+.rdrMonthAndYearWrapper .rdrNextPrevButton {
+  background: none;
+  border: 1px solid hsl(var(--cta));
+  transition: all 300ms;
+}
+.rdrMonthAndYearWrapper .rdrNextPrevButton:hover {
+  background: hsl(var(--cta));
+}
+.rdrMonths .rdrMonth {
+  width: 100%;
+  height: 100%;
+}
+.rdrMonthsVertical {
+  height: 100;
+}
+.rdrMonths {
+  background-color: hsl(var(--primary));
+}
+.rdrCalendarWrapper {
+  background-color: hsl(var(--primary-foregorund));
+}
+.rdrSelected {
+  background-color: hsl(0, 0%, 47%, 15%);
+  border: 1px solid #777777;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.rdrDayHovered span {
+  border-radius: 8px !important;
+}
+
+.rdrDayHovered .rdrSelected {
+  border: none;
+}
+.rdrDayEndOfWeek {
+  border-radius: 8px;
+}
+.rdrDay .rdrDayNumber span {
+  color: hsl(var(--secondary-foreground));
+}
+.rdrDayEndOfMonth .rdrDayNumber span {
+  color: #777777;
+}
+.rdrDays .rdrDayPassive .rdrDayNumber span {
+  color: #777777;
+}
+.rdrPprevButton i {
+  border-color: transparent #777777 transparent transparent !important;
+  margin-left: 0px 5px 0px 5px !important;
+}
+.rdrNextButton i {
+  border-color: transparent transparent transparent #777777 !important;
+  margin-left: 6px !important;
+}
+.rdrDayStartPreview,
+.rdrDayInPreview,
+.rdrDayEndPreview {
+  transition: all 300ms;
+  border: 2px solid hsla(277, 100%, 68%, 55%);
+  border-radius: 8px !important;
+}
+.rdrDayStartPreview,
+.rdrDayInPreview,
+.rdrDayEndPreview span {
+  color: hsl(var(--primary-foregorund));
+}
+.rdrNextButton i {
+  border-color: transparent transparent transparent #777777;
+}
+.rdrMonthAndYearPickers .rdrMonthPicker select {
+  padding: 5px 5px 5px 5px;
+  border-bottom: 1px solid #777777;
+  color: #777777;
+  background: none;
+}
+.rdrMonthPicker {
+  user-select: none;
+  pointer-events: none;
+}
+.rdrMonthAndYearPickers .rdrYearPicker select {
+  padding: 5px 5px 5px 5px;
+  border-bottom: 1px solid #777777;
+  color: #777777;
+  background: none;
+}
+.rdrYearPicker {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: hsl(var(--primary));
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary-foregorund));
+  border-radius: 10px;
+}

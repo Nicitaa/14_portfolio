@@ -1,13 +1,5 @@
-Tasks:https://www.notion.so/14_portfolio-465850d270c0435e8495055bed953540
+## Problem
 
----
+## Solution
 
-RULES:
-
----
-
-INFO:
-Frontend on:
-React + Vite + tailwind
-Responsive
-yarn
+## Implementation
