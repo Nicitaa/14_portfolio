@@ -13,6 +13,8 @@ import { BsPhone } from "react-icons/bs"
 import Image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
 import { IoIosArrowRoundBack } from "react-icons/io"
+import { Input } from "@/components/Input"
+import Link from "next/link"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -20,6 +22,7 @@ export default function Appointment() {
   const [buttonDate, setButtonDate] = useState<string | undefined>("")
   const [buttonTime, setButtonTime] = useState<string | undefined>("10:00")
   const [step, setStep] = useState<Step>("initial")
+  const [contactData, setContactData] = useState("")
 
   const { isOpen, openModal, closeModal } = useModalsStore()
 
@@ -72,7 +75,9 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         )}
       </div>
       <ModalContainer
-        className={`w-[400px] ${step === "initial" ? "h-[290px]" : "h-[200px]"} py-md overflow-hidden duration-300`}
+        className={`w-[400px] desktop:w-[600px] ${step === "initial" ? "h-[250px] desktop:h-[160px]" : "h-[260px]"}
+        ${step === "phone" ? "h-[201px] desktop:h-[200px]" : ""}
+        py-md overflow-hidden duration-300`}
         isOpen={isOpen["Appointment"]}
         onClose={() => closeModal("Appointment")}>
         <div className={`relative flex flex-row-reverse justify-center items-center font-bold py-md px-md`}>
@@ -86,42 +91,49 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           )}
         </div>
 
-        <AnimatePresence>
-          {step === "initial" ? (
-            <AnimatePresence>
-              <motion.div
-                initial={{ translateX: "-100%" }}
-                animate={{ translateX: ["100%", "0%"] }}
-                exit={{ translateX: "-100%" }}
-                transition={{ duration: 0.4 }}
-                className="flex flex-col gap-sm tablet:flex-row w-[80%] mx-auto">
-                <Button onClick={() => setStep("telegram")}>
-                  Telegram call <PiTelegramLogoBold />
-                </Button>
-                <Button onClick={() => setStep("discord")}>
-                  Discord call <RiDiscordLine />
-                </Button>
-                <Button onClick={() => setStep("phone")}>
-                  Phone call <BsPhone />
-                </Button>
-                <Button onClick={() => setStep("google-meets")}>
-                  Google Meets call
-                  <Image
-                    className="w-[16px] h-[16px]"
-                    src="/google-meets.png"
-                    alt="google-meets"
-                    width={32}
-                    height={32}
-                  />
-                </Button>
-              </motion.div>
-            </AnimatePresence>
-          ) : (
-            <motion.div animate={{ translateX: ["0%", "0%"] }} transition={{ duration: 0.4 }}>
-              <p>Hello step 2</p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {step === "initial" ? (
+          <div className="flex flex-col gap-sm desktop:flex-row justify-center w-[80%] mx-auto">
+            <Button onClick={() => setStep("telegram")}>
+              Telegram call <PiTelegramLogoBold />
+            </Button>
+            <Button onClick={() => setStep("discord")}>
+              Discord call <RiDiscordLine />
+            </Button>
+            <Button onClick={() => setStep("phone")}>
+              Phone call <BsPhone />
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <div className="flex flex-col gap-y-xs justify-center items-center">
+              <Input value={contactData} onChange={e => setContactData(e.target.value)} placeholder={step} />
+
+              {(step === "discord" || step === "telegram") && (
+                <div className="text-center">
+                  <h6>or</h6>
+                  <h5 className="text-[18px] font-semibold">
+                    Just message me in&nbsp;
+                    <Link
+                      className="text-cta"
+                      href={
+                        step === "telegram" ? "https://t.me/nicitaacom" : "https://discord.com/users/780002958380498955"
+                      }
+                      target="_blank">
+                      {step}
+                    </Link>
+                  </h5>
+                </div>
+              )}
+              <Button
+                className="mt-xs"
+                onClick={() => {
+                  /* TELEGRAM BOT SEND ME INFO contactData buttonDate buttonTime */
+                }}>
+                Book call
+              </Button>
+            </div>
+          </div>
+        )}
       </ModalContainer>
     </>
   )
