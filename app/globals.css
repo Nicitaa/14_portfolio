@@ -15,6 +15,7 @@
 
   --info: 207deg 62% 51%;
   --danger: 0deg 82% 34%;
+  --success: 118deg 78% 20%;
 }
 
 @layer components {
