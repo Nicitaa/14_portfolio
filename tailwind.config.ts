@@ -42,6 +42,7 @@ const config: Config = {
 
         info: "hsl(var(--info) / 1)",
         danger: "hsl(var(--danger) / 1)",
+        success: "hsl(var(--success) / 1)",
       },
     },
   },

@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { Calendar } from "react-date-range"
 import "react-date-range/dist/styles.css" // main style file
 import "react-date-range/dist/theme/default.css" // theme css file
@@ -22,7 +22,8 @@ export default function Appointment() {
   const [buttonTime, setButtonTime] = useState<string | undefined>("10:00")
   const [step, setStep] = useState<Step>("initial")
   const [contactData, setContactData] = useState("")
-  const [error, setError] = useState(<p></p>)
+  //if key === 0 its !reponseMessage
+  const [responseMessage, setResponseMessage] = useState(<p key={0}></p>)
 
   const { isOpen, openModal, closeModal } = useModalsStore()
 
@@ -33,13 +34,16 @@ export default function Appointment() {
     document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/"
   }
 
-  async function bookCall() {
+  async function bookCall(e: FormEvent) {
+    e.preventDefault()
+    console.log("37")
     // Check if cookie 'slowdown' is expired
     const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
     if (!slowdownCookie || new Date().getTime() > Number(slowdownCookie[2])) {
+      console.log("42")
       // Perform code below
 
-      let message = `<b>Somebody booked a call</b>\n`
+      let message = `<b>Somebody booked ${step} call</b>\n`
       message += `Contact data - ${contactData}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
@@ -47,11 +51,21 @@ export default function Appointment() {
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", "true", 1)
+      setResponseMessage(
+        <p key={1} className="text-success">
+          Request sent. Thank you
+        </p>,
+      )
     } else {
+      console.log("55")
       // Throw console error 'you may do appointment once per day'
       const error = "You may book an appointment only once per day"
       console.error(error)
-      setError(<p className="text-danger">{error}</p>)
+      setResponseMessage(
+        <p key={1} className="text-danger">
+          {error}
+        </p>,
+      )
     }
   }
   function handleSelect(date: Date) {
@@ -102,15 +116,13 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
       </div>
       <ModalContainer
         className={`w-[400px] desktop:w-[600px] ${
-          step === "initial" ? "h-[250px] desktop:h-[160px]" : error ? "h-[280px]" : "h-[260px]"
+          step === "initial"
+            ? "h-[250px] desktop:h-[140px]"
+            : step === "phone"
+            ? "h-[221px] desktop:h-[221px]"
+            : "h-[270px] desktop:h-[281px]"
         }
-        ${
-          step === "phone"
-            ? error
-              ? "h-[221px] desktop:h-[220px]"
-              : "h-[201px] desktop:h-[200px]"
-            : "h-[201px] desktop:h-[200px]"
-        }
+        
         py-md overflow-hidden duration-300`}
         isOpen={isOpen["Appointment"]}
         onClose={() => closeModal("Appointment")}>
@@ -139,7 +151,7 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           </div>
         ) : (
           <div>
-            <div className="flex flex-col gap-y-xs justify-center items-center">
+            <form className="flex flex-col gap-y-xs justify-center items-center" onSubmit={bookCall}>
               <Input value={contactData} onChange={e => setContactData(e.target.value)} placeholder={step} />
 
               {(step === "discord" || step === "telegram") && (
@@ -158,11 +170,10 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   </h5>
                 </div>
               )}
-              <Button className="mt-xs" onClick={bookCall}>
-                Book call
-              </Button>
-              {error}
-            </div>
+
+              <Button className="mt-xs">Book call</Button>
+              {responseMessage}
+            </form>
           </div>
         )}
       </ModalContainer>
