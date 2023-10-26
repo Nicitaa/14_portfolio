@@ -53,11 +53,11 @@ export function TimePicker({
   return (
     <div
       className="relative flex items-center gap-sm px-sm border-b-[1px] border-l-[1px] border-solid border-secondary
-    h-lg w-[150px] cursor-pointer"
+    h-lg laptop:w-[150px] w-full justify-center cursor-pointer"
       onClick={() => setShowDropdown(!showDropdown)}
       ref={dropdownContainerRef}>
       <BiTimeFive className="text-secondary-foreground" />
-      <div className="flex items-center w-[7rem]">
+      <div className="flex justify-center laptop:justify-start items-center w-fit laptop:w-[7rem]">
         <h1 className="text-xs text-secondary">Time:{currentTime}</h1>
         <Image className="w-md h-md" src="/tringle.png" alt="tringle" width={32} height={32} />
       </div>
@@ -80,7 +80,7 @@ export function TimePicker({
                 ${isHover ? hover === time.time && "active" : currentTime === time.time && "active"}`}
               onMouseOver={mouseHover(time.time)}
               onClick={changeLanguage(time.time)}
-              key={time.time}>
+              key={crypto.randomUUID()}>
               {time.time}
             </button>
           ) : (
