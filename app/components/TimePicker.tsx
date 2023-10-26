@@ -80,7 +80,7 @@ export function TimePicker({
                 ${isHover ? hover === time.time && "active" : currentTime === time.time && "active"}`}
               onMouseOver={mouseHover(time.time)}
               onClick={changeLanguage(time.time)}
-              key={time.time}>
+              key={crypto.randomUUID()}>
               {time.time}
             </button>
           ) : (

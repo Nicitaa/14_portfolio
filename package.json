@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/react-date-range": "^1.4.7",
+    "axios": "^1.5.1",
     "framer-motion": "^10.16.4",
     "gsap": "^3.12.2",
     "next": "13.5.7-canary.23",

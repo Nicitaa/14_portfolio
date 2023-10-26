@@ -39,7 +39,9 @@ const config: Config = {
         "secondary-foreground": "hsl(var(--secondary-foreground) / 1)",
         cta: "hsl(var(--cta) / 1)",
         "cta-tooltip": "hsl(var(--cta-tooltip) / 0.2)",
+
         info: "hsl(var(--info) / 1)",
+        danger: "hsl(var(--danger) / 1)",
       },
     },
   },

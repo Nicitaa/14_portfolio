@@ -10,11 +10,10 @@ import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { PiTelegramLogoBold } from "react-icons/pi"
 import { RiDiscordLine } from "react-icons/ri"
 import { BsPhone } from "react-icons/bs"
-import Image from "next/image"
-import { AnimatePresence, motion } from "framer-motion"
 import { IoIosArrowRoundBack } from "react-icons/io"
 import { Input } from "@/components/Input"
 import Link from "next/link"
+import axios from "axios"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -23,11 +22,39 @@ export default function Appointment() {
   const [buttonTime, setButtonTime] = useState<string | undefined>("10:00")
   const [step, setStep] = useState<Step>("initial")
   const [contactData, setContactData] = useState("")
+  const [error, setError] = useState(<p></p>)
 
   const { isOpen, openModal, closeModal } = useModalsStore()
 
+  function setCookie(name: string, value: string, days: number): void {
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    const expires = "expires=" + date.toUTCString()
+    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/"
+  }
+
+  async function bookCall() {
+    // Check if cookie 'slowdown' is expired
+    const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
+    if (!slowdownCookie || new Date().getTime() > Number(slowdownCookie[2])) {
+      // Perform code below
+
+      let message = `<b>Somebody booked a call</b>\n`
+      message += `Contact data - ${contactData}\n`
+      message += `Date - ${buttonDate} at ${buttonTime}`
+
+      await axios.post(`${location.origin}/api/telegram`, { message: message })
+
+      // Set new cookie 'slowdown' for 1 day
+      setCookie("slowdown", "true", 1)
+    } else {
+      // Throw console error 'you may do appointment once per day'
+      const error = "You may book an appointment only once per day"
+      console.error(error)
+      setError(<p className="text-danger">{error}</p>)
+    }
+  }
   function handleSelect(date: Date) {
-    console.log(date) // native Date object
     const formattedDate = date
       .toLocaleDateString("en-GB", {
         day: "2-digit",
@@ -36,7 +63,6 @@ export default function Appointment() {
       })
       .replace(/\//g, ".")
 
-    console.log(formattedDate) // Output: 25.11.2023
     setButtonDate(formattedDate)
   }
 
@@ -75,8 +101,16 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         )}
       </div>
       <ModalContainer
-        className={`w-[400px] desktop:w-[600px] ${step === "initial" ? "h-[250px] desktop:h-[160px]" : "h-[260px]"}
-        ${step === "phone" ? "h-[201px] desktop:h-[200px]" : ""}
+        className={`w-[400px] desktop:w-[600px] ${
+          step === "initial" ? "h-[250px] desktop:h-[160px]" : error ? "h-[280px]" : "h-[260px]"
+        }
+        ${
+          step === "phone"
+            ? error
+              ? "h-[221px] desktop:h-[220px]"
+              : "h-[201px] desktop:h-[200px]"
+            : "h-[201px] desktop:h-[200px]"
+        }
         py-md overflow-hidden duration-300`}
         isOpen={isOpen["Appointment"]}
         onClose={() => closeModal("Appointment")}>
@@ -124,13 +158,10 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   </h5>
                 </div>
               )}
-              <Button
-                className="mt-xs"
-                onClick={() => {
-                  /* TELEGRAM BOT SEND ME INFO contactData buttonDate buttonTime */
-                }}>
+              <Button className="mt-xs" onClick={bookCall}>
                 Book call
               </Button>
+              {error}
             </div>
           </div>
         )}

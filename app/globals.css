@@ -12,7 +12,9 @@
   --secondary-foreground: 0deg 0% 77%;
   --cta: 277deg 100% 68%;
   --cta-tooltip: 277deg 100% 68%;
+
   --info: 207deg 62% 51%;
+  --danger: 0deg 82% 34%;
 }
 
 @layer components {
