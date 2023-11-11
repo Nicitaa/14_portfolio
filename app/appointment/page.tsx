@@ -37,18 +37,16 @@ export default function Appointment() {
 
   async function bookCall(e: FormEvent) {
     e.preventDefault()
-    console.log("37")
     // Check if cookie 'slowdown' is expired
     const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
     if (!slowdownCookie || new Date().getTime() > Number(slowdownCookie[2])) {
-      console.log("42")
       // Perform code below
 
       let message = `<b>Somebody booked ${step} call</b>\n`
       message += `Contact data - ${contactData}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
-      await axios.post(`${location.origin}/api/telegram`, { message: message })
+      await axios.post(`/api/telegram`, { message: message })
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", "true", 1)
