@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
   //send message
   //use this guide to send file - https://youtu.be/RviYQrNdDok?list=LL&t=1687
-  const response = axios.post(URI_API, {
+  const response = await axios.post(URI_API, {
     chat_id: CHAT_ID,
     parse_mode: "html",
     text: message,
