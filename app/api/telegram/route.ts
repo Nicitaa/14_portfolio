@@ -14,10 +14,20 @@ export async function POST(req: Request) {
 
   //send message
   //use this guide to send file - https://youtu.be/RviYQrNdDok?list=LL&t=1687
-  const response = await axios.post(URI_API, {
-    chat_id: CHAT_ID,
-    parse_mode: "html",
-    text: message,
-  })
-  return NextResponse.json(response)
+  try {
+    const response = await axios.post(URI_API, {
+      chat_id: CHAT_ID,
+      parse_mode: "html",
+      text: message,
+    })
+
+    return NextResponse.json({
+      data: response.data,
+      status: response.status,
+      statusText: response.statusText,
+    })
+  } catch (error) {
+    console.error("Error sending message:\n", error)
+    return NextResponse.error()
+  }
 }

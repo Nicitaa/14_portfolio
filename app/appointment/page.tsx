@@ -57,7 +57,6 @@ export default function Appointment() {
         </p>,
       )
     } else {
-      console.log("55")
       // Throw console error 'you may do appointment once per day'
       const error = "You may book an appointment only once per day"
       console.error(error)
