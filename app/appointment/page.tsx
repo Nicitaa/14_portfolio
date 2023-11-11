@@ -46,7 +46,7 @@ export default function Appointment() {
       message += `Contact data - ${contactData}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
-      await axios.post(`/api/telegram`, { message: message })
+      await axios.post("/api/telegram", { message: message })
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", "true", 1)

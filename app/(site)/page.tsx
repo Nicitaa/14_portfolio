@@ -1,7 +1,7 @@
 import { Skill } from "@/components/Skill"
-import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "./components/Tooltips"
-import { TooltipBackend } from "./components/Tooltips/TooltipBackend"
-import { Project15, Project16, Project22, Project24 } from "./components/Projects"
+import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "../components/Tooltips"
+import { TooltipBackend } from "../components/Tooltips/TooltipBackend"
+import { Project15, Project16, Project22, Project24 } from "../components/Projects"
 
 export default function Home() {
   return (
