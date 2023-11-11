@@ -1,6 +1,7 @@
 "use client"
 import { CollaborationIcon } from "@/components/CollaborationIcon"
 import { ModalMoreInfo } from "@/components/Modals/ModalMoreInfo"
+import { TModals } from "@/interfaces/TModals"
 import { useModalsStore } from "@/store/modalsStore"
 
 export default function ModalMoreInfo15() {
@@ -8,7 +9,7 @@ export default function ModalMoreInfo15() {
   return (
     <ModalMoreInfo
       isOpen={isOpen["15MoreInfo"]}
-      onClose={() => closeModal("15MoreInfo")}
+      onClose={() => closeModal<TModals>("15MoreInfo")}
       label="15_HooBank"
       siteUrl="https://github.com/Nicitaa/15_HooBank"
       taskLabel="Create frontend part for bank"

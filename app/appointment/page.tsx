@@ -14,6 +14,7 @@ import { IoIosArrowRoundBack } from "react-icons/io"
 import { Input } from "@/components/Input"
 import Link from "next/link"
 import axios from "axios"
+import { TModals } from "@/interfaces/TModals"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -125,7 +126,7 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         
         py-md overflow-hidden duration-300`}
         isOpen={isOpen["Appointment"]}
-        onClose={() => closeModal("Appointment")}>
+        onClose={() => closeModal<TModals>("Appointment")}>
         <div className={`relative flex flex-row-reverse justify-center items-center font-bold py-md px-md`}>
           <h1>{step === "initial" ? "Choose communication method" : `Enter ${step}`}</h1>
           {step !== "initial" && (
