@@ -1,12 +1,12 @@
 import axios from "axios"
 import { NextResponse } from "next/server"
 
-export type TRequestMessage = {
+export type TAPITelegram = {
   message: string
 }
 
 export async function POST(req: Request) {
-  const body: TRequestMessage = await req.json()
+  const body: TAPITelegram = await req.json()
   const message = body.message
   const TOKEN = process.env.NEXT_TELEGRAM_BOT_TOKEN
   const CHAT_ID = process.env.NEXT_TELEGRAM_CHAT_ID

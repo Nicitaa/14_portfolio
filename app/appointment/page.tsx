@@ -1,21 +1,22 @@
 "use client"
 import { FormEvent, useState } from "react"
+import Link from "next/link"
 import { Calendar } from "react-date-range"
 import "react-date-range/dist/styles.css" // main style file
 import "react-date-range/dist/theme/default.css" // theme css file
-import { Button } from "../components/Button"
-import { TimePicker } from "@/components/TimePicker"
-import { useModalsStore } from "@/store/modalsStore"
-import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { PiTelegramLogoBold } from "react-icons/pi"
 import { RiDiscordLine } from "react-icons/ri"
 import { BsPhone } from "react-icons/bs"
 import { IoIosArrowRoundBack } from "react-icons/io"
-import { Input } from "@/components/Input"
-import Link from "next/link"
 import axios from "axios"
+
+import { TAPITelegram } from "@/api/telegram/route"
 import { TModals } from "@/interfaces/TModals"
-import { TRequestMessage } from "@/api/telegram/route"
+import { useModalsStore } from "@/store/modalsStore"
+import { ModalContainer } from "@/components/Modals/ModalContainer"
+import { Input } from "@/components/Input"
+import { Button } from "../components/Button"
+import { TimePicker } from "@/components/TimePicker"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -47,7 +48,7 @@ export default function Appointment() {
       message += `Contact data - ${contactData}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
-      await axios.post("/api/telegram", { message: message } as TRequestMessage)
+      await axios.post("/api/telegram", { message: message } as TAPITelegram)
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", "true", 1)
@@ -118,8 +119,8 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           step === "initial"
             ? "h-[250px] desktop:h-[140px]"
             : step === "phone"
-            ? "h-[221px] desktop:h-[221px]"
-            : "h-[270px] desktop:h-[281px]"
+              ? "h-[221px] desktop:h-[221px]"
+              : "h-[270px] desktop:h-[281px]"
         }
         
         py-md overflow-hidden duration-300`}
