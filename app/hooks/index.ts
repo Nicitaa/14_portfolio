@@ -1,5 +1,3 @@
-import useNavbar from "./useNavbar";
-import {useSlider} from "./useSlider";
+import { useSlider } from "./useSlider"
 
-
-export {useNavbar,useSlider}
+export { useSlider }

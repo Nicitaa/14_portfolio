@@ -4,12 +4,9 @@ import { repos } from "../data/repos"
 import Link from "next/link"
 import { useSlider } from "../hooks/useSlider"
 import { Language } from "./Language"
-import useNavbar from "../hooks/useNavbar"
 
 export function Navbar() {
   const { handleMouseDown, handleMouseMove, handleTouchDown, handleTouchMove } = useSlider()
-
-  const navbar = useNavbar()
 
   return (
     <nav
