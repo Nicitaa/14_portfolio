@@ -12,6 +12,7 @@ import axios from "axios"
 
 import { TAPITelegram } from "@/api/telegram/route"
 import { TModals } from "@/interfaces/TModals"
+import { setCookie } from "@/utils/helpersCSR"
 import { useModalsStore } from "@/store/modalsStore"
 import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { Input } from "@/components/Input"
@@ -29,13 +30,6 @@ export default function Appointment() {
   const [responseMessage, setResponseMessage] = useState(<p key={0}></p>)
 
   const { isOpen, openModal, closeModal } = useModalsStore()
-
-  function setCookie(name: string, value: string, days: number): void {
-    const date = new Date()
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    const expires = "expires=" + date.toUTCString()
-    document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/"
-  }
 
   async function bookCall(e: FormEvent) {
     e.preventDefault()
