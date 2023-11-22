@@ -8,6 +8,7 @@ import { PiTelegramLogoBold } from "react-icons/pi"
 import { RiDiscordLine } from "react-icons/ri"
 import { BsPhone } from "react-icons/bs"
 import { IoIosArrowRoundBack } from "react-icons/io"
+import { SiGooglemeet } from "react-icons/si"
 import axios from "axios"
 
 import { TAPITelegram } from "@/api/telegram/route"
@@ -39,18 +40,28 @@ export default function Appointment() {
       // Perform code below
 
       let message = `<b>Somebody booked ${step} call</b>\n`
-      message += `Contact data - ${contactData}\n`
+      message += `Contact data - ${contactData ? contactData : "https://meet.google.com/yiy-pbnd-ygo"}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
       await axios.post("/api/telegram", { message: message } as TAPITelegram)
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", "true", 1)
-      setResponseMessage(
-        <p key={1} className="text-success">
-          Request sent. Thank you
-        </p>,
-      )
+      step === "google-meets"
+        ? setResponseMessage(
+            <div key={1} className="text-success">
+              Use{" "}
+              <Link className="text-cta hover:opacity-90 duration-300" href="https://meet.google.com/yiy-pbnd-ygo">
+                this&nbsp;
+              </Link>
+              link to join call - set reminder in your phone
+            </div>,
+          )
+        : setResponseMessage(
+            <p key={1} className="text-success">
+              Request sent. Thank you
+            </p>,
+          )
     } else {
       // Throw console error 'you may do appointment once per day'
       const error = "You may book an appointment only once per day"
@@ -109,10 +120,10 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         )}
       </div>
       <ModalContainer
-        className={`w-[400px] desktop:w-[600px] ${
+        className={`w-[400px] desktop:w-[730px] ${
           step === "initial"
             ? "h-[250px] desktop:h-[140px]"
-            : step === "phone"
+            : step === "phone" || step === "google-meets"
               ? "h-[221px] desktop:h-[221px]"
               : "h-[270px] desktop:h-[281px]"
         }
@@ -121,7 +132,13 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         isOpen={isOpen["Appointment"]}
         onClose={() => closeModal<TModals>("Appointment")}>
         <div className={`relative flex flex-row-reverse justify-center items-center font-bold py-md px-md`}>
-          <h1>{step === "initial" ? "Choose communication method" : `Enter ${step}`}</h1>
+          <h1>
+            {step === "initial"
+              ? "Choose communication method"
+              : step === "google-meets"
+                ? "Book google-meets call"
+                : `Enter ${step}`}
+          </h1>
           {step !== "initial" && (
             <button
               className="absolute left-[5%] text-cta flex flex-row justify-center items-center"
@@ -132,7 +149,7 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         </div>
 
         {step === "initial" ? (
-          <div className="flex flex-col gap-sm desktop:flex-row justify-center w-[80%] mx-auto">
+          <div className="w-full flex flex-col gap-sm desktop:flex-row justify-center mx-auto">
             <Button onClick={() => setStep("telegram")}>
               Telegram call <PiTelegramLogoBold />
             </Button>
@@ -142,11 +159,16 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
             <Button onClick={() => setStep("phone")}>
               Phone call <BsPhone />
             </Button>
+            <Button onClick={() => setStep("google-meets")}>
+              Google meets <SiGooglemeet />
+            </Button>
           </div>
         ) : (
           <div>
             <form className="flex flex-col gap-y-xs justify-center items-center" onSubmit={bookCall}>
-              <Input value={contactData} onChange={e => setContactData(e.target.value)} placeholder={step} />
+              {step !== "google-meets" && (
+                <Input value={contactData} onChange={e => setContactData(e.target.value)} placeholder={step} />
+              )}
 
               {(step === "discord" || step === "telegram") && (
                 <div className="text-center">
@@ -164,7 +186,11 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   </h5>
                 </div>
               )}
-
+              {step === "google-meets" && (
+                <p>
+                  Are you sure you want book a call in google-meets for {buttonDate} at {buttonTime}?
+                </p>
+              )}
               <Button className="mt-xs">Book call</Button>
               {responseMessage}
             </form>
