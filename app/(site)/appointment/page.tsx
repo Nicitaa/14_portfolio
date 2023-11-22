@@ -17,7 +17,7 @@ import { setCookie } from "@/utils/helpersCSR"
 import { useModalsStore } from "@/store/modalsStore"
 import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { Input } from "@/components/Input"
-import { Button } from "../components/Button"
+import { Button } from "../../components/Button"
 import { TimePicker } from "@/components/TimePicker"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
