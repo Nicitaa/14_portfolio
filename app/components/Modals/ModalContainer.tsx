@@ -55,14 +55,14 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.25 }}
           {...modalBgHandler}>
           <motion.div
             className={`relative bg-primary border-2 border-secondary-foreground rounded-sm z-[100] ${className}`}
-            initial={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0.75, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.25 }}
             {...modalHandler}>
             <IoMdClose
               className="absolute right-[0] top-[0] border-b-[1px] border-l-[1px] border-cta rounded-bl-sm cursor-pointer text-secondary-foreground"
