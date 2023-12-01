@@ -4,7 +4,7 @@ interface RadioButton extends React.HTMLAttributes<HTMLInputElement> {
   label: string
   inputName: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  isChecked?: boolean
+  isChecked?: boolean | null
 }
 
 export function RadioButton({ label, inputName, onChange, isChecked, ...props }: RadioButton) {
@@ -20,7 +20,7 @@ export function RadioButton({ label, inputName, onChange, isChecked, ...props }:
         id={label}
         className="hidden peer"
         onChange={onChange}
-        checked={isChecked}
+        checked={isChecked ?? false}
         {...props}
       />
       <span

@@ -1,4 +1,4 @@
-import MoreInfoButton15 from "./Buttons/ButtonMoreInfo15"
+import MoreInfoButton23 from "./Buttons/ButtonMoreInfo23"
 import { Project } from "../Project"
 
 export default function Project23() {
@@ -15,7 +15,7 @@ export default function Project23() {
           09.2023 - 11.2023 (~670h)
         </>
       }
-      moreInfoButton={MoreInfoButton15}
+      moreInfoButton={MoreInfoButton23}
       siteUrl="https://23-store.vercel.app/"
       githubUrl="https://github.com/nicitaacom/23_store"
     />
