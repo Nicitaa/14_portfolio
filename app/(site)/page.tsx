@@ -2,6 +2,7 @@ import { Skill } from "@/components/Skill"
 import { TooltipHTMLCSS, TooltipOther, TooltipReact } from "../components/Tooltips"
 import { TooltipBackend } from "../components/Tooltips/TooltipBackend"
 import { Project15, Project16, Project22, Project24 } from "../components/Projects"
+import { ProjectsSwitcher } from "@/components/ProjectsSwitcher"
 
 export default function Home() {
   return (
@@ -43,10 +44,7 @@ export default function Home() {
 
       {/* Protfolio projects */}
       <div className="flex flex-col gap-xl max-w-[80vw] w-full">
-        <Project22 />
-        <Project24 />
-        <Project16 />
-        <Project15 />
+        <ProjectsSwitcher />
       </div>
     </div>
   )

@@ -1,1 +1,10 @@
-export type TModals = "Appointment" | "15MoreInfo" | "16MoreInfo" | "22MoreInfo" | "24MoreInfo"
+export type TModals =
+  | "Appointment"
+  | "15MoreInfo"
+  | "16MoreInfo"
+  | "17MoreInfo"
+  | "19MoreInfo"
+  | "20MoreInfo"
+  | "22MoreInfo"
+  | "23MoreInfo"
+  | "24MoreInfo"

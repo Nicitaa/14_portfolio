@@ -1,7 +1,7 @@
 import MoreInfoButton15 from "./Buttons/ButtonMoreInfo15"
 import { Project } from "../Project"
 
-export default function Project16() {
+export default function Project15() {
   return (
     <Project
       title="15_HooBank"
