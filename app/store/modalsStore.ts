@@ -1,14 +1,15 @@
-import { TModals } from "@/interfaces/TModals"
 import { create } from "zustand"
 
+import { TModals } from "@/interfaces/TModals"
+
 interface ModalsStore {
-  isOpen: Record<string, boolean>
+  isOpen: Record<TModals, boolean>
   openModal: <T extends TModals>(id: T) => void
   closeModal: <T extends TModals>(id: T) => void
 }
 
 export const useModalsStore = create<ModalsStore>()(set => ({
-  isOpen: {},
+  isOpen: {} as Record<TModals, boolean>,
   openModal: id => {
     set(state => ({
       isOpen: {

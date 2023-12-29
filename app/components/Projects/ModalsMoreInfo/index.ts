@@ -6,6 +6,7 @@ import ModalMoreInfo20 from "./ModalMoreInfo20"
 import ModalMoreInfo22 from "./ModalMoreInfo22"
 import ModalMoreInfo23 from "./ModalMoreInfo23"
 import ModalMoreInfo24 from "./ModalMoreInfo24"
+import ModalMoreInfo28 from "./ModalMoreInfo28"
 
 export {
   ModalMoreInfo15,
@@ -16,4 +17,5 @@ export {
   ModalMoreInfo22,
   ModalMoreInfo23,
   ModalMoreInfo24,
+  ModalMoreInfo28,
 }
