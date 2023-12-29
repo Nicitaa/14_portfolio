@@ -3,7 +3,17 @@
 import { useState } from "react"
 
 import { RadioButton } from "./RadioButton"
-import { Project15, Project16, Project17, Project19, Project20, Project22, Project23, Project24 } from "./Projects"
+import {
+  Project15,
+  Project16,
+  Project17,
+  Project19,
+  Project20,
+  Project22,
+  Project23,
+  Project24,
+  Project28,
+} from "./Projects"
 
 export function ProjectsSwitcher() {
   const [clones, setClones] = useState<boolean | null>(null)
@@ -17,6 +27,7 @@ export function ProjectsSwitcher() {
 
       {clones ? (
         <>
+          <Project28 />
           <Project20 />
           <Project19 />
           <Project17 />
