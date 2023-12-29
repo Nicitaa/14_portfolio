@@ -18,6 +18,7 @@ export default function Project23() {
       moreInfoButton={MoreInfoButton23}
       siteUrl="https://23-store.vercel.app/"
       githubUrl="https://github.com/nicitaacom/23_store"
+      youtubeUrl="https://streamable.com/1zdhl7"
     />
   )
 }
