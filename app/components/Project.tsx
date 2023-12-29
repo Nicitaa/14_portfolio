@@ -62,8 +62,8 @@ export function Project({
                 className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[48px] h-[48px]"
                 src="/YouTube.png"
                 alt="YouTube"
-                width={32}
-                height={32}
+                width={128}
+                height={128}
               />
             </div>
           </Link>
