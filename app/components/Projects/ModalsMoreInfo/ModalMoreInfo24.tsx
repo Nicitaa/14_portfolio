@@ -1,5 +1,4 @@
 "use client"
-
 import { CollaborationIcon } from "@/components/CollaborationIcon"
 import { ModalMoreInfo } from "@/components/Modals/ModalMoreInfo"
 import { useModalsStore } from "@/store/modalsStore"
