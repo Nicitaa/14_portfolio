@@ -1,6 +1,7 @@
 import { Skill } from "@/components/Skill"
 import { TooltipOther, TooltipReact } from "../components/Tooltips"
 import { ProjectsSwitcher } from "@/components/ProjectsSwitcher"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -21,25 +22,24 @@ export default function Home() {
           <h1
             data-text="WEB Frontend developer"
             className="text-shadow text-lg min-[380px]:whitespace-nowrap before:text-secondary">
-            FullStack WEB developer
+            Middle FullStack WEB developer
           </h1>
           <div className="text-md font-bold text-secondary-foreground">
-            I&apos;d like to be Team Leader as well if your team have no one. I see a lot of things to improve in WEB
-            that&apos;s why I improve UI/UX for your site.
-            <br /> Also I have knowledge about&nbsp;
-            <div className="relative inline-block">
-              <span data-text="conversion&nbsp;" className="text-tooltip tooltip">
-                <div className="tooltiptext">
-                  <h1 className="text-xs whitespace-nowrap">
-                    When 100 people visit your site
-                    <br /> and only 1 of them buy smth - it means conversion rate is 1%
-                  </h1>
-                </div>
-              </span>
-            </div>
-            so you will sell more.
+            Soon I become Senior.
+            <br /> Limited-Time Offer Details:
             <br />
-            Also if you need I create design for your site
+            You may hire me for 1500€/month and I will work 12 hours/day
+            <br />
+            You may hire me for 1250€/month and I will work 8 hours/day
+            <br />
+            Or you may hire me for 500€/month and I will work 4hours/day
+            <br />
+            Or just for 300€/month buy my 8 weekends/month and I will work 12hours/day
+            <br />
+            Contact: support@nicitaa.com or&nbsp;
+            <Link className="text-cta" href="https://t.me/nicitaacom" target="_blank">
+              t.me/nicitaacom
+            </Link>
           </div>
         </div>
       </div>

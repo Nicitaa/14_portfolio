@@ -12,6 +12,7 @@ import {
   Project22,
   Project23,
   Project24,
+  Project26,
   Project28,
 } from "./Projects"
 
@@ -34,6 +35,7 @@ export function ProjectsSwitcher() {
         </>
       ) : (
         <>
+          <Project26 />
           <Project23 />
           <Project22 />
           <Project24 />
