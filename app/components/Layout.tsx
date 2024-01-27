@@ -7,6 +7,7 @@ import {
   ModalMoreInfo22,
   ModalMoreInfo23,
   ModalMoreInfo24,
+  ModalMoreInfo26,
   ModalMoreInfo28,
 } from "./Projects/ModalsMoreInfo"
 
@@ -28,6 +29,7 @@ export default function Layout({ children }: LayoutProps) {
       <ModalMoreInfo22 />
       <ModalMoreInfo23 />
       <ModalMoreInfo24 />
+      <ModalMoreInfo26 />
       <ModalMoreInfo28 />
     </div>
   )

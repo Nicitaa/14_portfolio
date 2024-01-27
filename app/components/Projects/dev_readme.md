@@ -8,11 +8,11 @@
 
 ### step 2 - ctrl+c ctrl+v ButtonMoreInfo15.tsx
 
-1. in TModal add modal name
+1. ctrl+p - TModals.ts - add modal name
 2. Change function name
 3. Adjust info
 
-### step 3 - ctrl+c ctrl+v ModalMoreInfo15.tsxx
+### step 3 - ctrl+c ctrl+v ModalMoreInfo15.tsx
 
 1. Adjust info
 2. Export in index.ts

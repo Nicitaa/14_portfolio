@@ -8,4 +8,5 @@ export type TModals =
   | "22MoreInfo"
   | "23MoreInfo"
   | "24MoreInfo"
+  | "26MoreInfo"
   | "28MoreInfo"

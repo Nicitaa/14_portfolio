@@ -1,7 +1,8 @@
 "use client"
+
+import { useModalsStore } from "@/store/modalsStore"
 import { CollaborationIcon } from "@/components/CollaborationIcon"
 import { ModalMoreInfo } from "@/components/Modals/ModalMoreInfo"
-import { useModalsStore } from "@/store/modalsStore"
 
 export default function ModalMoreInfo15() {
   const { isOpen, closeModal } = useModalsStore()

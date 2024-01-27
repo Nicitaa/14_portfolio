@@ -1,5 +1,5 @@
-import Image from "next/image"
 import { FunctionComponent, ReactElement } from "react"
+import Image from "next/image"
 import Link from "next/link"
 
 import { AiFillGithub } from "react-icons/ai"
@@ -7,7 +7,7 @@ import { AiFillGithub } from "react-icons/ai"
 interface ProjectProps {
   figmaUrl?: string
   youtubeUrl?: string
-  githubUrl: string
+  githubUrl?: string
   siteUrl: string
   title: string
   subTitle: string
@@ -44,14 +44,16 @@ export function Project({
             </div>
           </Link>
         )}
-        <Link
-          className="w-[48px] h-[48px] rounded-[50%] bg-primary-foreground cursor-pointer hidden desktop:flex"
-          target="_blank"
-          href={githubUrl}>
-          <div className="relative">
-            <AiFillGithub className="text-secondary-foreground" size={48} />
-          </div>
-        </Link>
+        {githubUrl && (
+          <Link
+            className="w-[48px] h-[48px] rounded-[50%] bg-primary-foreground cursor-pointer hidden desktop:flex"
+            target="_blank"
+            href={githubUrl}>
+            <div className="relative">
+              <AiFillGithub className="text-secondary-foreground" size={48} />
+            </div>
+          </Link>
+        )}
         {youtubeUrl && (
           <Link
             className=" w-[48px] h-[48px] rounded-[50%] bg-primary-foreground cursor-pointer hidden desktop:flex"
