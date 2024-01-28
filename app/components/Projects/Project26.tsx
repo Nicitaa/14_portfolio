@@ -4,7 +4,7 @@ import { Project } from "../Project"
 export default function Project26() {
   return (
     <Project
-      title="Hot delivery"
+      title="Hot delivery (click)"
       subTitle="I created this site and UI/UX for this site you may check in figma"
       leftInfo={
         <>
