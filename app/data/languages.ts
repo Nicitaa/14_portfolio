@@ -2,26 +2,26 @@ export const languages = [
   {
     id: 1,
     label: "Русский",
-    url: "/ru"
+    url: "/ru",
   },
   {
     id: 2,
     label: "English",
-    url: "/"
+    url: "/",
   },
   {
     id: 3,
     label: "Deutsch",
-    url: "/de"
+    url: "/de",
   },
   {
     id: 4,
     label: "Polski",
-    url: "/pl"
+    url: "/pl",
   },
   {
     id: 5,
     label: "Українська",
-    url: "/uk"
-  }
+    url: "/ua",
+  },
 ]

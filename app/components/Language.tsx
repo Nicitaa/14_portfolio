@@ -30,7 +30,7 @@ export function Language() {
   /* for closing on esc */
   useEffect(() => {
     const handleKeyDown = (evt: KeyboardEvent) => {
-      if (evt.keyCode === 27) {
+      if (evt.key === "Escape") {
         setShowDropdown(false)
       }
     }
