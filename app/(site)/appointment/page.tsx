@@ -19,6 +19,7 @@ import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { Input } from "@/components/Input"
 import { Button } from "../../components/Button"
 import { TimePicker } from "@/components/TimePicker"
+import { twMerge } from "tailwind-merge"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -27,15 +28,17 @@ export default function Appointment() {
   const [buttonTime, setButtonTime] = useState<string | undefined>("10:00")
   const [step, setStep] = useState<Step>("initial")
   const [contactData, setContactData] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   //if key === 0 its !reponseMessage
   const [responseMessage, setResponseMessage] = useState(<p key={0}></p>)
 
   const { isOpen, openModal, closeModal } = useModalsStore()
 
+  const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
   async function bookCall(e: FormEvent) {
     e.preventDefault()
+    setIsLoading(true)
     // Check if cookie 'slowdown' is expired
-    const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
     if (!slowdownCookie || new Date().getTime() > Number(slowdownCookie[2])) {
       // Perform code below
 
@@ -50,18 +53,24 @@ export default function Appointment() {
       step === "google-meets"
         ? setResponseMessage(
             <div key={1} className="text-success">
-              Use{" "}
+              Use
               <Link className="text-cta hover:opacity-90 duration-300" href="https://meet.google.com/yiy-pbnd-ygo">
                 this&nbsp;
               </Link>
               link to join call - set reminder in your phone
             </div>,
           )
-        : setResponseMessage(
-            <p key={1} className="text-success">
-              Request sent. Thank you
-            </p>,
-          )
+        : step === "phone"
+          ? setResponseMessage(
+              <div key={1} className="text-success">
+                My phone is 01703890259 - I&apos;m waiting for call from you!
+              </div>,
+            )
+          : setResponseMessage(
+              <p key={1} className="text-success">
+                Request sent. Thank you
+              </p>,
+            )
     } else {
       // Throw console error 'you may do appointment once per day'
       const error = "You may book an appointment only once per day"
@@ -72,7 +81,9 @@ export default function Appointment() {
         </p>,
       )
     }
+    setIsLoading(false)
   }
+
   function handleSelect(date: Date) {
     const formattedDate = date
       .toLocaleDateString("en-GB", {
@@ -191,7 +202,16 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   Are you sure you want book a call in google-meets for {buttonDate} at {buttonTime}?
                 </p>
               )}
-              <Button className="mt-xs">Book call</Button>
+              <div className="tooltip">
+                <div className="tooltiptext">123</div>
+                <Button
+                  className={twMerge(
+                    "mt-xs",
+                    (isLoading || slowdownCookie) && "opacity-50 cursor-default pointer-events-none",
+                  )}>
+                  Book call
+                </Button>
+              </div>
               {responseMessage}
             </form>
           </div>
