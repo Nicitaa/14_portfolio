@@ -202,8 +202,9 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   Are you sure you want book a call in google-meets for {buttonDate} at {buttonTime}?
                 </p>
               )}
-              <div className="tooltip">
-                <div className="tooltiptext">123</div>
+              <div className="relative tooltip">
+                <div className="tooltiptext">you already booked call</div>
+
                 <Button
                   className={twMerge(
                     "mt-xs",
