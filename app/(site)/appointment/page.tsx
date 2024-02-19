@@ -1,4 +1,5 @@
 "use client"
+
 import { FormEvent, useState } from "react"
 import Link from "next/link"
 import { Calendar } from "react-date-range"
@@ -13,7 +14,7 @@ import axios from "axios"
 
 import { TAPITelegram } from "@/api/telegram/route"
 import { TModals } from "@/interfaces/TModals"
-import { setCookie } from "@/utils/helpersCSR"
+import { getCookie, setCookie } from "@/utils/helpersCSR"
 import { useModalsStore } from "@/store/modalsStore"
 import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { Input } from "@/components/Input"
@@ -23,6 +24,11 @@ import { twMerge } from "tailwind-merge"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
+/*
+NOTE:
+I know this code is trash
+I have no time to refactor it
+*/
 export default function Appointment() {
   const [buttonDate, setButtonDate] = useState<string | undefined>("")
   const [buttonTime, setButtonTime] = useState<string | undefined>("10:00")
@@ -31,10 +37,11 @@ export default function Appointment() {
   const [isLoading, setIsLoading] = useState(false)
   //if key === 0 its !reponseMessage
   const [responseMessage, setResponseMessage] = useState(<p key={0}></p>)
+  const [isResponseMessage, setIsResponseMessage] = useState(false)
 
   const { isOpen, openModal, closeModal } = useModalsStore()
 
-  const slowdownCookie = document.cookie.match(/(^|;) ?slowdown=([^;]*)(;|$)/)
+  const slowdownCookie = getCookie("slowdown")
   async function bookCall(e: FormEvent) {
     e.preventDefault()
     setIsLoading(true)
@@ -49,12 +56,17 @@ export default function Appointment() {
       await axios.post("/api/telegram", { message: message } as TAPITelegram)
 
       // Set new cookie 'slowdown' for 1 day
-      setCookie("slowdown", "true", 1)
+      setCookie("slowdown", step, 1)
+      setCookie("appointment", buttonDate + " at " + buttonTime!, 1)
+      setIsResponseMessage(true)
       step === "google-meets"
         ? setResponseMessage(
             <div key={1} className="text-success">
-              Use
-              <Link className="text-cta hover:opacity-90 duration-300" href="https://meet.google.com/yiy-pbnd-ygo">
+              Use&nbsp;
+              <Link
+                className="text-cta hover:opacity-90 duration-300"
+                href="https://meet.google.com/yiy-pbnd-ygo"
+                target="_blank">
                 this&nbsp;
               </Link>
               link to join call - set reminder in your phone
@@ -80,6 +92,7 @@ export default function Appointment() {
           {error}
         </p>,
       )
+      setIsResponseMessage(true)
     }
     setIsLoading(false)
   }
@@ -123,7 +136,7 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
         </div>
         {buttonDate && (
           <Button onClick={() => openModal("Appointment")}>
-            Book for{" "}
+            Book for
             <p className="text-secondary">
               {buttonDate} at {buttonTime}
             </p>
@@ -135,8 +148,12 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           step === "initial"
             ? "h-[250px] desktop:h-[140px]"
             : step === "phone" || step === "google-meets"
-              ? "h-[221px] desktop:h-[221px]"
-              : "h-[270px] desktop:h-[281px]"
+              ? getCookie("slowdown") === "phone"
+                ? "h-[246px] desktop:h-[246px]"
+                : "h-[221px] desktop:h-[221px]"
+              : getCookie("slowdown") === "phone"
+                ? "h-[290px] desktop:h-[301px]"
+                : "h-[270px] desktop:h-[281px]"
         }
         
         py-md overflow-hidden duration-300`}
@@ -202,17 +219,39 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
                   Are you sure you want book a call in google-meets for {buttonDate} at {buttonTime}?
                 </p>
               )}
-              <div className="relative tooltip">
-                <div className="tooltiptext">you already booked call</div>
 
-                <Button
-                  className={twMerge(
-                    "mt-xs",
-                    (isLoading || slowdownCookie) && "opacity-50 cursor-default pointer-events-none",
-                  )}>
-                  Book call
-                </Button>
-              </div>
+              <Button
+                className={twMerge(
+                  "mt-xs",
+                  (isLoading || slowdownCookie) && "opacity-50 cursor-default pointer-events-none",
+                )}>
+                Book call
+              </Button>
+              {slowdownCookie && !isResponseMessage && getCookie("slowdown") === "phone" ? (
+                <p className="text-center">
+                  You already booked call - I&apos;m waiting for your call on 01703890259
+                  <br />
+                  You may contact me on&nbsp;
+                  <Link className="text-cta" href="https://linkedin.com/in/nicitaacom" target="_blank">
+                    LinkedIn
+                  </Link>
+                </p>
+              ) : slowdownCookie && !isResponseMessage && getCookie("slowdown") === "google-meets" ? (
+                <p className="text-center">
+                  You already booked google-meets call&nbsp;
+                  <Link
+                    className="text-cta hover:opacity-90 duration-300"
+                    href="https://meet.google.com/yiy-pbnd-ygo"
+                    target="_blank">
+                    here&nbsp;
+                  </Link>
+                  {getCookie("appointment")}
+                </p>
+              ) : (
+                slowdownCookie &&
+                !isResponseMessage &&
+                getCookie("slowdown") && <p>You already booked {getCookie("slowdown")} call</p>
+              )}
               {responseMessage}
             </form>
           </div>
