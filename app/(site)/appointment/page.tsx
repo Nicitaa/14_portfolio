@@ -10,7 +10,7 @@ import { RiDiscordLine } from "react-icons/ri"
 import { BsPhone } from "react-icons/bs"
 import { IoIosArrowRoundBack } from "react-icons/io"
 import { SiGooglemeet } from "react-icons/si"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 import { TAPITelegram } from "@/api/telegram/route"
 import { TModals } from "@/interfaces/TModals"
@@ -53,7 +53,13 @@ export default function Appointment() {
       message += `Contact data - ${contactData ? contactData : "https://meet.google.com/yiy-pbnd-ygo"}\n`
       message += `Date - ${buttonDate} at ${buttonTime}`
 
-      await axios.post("/api/telegram", { message: message } as TAPITelegram)
+      try {
+        await axios.post("/api/telegram", { message: message } as TAPITelegram)
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          console.log(60, "error sending message in telegram - ", error.message)
+        }
+      }
 
       // Set new cookie 'slowdown' for 1 day
       setCookie("slowdown", step, 1)
