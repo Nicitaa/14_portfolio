@@ -25,21 +25,15 @@ export default function Home() {
             Middle FullStack WEB developer
           </h1>
           <div className="text-md font-bold text-secondary-foreground">
-            Soon I become Senior.
-            <br /> Limited-Time Offer Details:
+            <b>I&apos;m started</b> my career in 2018 and tried 4 different programming languages.
             <br />
-            You may hire me for 1500€/month and I will work 12 hours/day
+            Right now my main stack - Next + TypeScript + Tailwind
             <br />
-            You may hire me for 1250€/month and I will work 8 hours/day
+            <b>I dropped</b> my academy and want to say people in young age that knowlege that you get in&nbsp;
+            <i>school/colledge/academy</i> don&nbsp;t help you to get success in your life - that&apos;s why you need
+            invest your free time in vision in your head of how to get success.
             <br />
-            Or you may hire me for 500€/month and I will work 4hours/day
-            <br />
-            Or just for 300€/month buy my 8 weekends/month and I will work 12hours/day
-            <br />
-            Contact: support@nicitaa.com or&nbsp;
-            <Link className="text-cta" href="https://t.me/nicitaacom" target="_blank">
-              t.me/nicitaacom
-            </Link>
+            <b>Soon I</b> become a Senior.
           </div>
         </div>
       </div>
