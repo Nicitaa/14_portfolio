@@ -30,7 +30,7 @@ export default function Home() {
             Right now my main stack - Next + TypeScript + Tailwind
             <br />
             <b>I dropped</b> my academy and want to say people in young age that knowlege that you get in&nbsp;
-            <i>school/colledge/academy</i> don&nbsp;t help you to get success in your life - that&apos;s why you need
+            <i>school/colledge/academy</i> don&apos;t help you to get success in your life - that&apos;s why you need
             invest your free time in vision in your head of how to get success.
             <br />
             <b>Soon I</b> become a Senior.
