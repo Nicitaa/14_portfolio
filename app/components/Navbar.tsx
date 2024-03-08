@@ -3,7 +3,6 @@
 import { repos } from "../data/repos"
 import Link from "next/link"
 import { useSlider } from "../hooks/useSlider"
-import { Language } from "./Language"
 
 export function Navbar() {
   const { handleMouseDown, handleMouseMove, handleTouchDown, handleTouchMove } = useSlider()
@@ -19,7 +18,7 @@ export function Navbar() {
       </div>
 
       <div
-        className="hidden desktop:inline-flex overflow-x-hidden w-[90%]"
+        className="hidden desktop:inline-flex overflow-x-hidden "
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchDown}
         onMouseMove={handleMouseMove}
@@ -38,8 +37,6 @@ export function Navbar() {
           ))}
         </ul>
       </div>
-
-      <Language />
     </nav>
   )
 }
