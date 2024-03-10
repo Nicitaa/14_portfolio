@@ -72,7 +72,7 @@ export function Project({
         )}
       </div>
       <div className="w-full h-[640px] border-[1px] border-solid border-secondary rounded-t-md overflow-hidden">
-        <iframe className="w-full h-full" title={title} src={siteUrl} />
+        <iframe className="w-full h-full" title={title} src={siteUrl} loading="lazy" />
       </div>
       {/* Footer */}
       <div

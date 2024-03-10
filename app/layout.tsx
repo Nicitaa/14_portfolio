@@ -6,7 +6,7 @@ import Layout from "./components/Layout"
 import { Navbar } from "./components/Navbar"
 import { Footer } from "./components/Footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], preload: true })
 
 export const metadata: Metadata = {
   title: "Portfolio t.me/nicitaacom",
