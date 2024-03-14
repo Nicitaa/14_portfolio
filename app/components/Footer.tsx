@@ -19,7 +19,9 @@ export function Footer() {
         <Button href="https://linkedin.com/in/nicitaacom" target="_blank">
           LinkedIn <AiFillLinkedin />
         </Button>
-        <Button href="https://drive.google.com/drive/folders/16vhfwFVxNPXU3uheZ9Kio3IypVxpWFSl" target="_blank">
+        <Button
+          href="https://drive.google.com/file/d/1_95lmWw5jOHSKNN-HQ6eRMTMOkH1-EW5/view?usp=sharing"
+          target="_blank">
           Summary <BsFiletypePdf />
         </Button>
         <Button className="text-center col-span-2" href="/appointment">
