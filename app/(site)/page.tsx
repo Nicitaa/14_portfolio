@@ -39,8 +39,8 @@ export default function Home() {
                   </h1>
                 </div>
               </span>
-            </div>{" "}
-            rate and amazing UI/UX/CX
+            </div>
+            &nbsp; rate and amazing UI/UX/CX
             <br />
             Here is&nbsp;
             <div className="relative inline-block">

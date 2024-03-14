@@ -16,7 +16,7 @@ export default function Project26() {
         </>
       }
       moreInfoButton={MoreInfoButton26}
-      siteUrl="https://hot-delivery.vercel.app/"
+      siteUrl="https://hot-delivery.net/"
       figmaUrl="https://www.figma.com/file/naTRYx4iTl8QhsEM584Nvv/26_hot-delivery?type=design&node-id=136%3A97&mode=design&t=ZA3c06YWKRMjFRNs-1"
     />
   )

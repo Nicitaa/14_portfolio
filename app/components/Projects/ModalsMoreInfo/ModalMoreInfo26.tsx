@@ -12,7 +12,7 @@ export default function ModalMoreInfo26() {
       onClose={() => closeModal("26MoreInfo")}
       label="Hot delivery"
       siteUrl="https://hot-delivery.vercel.app/"
-      taskLabel="Create frontend part for bank"
+      taskLabel="Created FullStack website for restaurant"
       deadline="2 weeks"
       price="2500$-19000$"
       collaborationChildren={
