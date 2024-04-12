@@ -12,12 +12,12 @@ export default function Project26() {
           <br />
           Responsive
           <br />
-          11.2023 - 01.2023 (~493h)
+          11.2023 - 01.2023 (~643h)
         </>
       }
       moreInfoButton={MoreInfoButton26}
       siteUrl="https://hot-delivery.net/"
-      figmaUrl="https://www.figma.com/file/naTRYx4iTl8QhsEM584Nvv/26_hot-delivery?type=design&node-id=136%3A97&mode=design&t=ZA3c06YWKRMjFRNs-1"
+      figmaUrl="https://www.figma.com/file/naTRYx4iTl8QhsEM584Nvv/26_hot-delivery?type=design&node-id=136-97&mode=design&t=mbTnMKHyu81vCueg-0"
     />
   )
 }
