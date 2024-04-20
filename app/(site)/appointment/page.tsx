@@ -51,7 +51,7 @@ export default function Appointment() {
 
       let message = `<b>Somebody booked ${step} call</b>\n`
       message += `Contact data - ${contactData ? contactData : "https://meet.google.com/yiy-pbnd-ygo"}\n`
-      message += `Date - ${buttonDate} at ${buttonTime}`
+      message += `Date - ${buttonDate} at ${buttonTime} GMT`
 
       try {
         await axios.post("/api/telegram", { message: message } as TAPITelegram)
