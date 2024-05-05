@@ -67,11 +67,11 @@ export function ModalMoreInfo({
               Message me:
             </h1>
             <div className="flex justify-center gap-x-md">
-              <Button onClick={() => window.open("https://t.me/nicitaacom")}>
-                Telegram <PiTelegramLogoBold />
-              </Button>
               <Button onClick={() => window.open("https://discord.com/users/780002958380498955")}>
                 Discord <RiDiscordLine />
+              </Button>
+              <Button onClick={() => window.open("https://t.me/nicitaacom")}>
+                Telegram <PiTelegramLogoBold />
               </Button>
             </div>
           </div>

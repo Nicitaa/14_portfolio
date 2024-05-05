@@ -10,3 +10,7 @@ import Project26 from "./Project26"
 import Project28 from "./Project28"
 
 export { Project22, Project24, Project16, Project15, Project17, Project19, Project20, Project23, Project26, Project28 }
+
+import ProjectRizAdminDashboard from "./ProjectRizAdminDashboard"
+
+export { ProjectRizAdminDashboard }

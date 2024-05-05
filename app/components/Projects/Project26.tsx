@@ -1,5 +1,5 @@
 import MoreInfoButton26 from "./Buttons/ButtonMoreInfo26"
-import { Project } from "../Project"
+import { Project } from "../Project/Project"
 
 export default function Project26() {
   return (

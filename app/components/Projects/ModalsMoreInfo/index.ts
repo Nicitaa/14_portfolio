@@ -21,3 +21,7 @@ export {
   ModalMoreInfo26,
   ModalMoreInfo28,
 }
+
+import ModalMoreInfoRizAdminDashboard from "./ModalMoreInfoRizAdminDashboard"
+
+export { ModalMoreInfoRizAdminDashboard }

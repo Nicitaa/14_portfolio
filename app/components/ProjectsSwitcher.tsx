@@ -14,19 +14,40 @@ import {
   Project24,
   Project26,
   Project28,
+  ProjectRizAdminDashboard,
 } from "./Projects"
 
 export function ProjectsSwitcher() {
-  const [clones, setClones] = useState<boolean | null>(null)
+  const [projectTab, setProjectTab] = useState<"work" | "projects" | "clones">("work")
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-x-md">
-        <RadioButton label="Projects" inputName="input-name" onChange={() => setClones(false)} isChecked={!clones} />
-        <RadioButton label="Clones" inputName="input-name" onChange={() => setClones(true)} isChecked={clones} />
+      <div className="grid grid-cols-3 gap-x-md">
+        <RadioButton
+          label="Work"
+          inputName="input-name"
+          onChange={() => setProjectTab("work")}
+          isChecked={projectTab === "work"}
+        />
+        <RadioButton
+          label="Projects"
+          inputName="input-name"
+          onChange={() => setProjectTab("projects")}
+          isChecked={projectTab === "projects"}
+        />
+        <RadioButton
+          label="Clones"
+          inputName="input-name"
+          onChange={() => setProjectTab("clones")}
+          isChecked={projectTab === "clones"}
+        />
       </div>
 
-      {clones ? (
+      {projectTab === "work" ? (
+        <>
+          <ProjectRizAdminDashboard />
+        </>
+      ) : projectTab === "projects" ? (
         <>
           <Project28 />
           <Project20 />
@@ -34,14 +55,16 @@ export function ProjectsSwitcher() {
           <Project17 />
         </>
       ) : (
-        <>
-          <Project26 />
-          <Project23 />
-          <Project22 />
-          <Project24 />
-          <Project16 />
-          <Project15 />
-        </>
+        projectTab === "clones" && (
+          <>
+            <Project26 />
+            <Project23 />
+            <Project22 />
+            <Project24 />
+            <Project16 />
+            <Project15 />
+          </>
+        )
       )}
     </>
   )

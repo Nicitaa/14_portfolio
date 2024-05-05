@@ -9,6 +9,7 @@ import {
   ModalMoreInfo24,
   ModalMoreInfo26,
   ModalMoreInfo28,
+  ModalMoreInfoRizAdminDashboard,
 } from "./Projects/ModalsMoreInfo"
 
 interface LayoutProps {
@@ -31,6 +32,7 @@ export default function Layout({ children }: LayoutProps) {
       <ModalMoreInfo24 />
       <ModalMoreInfo26 />
       <ModalMoreInfo28 />
+      <ModalMoreInfoRizAdminDashboard />
     </div>
   )
 }

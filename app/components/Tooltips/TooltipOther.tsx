@@ -30,6 +30,7 @@ export function TooltipOther() {
         <Skill id={5.8} label="Photoshop" hours={140} labelClassName="min-w-[55%]" small />
         <Skill id={5.4} label="Zustand" hours={103} labelClassName="min-w-[55%]" small />
         <Skill id={5.8} label="Figma" hours={60} labelClassName="min-w-[55%]" small />
+        <Skill id={5.8} label="DevOps" hours={133} labelClassName="min-w-[55%]" small />
       </div>
     </div>
   )
