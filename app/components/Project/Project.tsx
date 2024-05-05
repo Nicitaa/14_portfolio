@@ -47,7 +47,7 @@ export function Project({
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen></iframe>
         ) : (
-          <iframe className="w-full h-full" title={title} src={youtubeUrl} loading="lazy" />
+          <iframe className="w-full h-full" title={title} src={siteUrl} loading="lazy" />
         )}
       </div>
       {/* Footer */}

@@ -49,20 +49,20 @@ export function ProjectsSwitcher() {
         </>
       ) : projectTab === "projects" ? (
         <>
-          <Project28 />
-          <Project20 />
-          <Project19 />
-          <Project17 />
+          <Project26 />
+          <Project23 />
+          <Project22 />
+          <Project24 />
+          <Project16 />
+          <Project15 />
         </>
       ) : (
         projectTab === "clones" && (
           <>
-            <Project26 />
-            <Project23 />
-            <Project22 />
-            <Project24 />
-            <Project16 />
-            <Project15 />
+            <Project28 />
+            <Project20 />
+            <Project19 />
+            <Project17 />
           </>
         )
       )}
