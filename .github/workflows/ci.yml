@@ -41,5 +41,5 @@ jobs:
       - name: lintrc
         run: bun lint
         env:
-          REACT_SUPABASE_URL: "https://random.supabase.co"
-          REACT_SUPABASE_ANON_KEY: "123"
+          NEXT_TELEGRAM_BOT_TOKEN: "something"
+          NEXT_TELEGRAM_CHAT_ID: "12345"
