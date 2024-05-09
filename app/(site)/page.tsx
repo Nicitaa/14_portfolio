@@ -22,7 +22,7 @@ export default function Home() {
         </ul>
         <div className="text-center w-fit break-words max-w-[650px] desktop:px-[0] desktop:text-start">
           <h1 data-text="WEB Frontend developer" className="text-shadow text-lg before:text-secondary">
-            Middle FullStack WEB developer
+            Teamlead WEB developer
           </h1>
           <div className="text-md font-bold text-secondary-foreground">
             <b>I&apos;m started</b> my career in 2018 and tried 4 different programming languages.
