@@ -11,7 +11,7 @@
   --secondary: 0deg 0% 87%;
   --secondary-foreground: 0deg 0% 77%;
   --cta: 277deg 100% 68%;
-  --cta-tooltip: 277deg 100% 68%;
+  --cta-tooltip: 277deg 100% 68%; /* #c05cff */
 
   --info: 207deg 62% 51%;
   --danger: 0deg 84% 48%;
