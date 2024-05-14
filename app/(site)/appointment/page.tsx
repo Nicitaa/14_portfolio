@@ -11,6 +11,7 @@ import { BsPhone } from "react-icons/bs"
 import { IoIosArrowRoundBack } from "react-icons/io"
 import { SiGooglemeet } from "react-icons/si"
 import axios, { AxiosError } from "axios"
+import { twMerge } from "tailwind-merge"
 
 import { TAPITelegram } from "@/api/telegram/route"
 import { TModals } from "@/interfaces/TModals"
@@ -19,8 +20,7 @@ import { useModalsStore } from "@/store/modalsStore"
 import { ModalContainer } from "@/components/Modals/ModalContainer"
 import { Input } from "@/components/Input"
 import { Button } from "../../components/Button"
-import { TimePicker } from "@/components/TimePicker"
-import { twMerge } from "tailwind-merge"
+import { TimePicker } from "../appointment2/components/TimePicker"
 
 type Step = "initial" | "telegram" | "discord" | "phone" | "google-meets"
 
@@ -51,7 +51,7 @@ export default function Appointment() {
 
       let message = `<b>Somebody booked ${step} call</b>\n`
       message += `Contact data - ${contactData ? contactData : "https://meet.google.com/yiy-pbnd-ygo"}\n`
-      message += `Date - ${buttonDate} at ${buttonTime} GMT-2`
+      message += `Date - ${buttonDate} at ${buttonTime} GMT+2`
 
       try {
         await axios.post("/api/telegram", { message: message } as TAPITelegram)
@@ -119,15 +119,15 @@ export default function Appointment() {
     <>
       <div
         className="flex flex-col gap-y-md justify-center items-center 
-    h-[90vh] laptop:h-[calc(100vh-72px-144px)]">
+        h-[90vh] laptop:h-[calc(100vh-72px-144px)]">
         <div
           className="relative max-w-[768px] min-h-[390px] max-h-[390px] w-[100%] mobile:w-[80%] border-[1px] rounded-sm 
-tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
+          tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           <div className="flex flex-row justify-end">
             <h1 className="hidden laptop:flex absolute left-[50%] translate-x-[-50%] text-center pt-md">
               Schedule an appointment
             </h1>
-            <TimePicker setButtonTime={setButtonTime} />
+            <TimePicker />
           </div>
 
           <div className="mb-[4rem] w-full h-[90%] overflow-hidden">
@@ -144,7 +144,7 @@ tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           <Button onClick={() => openModal("Appointment")}>
             Book for
             <p className="text-secondary">
-              {buttonDate} at {buttonTime} GMT-2
+              {buttonDate} at {buttonTime} GMT+2
             </p>
           </Button>
         )}

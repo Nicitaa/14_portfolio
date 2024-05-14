@@ -1,16 +1,5 @@
+// I know that it can be not an object but just string (sOlid) - O - OCP
 export const timePicker = [
-  {
-    time: "10:00",
-  },
-  {
-    time: "10:30",
-  },
-  {
-    time: "11:00",
-  },
-  {
-    time: "11:30",
-  },
   {
     time: "12:00",
   },
@@ -54,9 +43,6 @@ export const timePicker = [
     time: "18:30",
   },
   {
-    time: "18:30",
-  },
-  {
     time: "19:00",
   },
   {
@@ -64,5 +50,17 @@ export const timePicker = [
   },
   {
     time: "20:00",
+  },
+  {
+    time: "20:30",
+  },
+  {
+    time: "21:00",
+  },
+  {
+    time: "21:30",
+  },
+  {
+    time: "22:00",
   },
 ]

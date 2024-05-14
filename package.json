@@ -6,16 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-types": "pnpx supabase gen types typescript --project-id bvvhwcmjlbofleanshdm > app/interfaces/types_db.ts"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/supabase-js": "^2.42.3",
     "@types/react-date-range": "^1.4.8",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.5",
     "gsap": "^3.12.2",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.45",
     "next": "14.0.3",
     "pnpm": "^8.10.5",
     "react": "latest",
+    "react-calendar": "^5.0.0",
     "react-countup": "^6.5.0",
     "react-date-range": "^1.4.0",
     "react-dom": "latest",

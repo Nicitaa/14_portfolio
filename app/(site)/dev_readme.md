@@ -9,7 +9,17 @@ From how it work in .tsx or .ts file - Docs provided with necessary comments in 
 
 ctrl+p - `page.tsx` at the top of file you see `hours`
 
-## How to add tooltip to skill
+## Tooltip usage
+
+tooltiptext should be relative to something - so make sure that you added `relative tooltip` for parent
+You may add `relative` for parent of tooltip
+
+```tsx
+<div className="relative tooltip">
+  <p className="font-bold">isGMLive</p>
+  <p className="tooltiptext">123</p>
+</div>
+```
 
 ## How to delete tooltip from skill
 
