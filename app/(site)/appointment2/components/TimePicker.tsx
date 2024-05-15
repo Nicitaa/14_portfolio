@@ -12,12 +12,13 @@ import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
 import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
+import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 
 export function TimePicker() {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
 
   const { selectedTimezone } = useSelectedTimezoneStore()
-  const { setSelectedDate } = useSelectedDateStore()
+  const { selectedDate, setSelectedDate } = useSelectedDateStore()
   const { selectedTime, setSelectedTime } = useSelectedTimeStore()
   const [showDropdown, setShowDropdown] = useState(false)
   const [hover, setHover] = useState<string | null>(null)
@@ -30,22 +31,31 @@ export function TimePicker() {
   const now = new Date()
   const currentHour = now.getHours()
   const currentMinute = now.getMinutes()
+  const currentTimeMSK = currentHour * 100 + currentMinute
+  const tomorrow = moment().add(1, "day").toDate()
 
+  const disableAllToday = currentTimeMSK >= 2130
+
+  // if time over last timewindow then show first timewindow (12:00 MSK) based on user's timezone
+  // TODO - if no free timewindows today - show time for next free timewindow
   useEffect(() => {
-    // Get the current time in MSK
-    const nowInMSK = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Moscow" }))
-    const mskHour = nowInMSK.getHours()
-    const mskMinute = nowInMSK.getMinutes()
-    const currentTimeMSK = mskHour * 100 + mskMinute
-
-    if (currentTimeMSK >= 2200) {
-      // Set selected date to tomorrow
-      const tomorrow = new Date(now)
-      tomorrow.setDate(now.getDate() + 1)
-      setSelectedDate(tomorrow)
+    if (disableAllToday) {
+      const firstTime = convertToTimezone("12:00", selectedTimezone)
+      setSelectedTime(firstTime)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setSelectedDate])
+  }, [disableAllToday, selectedTimezone])
+
+  function isDisabled(time: string, targetDate: Date): boolean {
+    const [hour, minute] = time.split(":").map(Number)
+    const selectedMoment = moment(targetDate).tz("Europe/Moscow").startOf("day")
+    const currentMoment = moment().tz("Europe/Moscow")
+
+    if (selectedMoment.isSame(currentMoment, "day")) {
+      return hour < currentHour || (hour === currentHour && minute < currentMinute)
+    }
+    return false
+  }
 
   function mouseHover(index: string) {
     return () => setHover(index)
@@ -70,7 +80,7 @@ export function TimePicker() {
   return (
     <div
       className="relative flex items-center gap-[2px] px-sm border-l-[1px] border-[#777777] border-solid
-      h-[42px] laptop:w-[130px] w-full justify-center cursor-pointer"
+      h-[42px] laptop:w-[135px] w-full justify-center cursor-pointer"
       onClick={() => setShowDropdown(!showDropdown)}
       ref={dropdownContainerRef}>
       <BiTimeFive className="text-secondary-foreground mb-[2px]" />
@@ -91,21 +101,23 @@ export function TimePicker() {
         )}
         onMouseLeave={() => setHover(null)}>
         {convertedTimePicker.map(time => {
-          const [hour, minute] = time.time.split(":").map(Number)
-          const isDisabled = hour < currentHour || (hour === currentHour && minute < currentMinute)
+          const isTimeDisabled = isDisabled(
+            time.time,
+            selectedDate ?? isDateBeforeTodayOrTime(new Date()) ? tomorrow : new Date(),
+          )
           return (
             <button
               className={twMerge(
                 `border-b border-solid border-secondary bg-primary`,
-                isDisabled
+                isTimeDisabled
                   ? "text-secondary/20 bg-primary-foreground"
                   : isHover
                     ? hover === time.time && "bg-cta"
                     : selectedTime === time.time && "bg-cta",
               )}
-              onMouseOver={isDisabled ? undefined : mouseHover(time.time)}
-              onClick={isDisabled ? undefined : changeSelectedTime(time.time)}
-              disabled={isDisabled}
+              onMouseOver={isTimeDisabled ? undefined : mouseHover(time.time)}
+              onClick={isTimeDisabled ? undefined : changeSelectedTime(time.time)}
+              disabled={isTimeDisabled}
               key={time.time}>
               {time.time}
             </button>
