@@ -4,13 +4,14 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { BiTimeFive } from "react-icons/bi"
 import { twMerge } from "tailwind-merge"
+import moment from "moment"
 
-import { timePicker } from "@/data/timePicker"
 import { useCloseOnClickEsc } from "@/hooks/useOnClickEsc"
 import { useCloseOnClickOutside } from "@/hooks/useOnClickOutside"
 import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
 import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
+import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
 
 export function TimePicker() {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
@@ -54,22 +55,14 @@ export function TimePicker() {
     return () => setSelectedTime(index)
   }
 
-  console.log(57, "selectedTimezone.name - ", selectedTimezone)
-
   function convertToTimezone(time: string, targetTimezone: string): string {
     const [hour, minute] = time.split(":").map(Number)
-    const timeInMSK = new Date(Date.UTC(2023, 0, 1, hour, minute))
-    const options: Intl.DateTimeFormatOptions = {
-      timeZone: targetTimezone,
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    }
-    const timeInTarget = new Intl.DateTimeFormat("en-US", options).format(timeInMSK)
-    return timeInTarget
+    const timeInMSK = moment.tz({ hour, minute }, "Europe/Moscow")
+    const timeInTarget = timeInMSK.clone().tz(targetTimezone)
+    return timeInTarget.format("HH:mm")
   }
 
-  const convertedTimePicker = timePicker.map(time => ({
+  const convertedTimePicker = appointmentTimesMSK.map(time => ({
     ...time,
     time: convertToTimezone(time.time, selectedTimezone),
   }))

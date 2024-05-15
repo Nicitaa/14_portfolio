@@ -3,8 +3,6 @@
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
 
-import { timezones } from "@/data/timezones"
-import { TTimezones } from "@/interfaces/TTimezones"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import moment from "moment"
 import { Input } from "@/components/Input"
@@ -29,7 +27,9 @@ export function DropdownContent({ isShowDropdown }: { isShowDropdown: boolean })
 
   function filterTimezones(input: string) {
     // Filter timezones based on the search input
-    const filtered = timezones.filter(timezone => timezone.toLowerCase().includes(input.toLowerCase()))
+    const filtered = timezones.filter(
+      timezone => timezone.length <= 18 && timezone.toLowerCase().includes(input.toLowerCase()),
+    )
 
     // Sort the filtered timezones by relevance
     filtered.sort((a, b) => {
@@ -52,26 +52,30 @@ export function DropdownContent({ isShowDropdown }: { isShowDropdown: boolean })
       onMouseLeave={() => setHover(null)}>
       {/* Search Input */}
       <Input
-        style={{ border: "none", width: isShowDropdown ? "180px" : "138px" }}
+        // If you change width here make sure to change it in TimeZonePicker.tsx as well
+        style={{ border: "none", width: isShowDropdown ? "180px" : "148px" }}
+        className=""
         placeholder="Search timezones..."
         value={searchInput}
         onChange={e => setSearchInput(e.target.value)}
         onClick={e => e.stopPropagation()}
       />
-      {filteredTimezones.map((timezone, index) => (
-        <li
-          className={twMerge(
-            "hover:bg-hover-color duration-150 text-center flex flex-row gap-x-2 justify-center items-center border-b border-[#777777]",
-            index === 0 && "border-t",
-            // if hover on border set border green (its some UI issue - just keep it as is)
-            isHover ? hover === timezone && "bg-cta" : selectedTimezone === timezone && "bg-cta",
-          )}
-          onMouseOver={mouseHover(timezone)}
-          onClick={changeSelectedTimezone(timezone)}
-          key={timezone}>
-          {timezone}
-        </li>
-      ))}
+      <div className="max-h-[200px] overflow-y-scroll hide-scrollbar">
+        {filteredTimezones.map((timezone, index) => (
+          <li
+            className={twMerge(
+              "hover:bg-hover-color duration-150 text-center flex flex-row gap-x-2 justify-center items-center border-b border-[#777777]",
+              index === 0 && "border-t",
+              // if hover on border set border green (its some UI issue - just keep it as is)
+              isHover ? hover === timezone && "bg-cta" : selectedTimezone === timezone && "bg-cta",
+            )}
+            onMouseOver={mouseHover(timezone)}
+            onClick={changeSelectedTimezone(timezone)}
+            key={timezone}>
+            {timezone}
+          </li>
+        ))}
+      </div>
     </div>
   )
 }
