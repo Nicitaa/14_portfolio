@@ -5,10 +5,11 @@ interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   type?: string
   value: string | number | undefined
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  placeholder?: string
   className?: string
 }
 
-export function Input({ type, value, onChange, className, ...props }: InputProps) {
+export function Input({ type, value, onChange, className, placeholder, ...props }: InputProps) {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (type === "number") {
       const inputValue = e.target.value
@@ -23,11 +24,12 @@ export function Input({ type, value, onChange, className, ...props }: InputProps
 
   return (
     <input
-      className={`px-sm py-xs text-secondary bg-transparent border-[1px] border-primary-foreground rounded-xs outline-none ${className}`}
+      className={`px-sm py-xs text-secondary bg-transparent border-[1px] border-[#909090] rounded outline-none ${className}`}
       type={type}
       inputMode={type === "number" ? "numeric" : undefined}
       value={value}
       onChange={handleInputChange}
+      placeholder={placeholder}
       {...props}
     />
   )

@@ -1,6 +1,6 @@
 import supabaseAdmin from "@/libs/supabaseAdmin"
 import { ScheduleAppointment } from "./components/ScheduleAppointment"
-import { ScheduleAppointmentModal } from "@/components/Modals/ScheduleAppointmentModal"
+import { ScheduleAppointmentModal } from "@/components/Modals/ScheduleAppointment/ScheduleAppointmentModal"
 import { Button } from "@/components/Button"
 
 export default async function AppointmentPage() {

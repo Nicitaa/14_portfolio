@@ -58,7 +58,7 @@
     fixed top-[50%] translate-y-[110%]
     desktop:absolute desktop:top-[0px] left-[50%] translate-x-[-50%] desktop:translate-y-[-110%]
     text-sm bg-primary-foreground
-    text-center rounded-sm z-[99];
+    text-center rounded-lg z-[99];
   }
 
   .tooltip-modal:hover .tooltiptext-modal {
@@ -69,7 +69,7 @@
   .tooltiptext-modal {
     @apply opacity-0 invisible transition-all duration-300
     absolute inset-[0] 
-    text-sm bg-primary-foreground rounded-sm
+    text-sm bg-primary-foreground rounded-lg
     z-[99] pointer-events-none;
   }
 }
@@ -241,10 +241,20 @@ div {
   border-radius: 4px;
   font-size: 22px;
 }
+
 .react-calendar__navigation__arrow:hover {
   background-color: hsla(var(--cta) / 0.2);
   transition: all 150ms;
 }
+
+.react-calendar__tile--active {
+  background-color: hsla(var(--cta) / 0.4);
+  border-radius: 2px;
+}
+.react-calendar__tile--active:hover {
+  background-color: hsla(var(--cta) / 0.5) !important;
+}
+
 .react-calendar__month-view__weekdays__weekday {
   color: hsl(var(--secondary));
   display: flex;

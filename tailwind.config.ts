@@ -18,11 +18,6 @@ const config: Config = {
       lg: "3rem;",
       xl: "4rem",
     },
-    borderRadius: {
-      xs: "0.25rem",
-      sm: "0.5rem",
-      md: "0.75rem",
-    },
     screens: {
       tablet: "768px",
       // => @media (min-width: 768px) { ... }

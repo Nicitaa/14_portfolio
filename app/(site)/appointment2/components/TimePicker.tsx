@@ -18,7 +18,7 @@ export function TimePicker() {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
 
   const { selectedTimezone } = useSelectedTimezoneStore()
-  const { selectedDate, setSelectedDate } = useSelectedDateStore()
+  const { selectedDate } = useSelectedDateStore()
   const { selectedTime, setSelectedTime } = useSelectedTimeStore()
   const [showDropdown, setShowDropdown] = useState(false)
   const [hover, setHover] = useState<string | null>(null)
@@ -101,10 +101,8 @@ export function TimePicker() {
         )}
         onMouseLeave={() => setHover(null)}>
         {convertedTimePicker.map(time => {
-          const isTimeDisabled = isDisabled(
-            time.time,
-            selectedDate ?? isDateBeforeTodayOrTime(new Date()) ? tomorrow : new Date(),
-          )
+          const targetDate = selectedDate && !Array.isArray(selectedDate) ? selectedDate : new Date()
+          const isTimeDisabled = isDisabled(time.time, isDateBeforeTodayOrTime(targetDate) ? tomorrow : targetDate)
           return (
             <button
               className={twMerge(

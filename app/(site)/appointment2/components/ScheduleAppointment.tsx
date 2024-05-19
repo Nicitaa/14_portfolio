@@ -12,10 +12,6 @@ import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { TimeZonePicker } from "./TimezonePicker/TimeZonePicker"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 
-type ValuePiece = Date | null
-
-type Value = ValuePiece | [ValuePiece, ValuePiece]
-
 export function ScheduleAppointment() {
   const { selectedDate, setSelectedDate } = useSelectedDateStore()
   const { selectedTime } = useSelectedTimeStore()

@@ -1,0 +1,33 @@
+"use client"
+
+import { Button } from "@/components/Button"
+import { Channel, useAppointmentStore } from "@/store/useAppointmentStore"
+import { FaTelegramPlane } from "react-icons/fa"
+import { FaDiscord } from "react-icons/fa"
+import { SiGooglemeet } from "react-icons/si"
+
+export function ScheduleButtons() {
+  const { setStep, setChannel } = useAppointmentStore()
+
+  function setStepFn(channel: Channel) {
+    setStep("step-2")
+    setChannel(channel)
+  }
+
+  return (
+    <div className="flex flex-row justify-around items-center gap-x-md">
+      <Button className="font-bold" onClick={() => setStepFn("google-meets")}>
+        <SiGooglemeet />
+        Google meets
+      </Button>
+      <Button className="font-bold" onClick={() => setStepFn("discord")}>
+        <FaDiscord />
+        Discord
+      </Button>
+      <Button className="font-bold" onClick={() => setStepFn("telegram")}>
+        <FaTelegramPlane />
+        Telegram
+      </Button>
+    </div>
+  )
+}

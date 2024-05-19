@@ -12,7 +12,7 @@ export function Button({ onClick, children, href, target, className = "" }: Butt
   if (href) {
     return (
       <Link
-        className={`px-sm py-xs border-[1px] border-solid border-cta rounded-xs flex justify-center items-center gap-x-xs 
+        className={`px-sm py-xs border-[1px] border-solid border-cta rounded flex justify-center items-center gap-x-xs 
   hover:bg-primary-foreground transition-colors duration-300 text-secondary ${className}`}
         href={href}
         target={target}>
@@ -22,7 +22,7 @@ export function Button({ onClick, children, href, target, className = "" }: Butt
   } else
     return (
       <button
-        className={`px-sm py-xs border-[1px] border-solid border-cta rounded-xs flex justify-center items-center gap-x-xs 
+        className={`px-sm py-xs border-[1px] border-solid border-cta rounded flex justify-center items-center gap-x-xs 
   hover:bg-primary-foreground transition-colors duration-300 text-secondary ${className}`}
         onClick={onClick}>
         {children}

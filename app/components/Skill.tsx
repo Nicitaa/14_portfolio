@@ -54,7 +54,7 @@ export function Skill(skill: ISkill) {
         {skill.tooltip ? "" : skill.label}
       </h1>
       <div
-        className={`relative w-full rounded-md ${
+        className={`relative w-full rounded-xl ${
           skill.small ? "bg-primary" : "bg-primary-foreground"
         } overflow-hidden`}>
         <div

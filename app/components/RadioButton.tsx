@@ -24,7 +24,7 @@ export function RadioButton({ label, inputName, onChange, isChecked, ...props }:
         {...props}
       />
       <span
-        className={`before:absolute before:border-2 before:rounded-sm before:border-solid before:border-secondary before:w-full before:h-[50px]
+        className={`before:absolute before:border-2 before:rounded-lg before:border-solid before:border-secondary before:w-full before:h-[50px]
         before:top-[50%] before:left-[50%] before:translate-x-[-50%] before:translate-y-[-50%]
         before:transition-all before:duration-300 
         peer-checked:before:border-cta peer-checked:before:border-2`}

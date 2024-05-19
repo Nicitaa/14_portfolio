@@ -21,7 +21,6 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
     setShowModal(isOpen)
     if (isOpen) {
       document.body.style.overflow = "hidden"
-      document.body.style.width = "calc(100% - 17px)"
     }
   }, [isOpen])
 
@@ -58,7 +57,7 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
           transition={{ duration: 0.25 }}
           {...modalBgHandler}>
           <motion.div
-            className={`relative bg-primary border-2 border-secondary-foreground rounded-sm z-[100] ${className}`}
+            className={`relative bg-primary border-2 border-secondary-foreground rounded-lg z-[100] ${className}`}
             initial={{ scale: 0.75, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}

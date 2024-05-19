@@ -121,7 +121,7 @@ export default function Appointment() {
         className="flex flex-col gap-y-md justify-center items-center 
         h-[90vh] laptop:h-[calc(100vh-72px-144px)]">
         <div
-          className="relative max-w-[768px] min-h-[390px] max-h-[390px] w-[100%] mobile:w-[80%] border-[1px] rounded-sm 
+          className="relative max-w-[768px] min-h-[390px] max-h-[390px] w-[100%] mobile:w-[80%] border-[1px] rounded-lg
           tablet:w-[50%] tablet:h-[60%] laptop:w-[60%] laptop:h-[75%] overflow-hidden">
           <div className="flex flex-row justify-end">
             <h1 className="hidden laptop:flex absolute left-[50%] translate-x-[-50%] text-center pt-md">
