@@ -49,7 +49,7 @@ export function ModalContainer({ isOpen, onClose, children, className }: ModalCo
     <AnimatePresence>
       {showModal && (
         <motion.div
-          className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] z-[99]
+          className="fixed inset-[0] bg-[rgba(0,0,0,0.2)] z-[222]
          flex justify-center items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

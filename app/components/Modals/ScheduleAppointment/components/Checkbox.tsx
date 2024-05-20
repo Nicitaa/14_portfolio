@@ -33,7 +33,7 @@ export function Checkbox({ isChecked, onChange, label, labelClassName = "", disa
       </div>
       <label className={`${labelClassName} text-sm select-none`}>{label}</label>
       {isChecked && (
-        <BsCheckLg className="absolute left-[1px] top-[3px] text-white pointer-events-none select-none" size={18} />
+        <BsCheckLg className="absolute left-[0px] top-[2px] text-white pointer-events-none select-none" size={20} />
       )}
     </div>
   )

@@ -12,7 +12,7 @@ interface AppointmentStore {
   isShowUpOnACall: boolean
   isSendNotification: boolean
   sendNotificationTo: SendNotificationTo
-  inputNotifictionTo: string
+  inputNotificationTo: string
   setStep: (step: Step) => void
   setPrevStep: () => void
   setChannel: (channel: Channel) => void
@@ -28,13 +28,13 @@ export const useAppointmentStore = create<AppointmentStore>()((set, get) => ({
   isShowUpOnACall: false,
   isSendNotification: false,
   sendNotificationTo: "tg",
-  inputNotifictionTo: "",
+  inputNotificationTo: "",
   setStep: (step: Step) => set(() => ({ step: step })),
   setPrevStep: () => set(() => ({ step: get().step === "step-3" ? "step-2" : "step-1" })),
   setChannel: (channel: Channel) => set(() => ({ channel: channel })),
   toggleIsShowUpOnACall: () => set(() => ({ isShowUpOnACall: !get().isShowUpOnACall })),
   toggleIsSendNotification: () => set(() => ({ isSendNotification: !get().isSendNotification })),
-  setInputNotificationTo: (inputValue: string) => set(() => ({ inputNotifictionTo: inputValue })),
+  setInputNotificationTo: (inputValue: string) => set(() => ({ inputNotificationTo: inputValue })),
   setNextSendNotificationTo: () =>
     set(() => ({
       sendNotificationTo:

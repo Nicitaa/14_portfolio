@@ -1,7 +1,7 @@
 import supabaseAdmin from "@/libs/supabaseAdmin"
 import { ScheduleAppointment } from "./components/ScheduleAppointment"
-import { ScheduleAppointmentModal } from "@/components/Modals/ScheduleAppointment/ScheduleAppointmentModal"
 import { Button } from "@/components/Button"
+import { ScheduleAppointmentModal } from "@/components/Modals/ScheduleAppointment/ScheduleAppointmentModal"
 
 export default async function AppointmentPage() {
   const { data } = await supabaseAdmin.from("liveCall").select().eq("id", 1).single()

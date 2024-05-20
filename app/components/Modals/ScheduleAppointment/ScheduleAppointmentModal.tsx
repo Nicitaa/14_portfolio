@@ -41,7 +41,7 @@ export function ScheduleAppointmentModal() {
 
   return (
     <ModalContainer
-      className={twMerge("duration-300", step === "step-1" && "w-[550px]", step === "step-2" && "w-[600px]")}
+      className={twMerge("duration-300", step === "step-1" && "w-[550px]", step === "step-2" && "w-[675px]")}
       isOpen={isOpen["Appointment"]}
       onClose={() => closeModal<TModals>("Appointment")}>
       <div className="flex flex-col items-center gap-y-[2rem] px-[2rem] py-[1.5rem] pt-[2rem] overflow-x-hidden">
