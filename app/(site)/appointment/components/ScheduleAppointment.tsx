@@ -4,21 +4,15 @@ import { Calendar } from "react-calendar"
 
 import { Button } from "@/components/Button"
 import { TimePicker } from "./TimePicker"
-import moment, { MomentInput } from "moment"
-import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
 import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useModalsStore } from "@/store/modalsStore"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { TimeZonePicker } from "./TimezonePicker/TimeZonePicker"
-import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
+import { formatedDateTimeFn } from "@/(site)/functions/formatedDateTimeFn"
 
 export function ScheduleAppointment() {
   const { selectedDate, setSelectedDate } = useSelectedDateStore()
-  const { selectedTime } = useSelectedTimeStore()
-  const { selectedTimezone } = useSelectedTimezoneStore()
   const { openModal } = useModalsStore()
-
-  const formattedDate = moment(selectedDate as MomentInput).format("DD.MM.YYYY")
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-y-md">
@@ -38,9 +32,7 @@ export function ScheduleAppointment() {
         </div>
       </div>
 
-      <Button onClick={() => openModal("Appointment")}>
-        {formattedDate} at {selectedTime} {selectedTimezone}
-      </Button>
+      <Button onClick={() => openModal("Appointment")}>{formatedDateTimeFn()}</Button>
     </div>
   )
 }

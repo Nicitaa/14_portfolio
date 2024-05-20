@@ -1,7 +1,7 @@
 import Link from "next/link"
 import supabaseAdmin from "@/libs/supabaseAdmin"
 
-import { GMCheckbox } from "@/(site)/appointment2/components/GMCheckbox"
+import { GMCheckbox } from "@/(site)/appointment/components/GMCheckbox"
 import { NavbarProjects } from "./NavbarProjects"
 import supabaseServer from "@/libs/supabaseServer"
 

@@ -12,7 +12,6 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/supabase-js": "^2.43.2",
-    "@types/react-date-range": "^1.4.9",
     "axios": "^1.6.8",
     "framer-motion": "^10.18.0",
     "gsap": "^3.12.5",
@@ -23,7 +22,6 @@
     "react": "latest",
     "react-calendar": "^5.0.0",
     "react-countup": "^6.5.3",
-    "react-date-range": "^1.4.0",
     "react-dom": "latest",
     "react-hook-form": "^7.51.4",
     "react-icons": "^4.12.0",

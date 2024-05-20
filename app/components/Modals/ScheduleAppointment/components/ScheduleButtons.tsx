@@ -7,11 +7,12 @@ import { FaDiscord } from "react-icons/fa"
 import { SiGooglemeet } from "react-icons/si"
 
 export function ScheduleButtons() {
-  const { setStep, setChannel } = useAppointmentStore()
+  const { setNextStep, setChannel, setNextSendNotificationTo } = useAppointmentStore()
 
   function setStepFn(channel: Channel) {
-    setStep("step-2")
+    setNextStep()
     setChannel(channel)
+    if (channel === "discord") setNextSendNotificationTo()
   }
 
   return (

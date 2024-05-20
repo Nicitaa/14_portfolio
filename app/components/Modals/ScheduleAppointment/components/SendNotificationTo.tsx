@@ -5,7 +5,7 @@ import { useAppointmentStore } from "@/store/useAppointmentStore"
 import { SendNotificationToSwitcher } from "./SendNotificctionToDropdown/SendNotificationToSwitcher"
 import { FieldErrors, FieldValues, UseFormRegister, UseFormSetError } from "react-hook-form"
 import { twMerge } from "tailwind-merge"
-import { FormInput } from "@/(site)/appointment2/components/FormInput"
+import { FormInput } from "@/(site)/appointment/components/FormInput"
 
 interface FormData {
   inputNotificationTo: string
@@ -18,7 +18,7 @@ interface SendNotificationToProps {
 }
 
 export function SendNotificationTo({ errors, register }: SendNotificationToProps) {
-  const { sendNotificationTo, inputNotificationTo, setInputNotificationTo } = useAppointmentStore()
+  const { sendNotificationTo } = useAppointmentStore()
 
   return (
     <div className="flex flex-row justify-center items-center gap-x-xs">

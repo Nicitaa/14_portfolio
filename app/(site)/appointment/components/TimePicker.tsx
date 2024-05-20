@@ -13,6 +13,7 @@ import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
+import { convertCurrentToTargetTimezone } from "@/(site)/functions/convertCurrentToTargetTimezone"
 
 export function TimePicker() {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
@@ -40,8 +41,8 @@ export function TimePicker() {
   // TODO - if no free timewindows today - show time for next free timewindow
   useEffect(() => {
     if (disableAllToday) {
-      const firstTime = convertToTimezone("12:00", selectedTimezone)
-      setSelectedTime(firstTime)
+      const firstTimeMSK = convertCurrentToTargetTimezone("12:00", "Europe/Moscow", "Europe/Moscow")
+      setSelectedTime(firstTimeMSK)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disableAllToday, selectedTimezone])
@@ -65,16 +66,9 @@ export function TimePicker() {
     return () => setSelectedTime(index)
   }
 
-  function convertToTimezone(time: string, targetTimezone: string): string {
-    const [hour, minute] = time.split(":").map(Number)
-    const timeInMSK = moment.tz({ hour, minute }, "Europe/Moscow")
-    const timeInTarget = timeInMSK.clone().tz(targetTimezone)
-    return timeInTarget.format("HH:mm")
-  }
-
   const convertedTimePicker = appointmentTimesMSK.map(time => ({
     ...time,
-    time: convertToTimezone(time.time, selectedTimezone),
+    time: convertCurrentToTargetTimezone(time.time, "Europe/Moscow", selectedTimezone),
   }))
 
   return (

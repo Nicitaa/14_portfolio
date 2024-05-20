@@ -1,6 +1,7 @@
-import { useAppointmentStore } from "@/store/useAppointmentStore"
 import { FaDiscord, FaTelegramPlane } from "react-icons/fa"
 import { PiEnvelopeSimpleFill } from "react-icons/pi"
+
+import { useAppointmentStore } from "@/store/useAppointmentStore"
 
 export function DropdownContainerContent() {
   const { sendNotificationTo, setNextSendNotificationTo } = useAppointmentStore()

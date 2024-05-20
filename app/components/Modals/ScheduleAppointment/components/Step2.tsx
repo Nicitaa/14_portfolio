@@ -4,6 +4,7 @@ import { SendNotificationTo } from "./SendNotificationTo"
 import { Button } from "@/components/Button"
 import { twMerge } from "tailwind-merge"
 import { useForm } from "react-hook-form"
+import { bookACallFn } from "@/(site)/functions/bookACallFn"
 
 interface FormData {
   inputNotificationTo: string
@@ -25,8 +26,10 @@ export function Step2() {
     inputNotificationTo,
     isShowUpOnACall,
     isSendNotification,
+    setInputNotificationTo,
     toggleIsShowUpOnACall,
     toggleIsSendNotification,
+    setNextStep,
   } = useAppointmentStore()
 
   const {
@@ -36,10 +39,13 @@ export function Step2() {
     setError,
   } = useForm<FormData>()
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     if (sendNotificationTo === "email" && !validationRules.email.pattern.value.test(data.inputNotificationTo)) {
       setError("inputNotificationTo", { type: "manual", message: validationRules.email.pattern.message })
     }
+    setInputNotificationTo(data.inputNotificationTo)
+    setNextStep()
+    await bookACallFn()
   }
 
   return (

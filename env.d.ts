@@ -1,8 +1,8 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NEXT_TELEGRAM_BOT_TOKEN: string
-      NEXT_TELEGRAM_CHAT_ID: string
+      TELEGRAM_BOT_TOKEN: string
+      TELEGRAM_CHAT_ID: string
 
       NEXT_PUBLIC_SUPABASE_URL: string
       NEXT_PUBLIC_SUPABASE_ANON_KEY: string
