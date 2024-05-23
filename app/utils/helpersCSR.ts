@@ -1,4 +1,4 @@
-export function setCookie(name: string, val: string, days: number) {
+export function setCookie(name: string, val: string, days?: number) {
   const date = new Date()
   const value = val
   const oneDay = 1 * 24 * 60 * 60 * 1000

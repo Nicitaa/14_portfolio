@@ -14,8 +14,10 @@ import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { convertCurrentToTargetTimezone } from "@/(site)/functions/convertCurrentToTargetTimezone"
+import { isDisabledFn } from "@/(site)/functions/isDisabledFn"
+import { BookingsResponse } from "@/interfaces/BookingsResponse"
 
-export function TimePicker() {
+export function TimePicker({ bookings }: { bookings: BookingsResponse[] }) {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
 
   const { selectedTimezone } = useSelectedTimezoneStore()
@@ -47,17 +49,6 @@ export function TimePicker() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disableAllToday, selectedTimezone])
 
-  function isDisabled(time: string, targetDate: Date): boolean {
-    const [hour, minute] = time.split(":").map(Number)
-    const selectedMoment = moment(targetDate).tz("Europe/Moscow").startOf("day")
-    const currentMoment = moment().tz("Europe/Moscow")
-
-    if (selectedMoment.isSame(currentMoment, "day")) {
-      return hour < currentHour || (hour === currentHour && minute < currentMinute)
-    }
-    return false
-  }
-
   function mouseHover(index: string) {
     return () => setHover(index)
   }
@@ -70,6 +61,16 @@ export function TimePicker() {
     ...time,
     time: convertCurrentToTargetTimezone(time.time, "Europe/Moscow", selectedTimezone),
   }))
+
+  function isBookedTime(time: string, targetDate: Date): boolean {
+    const date = moment(targetDate).format("YYYY-MM-DD")
+    const timeMSK = convertCurrentToTargetTimezone(time, selectedTimezone, "Europe/Moscow")
+
+    return bookings.some(booking => {
+      const bookingDate = moment(booking.booking_date).format("YYYY-MM-DD")
+      return bookingDate === date && booking.booking_time_MSK === timeMSK
+    })
+  }
 
   return (
     <div
@@ -96,7 +97,9 @@ export function TimePicker() {
         onMouseLeave={() => setHover(null)}>
         {convertedTimePicker.map(time => {
           const targetDate = selectedDate && !Array.isArray(selectedDate) ? selectedDate : new Date()
-          const isTimeDisabled = isDisabled(time.time, isDateBeforeTodayOrTime(targetDate) ? tomorrow : targetDate)
+          const isTimeDisabled =
+            isDisabledFn(time.time, isDateBeforeTodayOrTime(targetDate) ? tomorrow : targetDate) || // disable time before now
+            isBookedTime(time.time, targetDate) // disable booked time
           return (
             <button
               className={twMerge(

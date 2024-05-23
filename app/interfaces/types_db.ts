@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          booking_date: string
+          booking_time_MSK: string
+          channel: Database["public"]["Enums"]["channel"]
+          created_at: string
+          id: string
+          user_cookie_id: string
+        }
+        Insert: {
+          booking_date: string
+          booking_time_MSK: string
+          channel: Database["public"]["Enums"]["channel"]
+          created_at?: string
+          id: string
+          user_cookie_id: string
+        }
+        Update: {
+          booking_date?: string
+          booking_time_MSK?: string
+          channel?: Database["public"]["Enums"]["channel"]
+          created_at?: string
+          id?: string
+          user_cookie_id?: string
+        }
+        Relationships: []
+      }
       liveCall: {
         Row: {
           id: number
@@ -32,7 +59,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      channel: "telegram" | "discord" | "google-meets"
     }
     CompositeTypes: {
       [_ in never]: never

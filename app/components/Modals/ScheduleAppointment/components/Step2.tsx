@@ -5,6 +5,7 @@ import { Button } from "@/components/Button"
 import { twMerge } from "tailwind-merge"
 import { useForm } from "react-hook-form"
 import { bookACallFn } from "@/(site)/functions/bookACallFn"
+import useToast from "@/store/useToast"
 
 interface FormData {
   inputNotificationTo: string
@@ -21,6 +22,8 @@ const validationRules = {
 }
 
 export function Step2() {
+  const toast = useToast()
+
   const {
     sendNotificationTo,
     inputNotificationTo,
@@ -44,8 +47,14 @@ export function Step2() {
       setError("inputNotificationTo", { type: "manual", message: validationRules.email.pattern.message })
     }
     setInputNotificationTo(data.inputNotificationTo)
-    setNextStep()
-    await bookACallFn()
+    try {
+      await bookACallFn()
+      setNextStep()
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.show("error", "Error", error.message)
+      }
+    }
   }
 
   return (

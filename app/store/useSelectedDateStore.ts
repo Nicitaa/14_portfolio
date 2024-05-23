@@ -5,7 +5,7 @@ import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 
 type ValuePiece = Date | null
 
-type Value = ValuePiece | [ValuePiece, ValuePiece]
+export type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 interface SelectedDateStore {
   selectedDate: Value

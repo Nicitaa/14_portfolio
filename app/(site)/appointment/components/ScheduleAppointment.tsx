@@ -9,10 +9,21 @@ import { useModalsStore } from "@/store/modalsStore"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { TimeZonePicker } from "./TimezonePicker/TimeZonePicker"
 import { formatedDateTimeFn } from "@/(site)/functions/formatedDateTimeFn"
+import { useEffect } from "react"
+import { getCookie, setCookie } from "@/utils/helpersCSR"
+import { nanoid } from "nanoid"
+import { BookingsResponse } from "@/interfaces/BookingsResponse"
 
-export function ScheduleAppointment() {
+export function ScheduleAppointment({ bookings }: { bookings: BookingsResponse[] }) {
   const { selectedDate, setSelectedDate } = useSelectedDateStore()
   const { openModal } = useModalsStore()
+
+  useEffect(() => {
+    console.log(21, "get cookie - ", getCookie("user_cookie_id"))
+    if (!getCookie("user_cookie_id")) {
+      setCookie("user_cookie_id", nanoid())
+    }
+  }, [])
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-y-md">
@@ -21,7 +32,7 @@ export function ScheduleAppointment() {
         <div className="flex border-[#777777] flex-col items-end border">
           <div className="w-full h-[42px] flex justify-between items-center pl-sm">
             <h1>Schedule appointment</h1>
-            <TimePicker />
+            <TimePicker bookings={bookings} />
           </div>
           <Calendar
             onChange={setSelectedDate}

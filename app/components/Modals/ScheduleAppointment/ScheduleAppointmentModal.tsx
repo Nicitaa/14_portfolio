@@ -1,44 +1,21 @@
 "use client"
 
-import Link from "next/link"
-import { useState } from "react"
-import { IoIosArrowRoundBack } from "react-icons/io"
-import { SiGooglemeet } from "react-icons/si"
-import { RiDiscordLine } from "react-icons/ri"
-import { PiTelegramLogoBold } from "react-icons/pi"
-import { BsPhone } from "react-icons/bs"
 import { twMerge } from "tailwind-merge"
 
-import { Button } from "../../Button"
 import { useModalsStore } from "@/store/modalsStore"
 import { ModalContainer } from "../ModalContainer"
-import { getCookie } from "@/utils/helpersCSR"
 import { TModals } from "@/interfaces/TModals"
-import { Input } from "../../Input"
-import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
-import { useSelectedDateStore } from "@/store/useSelectedDateStore"
-import { ScheduleButtons } from "./components/ScheduleButtons"
 import { Step1 } from "./components/Step1"
 import { useAppointmentStore } from "@/store/useAppointmentStore"
 import { Step2 } from "./components/Step2"
 import { AnimatePresence, motion } from "framer-motion"
-import { PrevStepButton } from "./components/PrevStepButton"
 import { ScheduleAppointmentModalHeader } from "./components/ScheduleAppointmentModalHeader"
 import { Step3 } from "./components/Step3/Step3"
 
 export function ScheduleAppointmentModal() {
-  const { isOpen, openModal, closeModal } = useModalsStore()
+  const { isOpen, closeModal } = useModalsStore()
 
   const { step, direction, prevDirection } = useAppointmentStore()
-  const { selectedTime } = useSelectedTimeStore()
-  const { selectedDate } = useSelectedDateStore()
-  const [isLoading, setIsLoading] = useState(false)
-  const slowdownCookie = getCookie("slowdown")
-  const [isResponseMessage, setIsResponseMessage] = useState(false)
-
-  function bookCall(): void {
-    throw new Error("Function not implemented.")
-  }
 
   const getTransitionProps = (direction: "next" | "prev", prevDirection: "next" | "prev") => {
     // console.log(44, "direction - ", direction)

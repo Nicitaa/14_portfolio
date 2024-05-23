@@ -1,9 +1,19 @@
 import { sendTelegramMessageAction } from "../actions/sendTelegramMessageAction"
-import { useAppointmentStore } from "@/store/useAppointmentStore"
+import { Channel, useAppointmentStore } from "@/store/useAppointmentStore"
 import { formatedDateTimeFn } from "./formatedDateTimeFn"
+import { useSelectedDateStore } from "@/store/useSelectedDateStore"
+import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
+import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
+import { convertCurrentToTargetTimezone } from "./convertCurrentToTargetTimezone"
+import { insertBookingInDBAction } from "../actions/insertBookingInDBAction"
 
 export async function bookACallFn() {
   const { sendNotificationTo, inputNotificationTo, channel } = useAppointmentStore.getState()
+  const { selectedDate } = useSelectedDateStore.getState()
+  const { selectedTime } = useSelectedTimeStore.getState()
+  const { selectedTimezone } = useSelectedTimezoneStore.getState()
+
+  const at = convertCurrentToTargetTimezone(selectedTime, selectedTimezone, "Europe/Moscow")
 
   let message = formatedDateTimeFn(true)
   if (inputNotificationTo.length > 3) {
@@ -11,6 +21,6 @@ export async function bookACallFn() {
   }
   message += `Where: ${channel === "google-meets" ? '<a href="https://meet.google.com/yiy-pbnd-ygo?pli=1">google-meets</a>' : channel}\n`
 
+  await insertBookingInDBAction(selectedDate, at, channel as Exclude<Channel, null>)
   await sendTelegramMessageAction(message)
-  // TODO insert here in DB booked call to disable it in appointment timepicker
 }
