@@ -6,12 +6,14 @@ import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { convertCurrentToTargetTimezone } from "./convertCurrentToTargetTimezone"
 import { insertBookingInDBAction } from "../actions/insertBookingInDBAction"
+import useToast from "@/store/useToast"
 
 export async function bookACallFn() {
   const { sendNotificationTo, inputNotificationTo, channel } = useAppointmentStore.getState()
   const { selectedDate } = useSelectedDateStore.getState()
   const { selectedTime } = useSelectedTimeStore.getState()
   const { selectedTimezone } = useSelectedTimezoneStore.getState()
+  const toast = useToast.getState()
 
   const at = convertCurrentToTargetTimezone(selectedTime, selectedTimezone, "Europe/Moscow")
 
@@ -21,6 +23,12 @@ export async function bookACallFn() {
   }
   message += `Where: ${channel === "google-meets" ? '<a href="https://meet.google.com/yiy-pbnd-ygo?pli=1">google-meets</a>' : channel}\n`
 
-  await insertBookingInDBAction(selectedDate, at, channel as Exclude<Channel, null>)
-  await sendTelegramMessageAction(message)
+  try {
+    await insertBookingInDBAction(selectedDate, at, channel as Exclude<Channel, null>)
+    await sendTelegramMessageAction(message)
+  } catch (error) {
+    if (error instanceof Error) {
+      toast.show("error", "Error", error.message)
+    }
+  }
 }
