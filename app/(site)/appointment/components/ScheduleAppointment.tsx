@@ -1,6 +1,8 @@
 "use client"
 
+import { useEffect } from "react"
 import { Calendar } from "react-calendar"
+import { nanoid } from "nanoid"
 
 import { Button } from "@/components/Button"
 import { TimePicker } from "./TimePicker"
@@ -9,9 +11,7 @@ import { useModalsStore } from "@/store/modalsStore"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { TimeZonePicker } from "./TimezonePicker/TimeZonePicker"
 import { formatedDateTimeFn } from "@/(site)/functions/formatedDateTimeFn"
-import { useEffect } from "react"
 import { getCookie, setCookie } from "@/utils/helpersCSR"
-import { nanoid } from "nanoid"
 import { BookingsResponse } from "@/interfaces/BookingsResponse"
 
 export function ScheduleAppointment({ bookings }: { bookings: BookingsResponse[] }) {

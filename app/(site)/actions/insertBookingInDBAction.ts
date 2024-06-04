@@ -13,24 +13,15 @@ export async function insertBookingInDBAction(selectedDate: Value, at: string, c
 
   let bookingDate: string
 
-  // Extract IP address
-  const ip = headers().get("x-forwarded-for") || headers().get("remote-addr") || "unknown"
-
   // Rate limit checks
   const cookieIdentifier = `booking-${userCookieId}`
-  const ipIdentifier = `booking-${ip}`
 
   const cookieLimit = await rateLimit(cookieIdentifier)
-  const ipLimit = await rateLimit(ipIdentifier)
 
   console.log(26, "cookieIdentifier - ", cookieIdentifier.valueOf())
-  console.log(27, "ipIdentifier - ", ipIdentifier.valueOf())
 
   if (!cookieLimit.success) {
-    throw new Error(`You have already booked a call today. Please try again tomorrow. ${cookieIdentifier.valueOf()}`)
-  }
-  if (!ipLimit.success) {
-    throw new Error(`You have already booked a call today. Please try again tomorrow. ${ipIdentifier.valueOf()}`)
+    throw new Error(`You have already booked a call today. Please try again tomorrow. `)
   }
 
   // to avoid error with type string in DB and type Value here

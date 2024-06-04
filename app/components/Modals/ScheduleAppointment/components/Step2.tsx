@@ -32,7 +32,6 @@ export function Step2() {
     setInputNotificationTo,
     toggleIsShowUpOnACall,
     toggleIsSendNotification,
-    setNextStep,
   } = useAppointmentStore()
 
   const {
@@ -49,7 +48,6 @@ export function Step2() {
     setInputNotificationTo(data.inputNotificationTo)
     try {
       await bookACallFn()
-      setNextStep()
     } catch (error) {
       if (error instanceof Error) {
         toast.show("error", "Error", error.message)

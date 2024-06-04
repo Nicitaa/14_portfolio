@@ -13,6 +13,7 @@ export async function bookACallFn() {
   const { selectedDate } = useSelectedDateStore.getState()
   const { selectedTime } = useSelectedTimeStore.getState()
   const { selectedTimezone } = useSelectedTimezoneStore.getState()
+  const { setNextStep } = useAppointmentStore.getState()
   const toast = useToast.getState()
 
   const at = convertCurrentToTargetTimezone(selectedTime, selectedTimezone, "Europe/Moscow")
@@ -26,6 +27,7 @@ export async function bookACallFn() {
   try {
     await insertBookingInDBAction(selectedDate, at, channel as Exclude<Channel, null>)
     await sendTelegramMessageAction(message)
+    setNextStep()
   } catch (error) {
     if (error instanceof Error) {
       toast.show("error", "Error", error.message)
