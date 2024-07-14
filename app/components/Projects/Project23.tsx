@@ -16,7 +16,7 @@ export default function Project23() {
         </>
       }
       moreInfoButton={MoreInfoButton23}
-      siteUrl="https://23-store.vercel.app/"
+      siteUrl="https://23-store.vercel.app/?utm_source=nicitaa.com"
       githubUrl="https://github.com/nicitaacom/23_store"
       youtubeUrl="https://streamable.com/1zdhl7"
     />
