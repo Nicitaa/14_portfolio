@@ -1,33 +1,24 @@
-"use server"
-
 import { Ratelimit } from "@upstash/ratelimit"
 import { Redis } from "@upstash/redis"
 
 /**
  *
- * @param identifier - someServerAction or apiRoutePath
- * e.g:
- * 'updateDBMessagesSeen' + "-" + userId
- * 
- * Usage:
- * 
+ * @param key - whether is ip or ip-key e.g 24.214.244.77-userId
+ * @param limit - requests per amount of time e.g 4 (means 4 requests per n seconds)
+ * @param windowSec - time per amount of requests e.g 30 (means n requests per 30 seconds)
+ *
+ * Note: to get ip use this
  * ```ts
-   const identifier = "updateDBMessagesSeen" + "-" + userId
-  const { success } = await rateLimit(identifier)
-
-  // 1. Check rate limit by identifier (as I understood limit of messages in some amount of time)
-  if (!success) {
-    throw Error("Please wait a bit before repeat your request again")
-  }
-  ```
+ *   const ip = headers().get("x-real-ip") || headers().get("x-forwarded-for") || "127.0.0.1"
+ * ```
  */
-export async function rateLimit(identifier: string) {
+export async function rateLimit(key: string, limit: number, windowSec: number) {
   const rateLimit = new Ratelimit({
     redis: Redis.fromEnv(),
-    limiter: Ratelimit.slidingWindow(1, "1 d"),
+    limiter: Ratelimit.slidingWindow(limit, `${windowSec} s`),
     analytics: true,
-    prefix: "@upstash/ratelimit",
   })
+  const { success, reset } = await rateLimit.limit(key)
 
-  return await rateLimit.limit(identifier)
+  return { success, reset }
 }

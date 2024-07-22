@@ -13,14 +13,13 @@ export async function insertBookingInDBAction(selectedDate: Value, at: string, c
 
   let bookingDate: string
 
+  const ip = headers().get("x-real-ip") || headers().get("x-forwarded-for") || "127.0.0.1"
+
   // Rate limit checks
-  const cookieIdentifier = `booking-${userCookieId}`
 
-  const cookieLimit = await rateLimit(cookieIdentifier)
+  const { success } = await rateLimit(ip, 1, 86400)
 
-  console.log(26, "cookieIdentifier - ", cookieIdentifier.valueOf())
-
-  if (!cookieLimit.success) {
+  if (!success) {
     throw new Error(`You have already booked a call today. Please try again tomorrow. `)
   }
 
