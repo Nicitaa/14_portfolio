@@ -18,6 +18,7 @@ export async function insertBookingInDBAction(selectedDate: Value, at: string, c
   // Rate limit checks
 
   const { success } = await rateLimit(ip, 1, 86400)
+  console.log(21, "success - ", success)
 
   if (!success) {
     throw new Error(`You have already booked a call today. Please try again tomorrow. `)
