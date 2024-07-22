@@ -13,6 +13,9 @@ import { Redis } from "@upstash/redis"
  * ```
  */
 export async function rateLimit(key: string, limit: number, windowSec: number) {
+  // Don't rate limit in development
+  if (process.env.NODE_ENV === "development") return { success: true }
+
   const rateLimit = new Ratelimit({
     redis: Redis.fromEnv(),
     limiter: Ratelimit.slidingWindow(limit, `${windowSec} s`),

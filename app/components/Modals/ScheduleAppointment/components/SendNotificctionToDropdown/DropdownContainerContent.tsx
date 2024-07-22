@@ -8,7 +8,8 @@ export function DropdownContainerContent() {
   return (
     <button
       className="w-full h-[24px] flex flex-row gap-x-2 justify-around items-center bg-cta/50"
-      onClick={setNextSendNotificationTo}>
+      onClick={setNextSendNotificationTo}
+      type="button">
       {sendNotificationTo === "tg" ? (
         <FaTelegramPlane size={16} />
       ) : sendNotificationTo === "dis" ? (
