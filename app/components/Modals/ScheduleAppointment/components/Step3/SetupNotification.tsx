@@ -1,13 +1,18 @@
 import { useAppointmentStore } from "@/store/useAppointmentStore"
 import { Checkbox } from "../Checkbox"
+import { tooltip } from "@/utils/tooltip"
 
 export function SetupNotification() {
-  const { channel, inputNotificationTo, isCustomNotification, toggleIsCustomNotification } = useAppointmentStore()
+  const { sendNotificationTo, inputNotificationTo, isCustomNotification, toggleIsCustomNotification } =
+    useAppointmentStore()
 
   return (
-    <div>
+    <div className="w-full">
       {inputNotificationTo.length > 3 && (
-        <p>You recieve notification in {channel} with GM link in 10 minutes before intervew</p>
+        <p>
+          You recieve notification in {sendNotificationTo} with {tooltip("GM", "Google meets")} link in 10 minutes
+          before appointment
+        </p>
       )}
       {inputNotificationTo.length > 3 ? (
         <p>If you want create additional notification on your own</p>

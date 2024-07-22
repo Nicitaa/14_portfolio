@@ -9,7 +9,7 @@ export function Step3() {
   const { channel } = useAppointmentStore()
 
   return (
-    <div className="flex flex-col items-center gap-y-md">
+    <div className="w-full flex flex-col items-center gap-y-md">
       <SetupNotification />
       {channel === "google-meets" && <GoogleMeetsData />}
       {channel === "discord" && <DiscordData />}

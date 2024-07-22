@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export function DiscordData() {
   return (
-    <div className="flex flex-col">
+    <div className="w-full flex flex-col">
       <div className="w-full flex flex-col">
         <p>
           Here is&nbsp;

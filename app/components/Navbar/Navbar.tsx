@@ -24,7 +24,7 @@ export async function Navbar() {
       <NavbarProjects />
       {user?.id && (
         <>
-          <div className="h-[calc(72px-24px)] border-r-2 border-[#909090]"> &nbsp;</div>
+          <div className="hidden desktop:inline-flex h-[calc(72px-24px)] border-r-2 border-[#909090]"> &nbsp;</div>
           <GMCheckbox isGMLive={!!is_live_call?.isGMLive} />
         </>
       )}
