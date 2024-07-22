@@ -17,10 +17,18 @@ export function BookedAppointments({ booked_appointments }: { booked_appointment
   const { selectedTimezone } = useSelectedTimezoneStore()
   const [isLoading, setIsLoading] = useState(false)
 
-  async function deleteDBAppointmentFn(bookedAppointmentId: string) {
+  async function deleteDBAppointmentFn(
+    bookedAppointmentId: string,
+    bookedAppointmentDate: string,
+    bookedAppointmentTimeMSK: string,
+  ) {
     try {
       setIsLoading(true)
-      await deleteDBAppointmentAction(bookedAppointmentId)
+      await deleteDBAppointmentAction(
+        bookedAppointmentId,
+        moment(bookedAppointmentDate).format("DD.MM.YYYY"),
+        bookedAppointmentTimeMSK,
+      )
     } catch (error) {
     } finally {
       setIsLoading(false)
@@ -57,7 +65,13 @@ export function BookedAppointments({ booked_appointments }: { booked_appointment
               <Button
                 className="border-danger"
                 isDisabled={isLoading}
-                onClick={() => deleteDBAppointmentFn(booked_appointment.id)}>
+                onClick={() =>
+                  deleteDBAppointmentFn(
+                    booked_appointment.id,
+                    booked_appointment.booking_date,
+                    booked_appointment.booking_time_MSK,
+                  )
+                }>
                 <MdOutlineCancel className="text-danger" />
               </Button>
             </div>
