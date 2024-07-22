@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge"
 import { useForm } from "react-hook-form"
 import { bookACallFn } from "@/(site)/functions/bookACallFn"
 import useToast from "@/store/useToast"
+import { useState } from "react"
 
 interface FormData {
   inputNotificationTo: string
@@ -23,6 +24,7 @@ const validationRules = {
 
 export function Step2() {
   const toast = useToast()
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     sendNotificationTo,
@@ -47,11 +49,14 @@ export function Step2() {
     }
     setInputNotificationTo(data.inputNotificationTo)
     try {
+      setIsLoading(true)
       await bookACallFn()
     } catch (error) {
       if (error instanceof Error) {
         toast.show("error", "Error", error.message)
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -73,7 +78,7 @@ export function Step2() {
         <Button
           className={twMerge(
             "w-fit",
-            (!isShowUpOnACall || !isSendNotification) && "pointer-events-none cursor-default opacity-50",
+            (!isShowUpOnACall || !isSendNotification || isLoading) && "pointer-events-none cursor-default opacity-50",
           )}
           type="submit">
           Book a call

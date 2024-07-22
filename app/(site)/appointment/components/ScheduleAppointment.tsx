@@ -19,7 +19,6 @@ export function ScheduleAppointment({ bookings }: { bookings: BookingsResponse[]
   const { openModal } = useModalsStore()
 
   useEffect(() => {
-    console.log(21, "get cookie - ", getCookie("user_cookie_id"))
     if (!getCookie("user_cookie_id")) {
       setCookie("user_cookie_id", nanoid())
     }
