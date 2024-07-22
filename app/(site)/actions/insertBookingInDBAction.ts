@@ -47,6 +47,8 @@ export async function insertBookingInDBAction(selectedDate: Value, at: string, c
     user_cookie_id: userCookieId,
   })
 
+  // await redis.set(cookies().get('user_cookie_id'))
+
   if (error) {
     console.error(40, "Error inserting booking:", error)
     throw error

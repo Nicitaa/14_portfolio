@@ -36,6 +36,7 @@ const config: Config = {
         "cta-tooltip": "hsl(var(--cta-tooltip) / 0.2)",
 
         info: "hsl(var(--info) / 1)",
+        warning: "hsl(var(--warning) / 1)",
         danger: "hsl(var(--danger) / 1)",
         success: "hsl(var(--success) / 1)",
       },

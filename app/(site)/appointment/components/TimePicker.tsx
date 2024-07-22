@@ -15,9 +15,9 @@ import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
 import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { convertCurrentToTargetTimezone } from "@/(site)/functions/convertCurrentToTargetTimezone"
 import { isDisabledFn } from "@/(site)/functions/isDisabledFn"
-import { BookingsResponse } from "@/interfaces/BookingsResponse"
+import { Bookings } from "./ScheduleAppointment"
 
-export function TimePicker({ bookings }: { bookings: BookingsResponse[] }) {
+export function TimePicker({ bookings }: Bookings) {
   const dropdownContainerRef = useRef<HTMLDivElement>(null)
 
   const { selectedTimezone } = useSelectedTimezoneStore()

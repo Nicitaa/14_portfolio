@@ -12,9 +12,15 @@ import { isDateBeforeTodayOrTime } from "@/utils/isDateBeforeTodayOrTime"
 import { TimeZonePicker } from "./TimezonePicker/TimeZonePicker"
 import { formatedDateTimeFn } from "@/(site)/functions/formatedDateTimeFn"
 import { getCookie, setCookie } from "@/utils/helpersCSR"
-import { BookingsResponse } from "@/interfaces/BookingsResponse"
 
-export function ScheduleAppointment({ bookings }: { bookings: BookingsResponse[] }) {
+export type Bookings = {
+  bookings: {
+    booking_date: string
+    booking_time_MSK: string
+  }[]
+}
+
+export function ScheduleAppointment({ bookings }: Bookings) {
   const { selectedDate, setSelectedDate } = useSelectedDateStore()
   const { openModal } = useModalsStore()
 
