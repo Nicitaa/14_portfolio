@@ -1,12 +1,14 @@
+import axios, { AxiosError } from "axios"
+
 import { sendTelegramMessageAction } from "../actions/sendTelegramMessageAction"
-import { Channel, useAppointmentStore } from "@/store/useAppointmentStore"
+import { useAppointmentStore } from "@/store/useAppointmentStore"
 import { formatedDateTimeFn } from "./formatedDateTimeFn"
 import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { convertCurrentToTargetTimezone } from "./convertCurrentToTargetTimezone"
-import { insertBookingInDBAction } from "../actions/insertBookingInDBAction"
 import useToast from "@/store/useToast"
+import { TAPIInsertBooking } from "@/api/insert/booking/route"
 
 export async function bookACallFn() {
   const { sendNotificationTo, inputNotificationTo, channel } = useAppointmentStore.getState()
@@ -25,12 +27,14 @@ export async function bookACallFn() {
   message += `Where: ${channel === "google-meets" ? '<a href="https://meet.google.com/yiy-pbnd-ygo?pli=1">google-meets</a>' : channel}\n`
 
   try {
-    await insertBookingInDBAction(selectedDate, at, channel as Exclude<Channel, null>)
+    // in API route to keep error handling (in server action error handling in prod doesn't work)
+    await axios.post("/api/insert/booking", { selectedDate, at, channel } as TAPIInsertBooking)
     await sendTelegramMessageAction(message)
     setNextStep()
   } catch (error) {
-    if (error instanceof Error) {
-      toast.show("error", "Error", error.message)
+    if (error instanceof AxiosError) {
+      console.log(26, error.response?.data)
+      toast.show("error", "Error booking a call", error.response?.data, 15000)
     }
   }
 }
