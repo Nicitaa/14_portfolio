@@ -29,9 +29,6 @@ export async function bookACallFn() {
     await sendTelegramMessageAction(message)
     setNextStep()
   } catch (error) {
-    if (error instanceof Error && error.message.includes("You have already booked a call today.")) {
-      toast.show("error", "Error", "You have already booked a call today.")
-    }
     if (error instanceof Error) {
       toast.show("error", "Error", error.message)
     }
