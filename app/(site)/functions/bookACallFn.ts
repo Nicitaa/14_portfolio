@@ -33,7 +33,7 @@ export async function bookACallFn() {
     setNextStep()
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(26, error.response?.data)
+      console.log(26, error.response)
       toast.show("error", "Error booking a call", error.response?.data, 15000)
     }
   }
