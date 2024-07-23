@@ -4,7 +4,6 @@ import { cookies, headers } from "next/headers"
 import { nanoid } from "nanoid"
 
 import { Channel } from "@/store/useAppointmentStore"
-import supabaseAdmin from "@/libs/supabaseAdmin"
 import { Value } from "@/store/useSelectedDateStore"
 import { rateLimit } from "@/libs/rateLimit"
 
