@@ -1,10 +1,12 @@
+import { nanoid } from "nanoid"
+import { NextResponse } from "next/server"
+import { cookies, headers } from "next/headers"
+
 import { rateLimit } from "@/libs/rateLimit"
 import supabaseAdmin from "@/libs/supabaseAdmin"
 import { Channel } from "@/store/useAppointmentStore"
 import { Value } from "@/store/useSelectedDateStore"
-import { nanoid } from "nanoid"
-import { cookies, headers } from "next/headers"
-import { NextResponse } from "next/server"
+import moment from "moment"
 
 export type TAPIInsertBooking = {
   selectedDate: Value
@@ -17,8 +19,6 @@ export async function POST(req: Request) {
 
   const userCookieId = cookies().get("user_cookie_id")?.value || nanoid()
 
-  let bookingDate: string
-
   const ip = headers().get("x-real-ip") || headers().get("x-forwarded-for") || "127.0.0.1"
 
   // Rate limit bookings
@@ -26,29 +26,13 @@ export async function POST(req: Request) {
 
   if (!success) {
     return new NextResponse(`You have already booked a call today. Please try again tomorrow.`, {
-      status: 4,
+      status: 429,
     })
   }
 
-  // to avoid error with type string in DB and type Value here
-  if (Array.isArray(selectedDate)) {
-    if (selectedDate.length > 0 && selectedDate[0] instanceof Date) {
-      // If selectedDate is an array of Date objects, use the first one and convert it to a string
-      bookingDate = (selectedDate[0] as Date).toISOString().split("T")[0]
-    } else {
-      return new NextResponse(`Invalid selectedDate`, {
-        status: 400,
-      })
-    }
-  } else if (typeof selectedDate === "object" && selectedDate !== null && selectedDate instanceof Date) {
-    // If selectedDate is a Date object, convert it to a string
-    bookingDate = selectedDate.toISOString().split("T")[0]
-  } else {
-    // Handle other cases, like null or unknown
-    return new NextResponse(`Invalid selectedDate`, {
-      status: 400,
-    })
-  }
+  const date = Array.isArray(selectedDate) ? selectedDate[0] : selectedDate
+  if (!date) return new NextResponse(`No selectedDate`, { status: 400 })
+  const bookingDate = moment(date).format("YYYY-MM-DD")
 
   const { error } = await supabaseAdmin.from("bookings").insert({
     id: nanoid(),
@@ -62,4 +46,5 @@ export async function POST(req: Request) {
     console.error(40, "Error inserting booking:", error)
     throw error
   }
+  return NextResponse.json({})
 }

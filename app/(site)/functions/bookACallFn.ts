@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios"
 
 import { sendTelegramMessageAction } from "../actions/sendTelegramMessageAction"
-import { useAppointmentStore } from "@/store/useAppointmentStore"
+import { Channel, useAppointmentStore } from "@/store/useAppointmentStore"
 import { formatedDateTimeFn } from "./formatedDateTimeFn"
 import { useSelectedDateStore } from "@/store/useSelectedDateStore"
 import { useSelectedTimeStore } from "@/store/useSelectedTimeStore"
@@ -9,6 +9,7 @@ import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
 import { convertCurrentToTargetTimezone } from "./convertCurrentToTargetTimezone"
 import useToast from "@/store/useToast"
 import { TAPIInsertBooking } from "@/api/insert/booking/route"
+import { insertDBBookingAction, insertDBBookingActionError } from "../actions/insertDBBookingAction"
 
 export async function bookACallFn() {
   const { sendNotificationTo, inputNotificationTo, channel } = useAppointmentStore.getState()
