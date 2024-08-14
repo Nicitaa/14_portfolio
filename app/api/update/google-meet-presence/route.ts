@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request) {
   const { isOnline } = await req.json()
 
-  await supabaseAdmin.from("liveCall").update({ id: 1, isGMLive: isOnline }).eq("id", 1)
+  await supabaseAdmin.from("liveCall").update({ isGMLive: isOnline }).eq("id", 1)
 
   return NextResponse.json({}, { status: 200 })
 }
