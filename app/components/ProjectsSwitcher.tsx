@@ -14,6 +14,7 @@ import {
   Project24,
   Project26,
   Project28,
+  Project29,
   ProjectRizAdminDashboard,
 } from "./Projects"
 
@@ -63,6 +64,7 @@ export function ProjectsSwitcher() {
             <Project20 />
             <Project19 />
             <Project17 />
+            <Project29 />
           </>
         )
       )}

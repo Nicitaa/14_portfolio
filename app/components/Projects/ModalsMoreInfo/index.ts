@@ -8,6 +8,7 @@ import ModalMoreInfo23 from "./ModalMoreInfo23"
 import ModalMoreInfo24 from "./ModalMoreInfo24"
 import ModalMoreInfo26 from "./ModalMoreInfo26"
 import ModalMoreInfo28 from "./ModalMoreInfo28"
+import ModalMoreInfo29 from "./ModalMoreInfo29"
 
 export {
   ModalMoreInfo15,
@@ -20,6 +21,7 @@ export {
   ModalMoreInfo24,
   ModalMoreInfo26,
   ModalMoreInfo28,
+  ModalMoreInfo29,
 }
 
 import ModalMoreInfoRizAdminDashboard from "./ModalMoreInfoRizAdminDashboard"

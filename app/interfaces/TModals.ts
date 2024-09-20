@@ -10,4 +10,5 @@ export type TModals =
   | "24MoreInfo"
   | "26MoreInfo"
   | "28MoreInfo"
+  | "29MoreInfo"
   | "rizAdminDashboard"

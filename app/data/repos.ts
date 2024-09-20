@@ -120,9 +120,24 @@ const repos = [
     url: "https://github.com/Nicitaa/24_dashboard-mui",
   },
   {
-    id: 25,
-    description: "bottle energy",
-    url: "https://github.com/Nicitaa/25_bottle-energy",
+    id: 26,
+    description: "hot delivery",
+    url: "https://www.google.com/search?sca_esv=8d36031256b28c5e&sca_upv=1&sxsrf=ADLYWIJ67tpxRTKEYP9GaVnpZo2be_3N3Q:1726807004449&q=closed+source&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J_86uWOeqwdnV0yaSF-x2jqw-AzvpDFRWNmLZKilfTrfn09q0QL89IE2BK9wqCaoIVFOCV1aoDeP5tw4R7IXvsEru5h7CjL6p8iEdExKawty8Ih9BaQ4THdbQdc9OzGogmA3n2ZhZZDIZC9rq5LYItoW5Tge&sa=X&ved=2ahUKEwjc7uGw2dCIAxW00AIHHclmGuIQ0pQJegQIDRAB&biw=1920&bih=958&dpr=1",
+  },
+  {
+    id: 27,
+    description: "find team",
+    url: "https://www.google.com/search?sca_esv=8d36031256b28c5e&sca_upv=1&sxsrf=ADLYWIJ67tpxRTKEYP9GaVnpZo2be_3N3Q:1726807004449&q=closed+source&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3J_86uWOeqwdnV0yaSF-x2jqw-AzvpDFRWNmLZKilfTrfn09q0QL89IE2BK9wqCaoIVFOCV1aoDeP5tw4R7IXvsEru5h7CjL6p8iEdExKawty8Ih9BaQ4THdbQdc9OzGogmA3n2ZhZZDIZC9rq5LYItoW5Tge&sa=X&ved=2ahUKEwjc7uGw2dCIAxW00AIHHclmGuIQ0pQJegQIDRAB&biw=1920&bih=958&dpr=1",
+  },
+  {
+    id: 28,
+    description: "notion clone",
+    url: "https://github.com/nicitaacom/28_notion-clone",
+  },
+  {
+    id: 29,
+    description: "AI companion",
+    url: "https://github.com/nicitaacom/29_ai-companion",
   },
 ]
 

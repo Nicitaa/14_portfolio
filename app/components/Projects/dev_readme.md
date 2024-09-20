@@ -2,14 +2,14 @@
 
 ### step 1 - ctrl+c ctrl+v Project15.tsx
 
-1. Change function name
+1. Change component name
 2. Adjust info
 3. Export project in index.ts
 
 ### step 2 - ctrl+c ctrl+v ButtonMoreInfo15.tsx
 
 1. ctrl+p - TModals.ts - add modal name
-2. Change function name
+2. Change component name
 3. Adjust info
 
 ### step 3 - ctrl+c ctrl+v ModalMoreInfo15.tsx
