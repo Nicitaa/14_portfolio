@@ -6,6 +6,9 @@ import { Skill } from "@/components/Skill"
 import { TooltipOther, TooltipReact } from "../components/Tooltips"
 import { ProjectsSwitcher } from "@/components/ProjectsSwitcher"
 import { Footer } from "@/components/Footer"
+import { hours } from "@/data/hours"
+import { Button } from "@/components/Button"
+import { GrSchedule } from "react-icons/gr"
 
 export default function Home() {
   return (
@@ -16,11 +19,17 @@ export default function Home() {
           className="flex flex-col desktop:flex-row justify-between items-center gap-lg w-full px-sm
       tablet:px-md desktop:max-w-[80%] desktop:h-[40rem]">
           <ul className="flex flex-col gap-y-sm">
-            <Skill id={1} label="html&css" hours={4043} />
-            <Skill id={2} label="React" hours={3699} tooltip tooltiptext={<TooltipReact />} />
-            <Skill id={4} label="Next" hours={2511} />
-            <Skill id={3} label="TypeScript" hours={3545} />
-            <Skill id={5} label="other" hours={1103} tooltip tooltiptext={<TooltipOther />} />
+            <Skill id={1} label="html&css" hours={hours.htmlcss} />
+            <Skill id={2} label="React" hours={hours.next + hours.vite} tooltip tooltiptext={<TooltipReact />} />
+            <Skill id={4} label="Next" hours={hours.next} />
+            <Skill id={3} label="TypeScript" hours={hours.typescript} />
+            <Skill
+              id={5}
+              label="other"
+              hours={Object.values(hours.other).reduce((a, b) => a + b, 0)}
+              tooltip
+              tooltiptext={<TooltipOther />}
+            />
           </ul>
           <div className="text-center w-fit break-words max-w-[650px] desktop:px-[0] desktop:text-start">
             <h1 data-text="WEB Frontend developer" className="text-shadow text-lg before:text-secondary">
@@ -72,10 +81,9 @@ export default function Home() {
             <i>school/colledge/academy</i> don&apos;t help you to get success in your life - that&apos;s why you need
             invest your free time in vision in your head of how to get success.
             <br /> */}
-              <b> Book call</b> with me&nbsp;
-              <Link className="text-cta" href="/appointment">
-                here
-              </Link>
+              <Button className="w-fit text-center col-span-2 mt-sm px-[1.5rem]" href="/appointment">
+                Book appointment <GrSchedule />
+              </Button>
             </div>
           </div>
         </div>

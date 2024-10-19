@@ -7,7 +7,7 @@ From how it work in .tsx or .ts file - Docs provided with necessary comments in 
 
 ## How to change numbers
 
-ctrl+p - `page.tsx` at the top of file you see `hours`
+ctrl+p - `hours.ts`
 
 ## Tooltip usage
 

@@ -1,3 +1,4 @@
+import { hours } from "@/data/hours"
 import { Skill } from "../Skill"
 
 function TooltipGithub() {
@@ -25,12 +26,12 @@ export function TooltipOther() {
           tooltiptext={<TooltipGithub />}
           small
         />
-        <Skill id={5.2} label="Vite" hours={1103} labelClassName="min-w-[55%]" small />
-        <Skill id={5.3} label="Supabase" hours={190} labelClassName="min-w-[55%]" small />
-        <Skill id={5.4} label="Zustand" hours={183} labelClassName="min-w-[55%]" small />
-        <Skill id={5.8} label="Photoshop" hours={150} labelClassName="min-w-[55%]" small />
-        <Skill id={5.8} label="Figma" hours={140} labelClassName="min-w-[55%]" small />
-        <Skill id={5.8} label="DevOps" hours={133} labelClassName="min-w-[55%]" small />
+        <Skill id={5.2} label="Vite" hours={hours.vite} labelClassName="min-w-[55%]" small />
+        <Skill id={5.3} label="Supabase" hours={hours.other.supabase} labelClassName="min-w-[55%]" small />
+        <Skill id={5.4} label="Zustand" hours={hours.other.zustand} labelClassName="min-w-[55%]" small />
+        <Skill id={5.8} label="Photoshop" hours={hours.other.photoshop} labelClassName="min-w-[55%]" small />
+        <Skill id={5.8} label="Figma" hours={hours.other.figma} labelClassName="min-w-[55%]" small />
+        <Skill id={5.8} label="DevOps" hours={hours.other.devops} labelClassName="min-w-[55%]" small />
       </div>
     </div>
   )
