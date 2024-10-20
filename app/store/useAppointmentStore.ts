@@ -9,6 +9,8 @@ interface AppointmentStore {
   direction: "next" | "prev"
   prevDirection: "next" | "prev"
   channel: Channel
+  appointmentNote: string
+  setAppointmentNote: (appointmentNote: string) => void
   isShowUpOnACall: boolean
   isSendNotification: boolean
   sendNotificationTo: SendNotificationTo
@@ -30,12 +32,14 @@ export const useAppointmentStore = create<AppointmentStore>()((set, get) => ({
   direction: "next",
   prevDirection: "next",
   channel: null,
+  appointmentNote: "",
   isShowUpOnACall: false,
   isSendNotification: false,
   sendNotificationTo: "tg",
   inputNotificationTo: "",
   isCustomNotification: false,
   setStep: (step: Step) => set(() => ({ step })),
+  setAppointmentNote: (appointmentNote: string) => set(() => ({ appointmentNote })),
   setNextStep: () =>
     set(state => ({
       step: state.step === "step-1" ? "step-2" : "step-3",

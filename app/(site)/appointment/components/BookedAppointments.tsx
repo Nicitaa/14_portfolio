@@ -1,6 +1,5 @@
 "use client"
 
-import { CiEdit } from "react-icons/ci"
 import { MdOutlineCancel } from "react-icons/md"
 
 import { Button } from "@/components/Button"

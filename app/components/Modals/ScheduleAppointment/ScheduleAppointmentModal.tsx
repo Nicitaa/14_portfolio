@@ -34,7 +34,7 @@ export function ScheduleAppointmentModal() {
       className={twMerge(
         "duration-300",
         step === "step-1" && "w-[550px] h-[130px]",
-        step === "step-2" && "w-[675px] h-[204px]",
+        step === "step-2" && "w-[675px] h-[274px]",
         step === "step-3" && "w-[650px]",
       )}
       isOpen={isOpen["Appointment"]}

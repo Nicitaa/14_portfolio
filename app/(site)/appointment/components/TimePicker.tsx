@@ -31,19 +31,19 @@ export function TimePicker({ bookings }: Bookings) {
   useCloseOnClickEsc(() => setShowDropdown(false))
   useCloseOnClickOutside(dropdownContainerRef, () => setShowDropdown(false))
 
-  const now = new Date()
-  const currentHour = now.getHours()
-  const currentMinute = now.getMinutes()
-  const currentTimeMSK = currentHour * 100 + currentMinute
+  const now = moment.tz("Europe/Moscow") // Get current time in MSK timezone
+  const startWindow = moment.tz("12:00", "HH:mm", "Europe/Moscow") // 12:00 MSK
+  const endWindow = moment.tz("22:00", "HH:mm", "Europe/Moscow") // 22:00 MSK
   const tomorrow = moment().add(1, "day").toDate()
 
-  const disableAllToday = currentTimeMSK >= 2130
+  // Check if the current time is outside the time window
+  const disableAllToday = now.isBefore(startWindow) || now.isAfter(endWindow)
 
-  // if time over last timewindow then show first timewindow (12:00 MSK) based on user's timezone
-  // TODO - if no free timewindows today - show time for next free timewindow
+  // if time outside the time window, set to first time window (12:00 MSK)
   useEffect(() => {
     if (disableAllToday) {
       const firstTimeMSK = convertCurrentToTargetTimezone("12:00", "Europe/Moscow", "Europe/Moscow")
+      console.log(47, "firstTimeMSK - ", firstTimeMSK)
       setSelectedTime(firstTimeMSK)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

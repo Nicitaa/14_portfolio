@@ -10,6 +10,10 @@ declare global {
 
       UPSTASH_REDIS_REST_URL: string
       UPSTASH_REDIS_REST_TOKEN: string
+
+      NEXT_PUBLIC_AWS_REGION: string
+      AWS_ACCOUNT_ID: string
+      NEXT_PUBLIC_LAMBDA_FN_NAME: string
     }
   }
 }

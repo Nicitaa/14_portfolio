@@ -1,4 +1,5 @@
 import moment from "moment"
+import { cookies } from "next/headers"
 
 import supabaseAdmin from "@/libs/supabaseAdmin"
 import { ScheduleAppointment } from "./components/ScheduleAppointment"
@@ -6,7 +7,6 @@ import { Button } from "@/components/Button"
 import { ScheduleAppointmentModal } from "@/components/Modals/ScheduleAppointment/ScheduleAppointmentModal"
 import { ToastWrapper } from "./components/ToastWrapper"
 import { BookedAppointments } from "./components/BookedAppointments"
-import { cookies } from "next/headers"
 
 export default async function AppointmentPage() {
   const { data: is_GM_live } = await supabaseAdmin.from("liveCall").select().eq("id", 1).single()
@@ -32,9 +32,9 @@ export default async function AppointmentPage() {
         </>
       )}
       <ScheduleAppointment bookings={bookings ?? []} />
+      <BookedAppointments booked_appointments={booked_appointments ?? []} />
       <ScheduleAppointmentModal />
       <ToastWrapper />
-      <BookedAppointments booked_appointments={booked_appointments ?? []} />
     </div>
   )
 }

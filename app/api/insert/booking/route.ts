@@ -10,12 +10,12 @@ import moment from "moment"
 
 export type TAPIInsertBooking = {
   selectedDate: Value
-  at: string
+  atMSK: string
   channel: Exclude<Channel, null>
 }
 
 export async function POST(req: Request) {
-  const { selectedDate, at, channel } = (await req.json()) as TAPIInsertBooking
+  const { selectedDate, atMSK, channel } = (await req.json()) as TAPIInsertBooking
 
   const userCookieId = cookies().get("user_cookie_id")?.value || nanoid()
 
@@ -34,17 +34,32 @@ export async function POST(req: Request) {
   if (!date) return new NextResponse(`No selectedDate`, { status: 400 })
   const bookingDate = moment(date).format("YYYY-MM-DD")
 
+  // Check is booking with this time already exists
+  const { data } = await supabaseAdmin
+    .from("bookings")
+    .select()
+    .eq("booking_time_MSK", atMSK)
+    .eq("booking_date", bookingDate)
+
+  if (data && data?.length > 1) {
+    console.error(40, "Error inserting booking: booking with this date time already exists")
+    return new NextResponse(`Error inserting booking: booking with this date time already exists.`, {
+      status: 409,
+    })
+  }
   const { error } = await supabaseAdmin.from("bookings").insert({
     id: nanoid(),
     booking_date: bookingDate,
-    booking_time_MSK: at,
+    booking_time_MSK: atMSK,
     channel: channel,
     user_cookie_id: userCookieId,
   })
 
   if (error) {
     console.error(40, "Error inserting booking:", error)
-    throw error
+    return new NextResponse(`Error inserting booking: ${error.message}`, {
+      status: 400,
+    })
   }
   return NextResponse.json({})
 }

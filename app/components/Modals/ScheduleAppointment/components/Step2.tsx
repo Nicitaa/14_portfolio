@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form"
 import { bookACallFn } from "@/(site)/functions/bookACallFn"
 import useToast from "@/store/useToast"
 import { useState } from "react"
+import { Input } from "@/components/Input"
+import { IoMdArrowRoundForward } from "react-icons/io"
 
 interface FormData {
   inputNotificationTo: string
@@ -28,9 +30,10 @@ export function Step2() {
 
   const {
     sendNotificationTo,
-    inputNotificationTo,
     isShowUpOnACall,
     isSendNotification,
+    appointmentNote,
+    setAppointmentNote,
     setInputNotificationTo,
     toggleIsShowUpOnACall,
     toggleIsSendNotification,
@@ -62,26 +65,38 @@ export function Step2() {
 
   return (
     <form className="w-full flex flex-col justify-start gap-y-[1.5rem]" onSubmit={handleSubmit(onSubmit)}>
-      <div className="font-bold">
-        <Checkbox
-          isChecked={isShowUpOnACall}
-          onChange={toggleIsShowUpOnACall}
-          label="I affirm that 99% that I show up on a call"
-        />
-        <Checkbox
-          isChecked={isSendNotification}
-          onChange={toggleIsSendNotification}
-          label={<SendNotificationTo register={register} errors={errors} setError={setError} />}
-        />
+      <div className="font-bold flex flex-col gap-y-xs">
+        <div className="flex flex-col">
+          <Checkbox
+            isChecked={isShowUpOnACall}
+            onChange={toggleIsShowUpOnACall}
+            label="I affirm that 99% that I show up on a call"
+          />
+          <Checkbox
+            isChecked={isSendNotification}
+            onChange={toggleIsSendNotification}
+            label={<SendNotificationTo register={register} errors={errors} setError={setError} />}
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="appointmentNote">What motivates you book a call today?</label>
+          <Input
+            className="border-t-0 border-l-0 border-r-0 placeholder:font-medium px-xs font-medium"
+            value={appointmentNote}
+            onChange={e => setAppointmentNote(e.target.value)}
+            placeholder="Give a bit of context here"
+          />
+        </div>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-start items-center">
         <Button
           className={twMerge(
-            "w-fit",
+            "w-fit flex flex-row gap-x-xs group",
             (!isShowUpOnACall || !isSendNotification || isLoading) && "pointer-events-none cursor-default opacity-50",
           )}
           type="submit">
           Book a call
+          <IoMdArrowRoundForward className="group-hover:-translate-x-0.5 duration-300" />
         </Button>
       </div>
     </form>
