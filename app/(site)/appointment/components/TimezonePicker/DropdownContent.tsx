@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { twMerge } from "tailwind-merge"
+import moment from "moment"
 
 import { useSelectedTimezoneStore } from "@/store/useSelectedTimezoneStore"
-import moment from "moment"
 import { Input } from "@/components/Input"
 
 export function DropdownContent({ isShowDropdown }: { isShowDropdown: boolean }) {
@@ -54,7 +54,6 @@ export function DropdownContent({ isShowDropdown }: { isShowDropdown: boolean })
       <Input
         // If you change width here make sure to change it in TimeZonePicker.tsx as well
         style={{ border: "none", width: isShowDropdown ? "180px" : "148px" }}
-        className=""
         placeholder="Search timezones..."
         value={searchInput}
         onChange={e => setSearchInput(e.target.value)}
