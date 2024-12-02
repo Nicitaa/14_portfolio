@@ -1,3 +1,4 @@
+import { appointmentTimesMSK } from "@/data/appointmentTimesMSK"
 import { create } from "zustand"
 
 /**
@@ -12,19 +13,21 @@ interface SelectedTimeStore {
 const currentHour = new Date().getHours()
 const currentMinute = new Date().getMinutes()
 
-const nextHalfHour = currentMinute < 30 ? 30 : 0
-const nextHour = currentMinute < 30 ? currentHour : currentHour + 1
+// Find the next available time in the `appointmentTimesMSK` array
+const nextAvailableTime = appointmentTimesMSK.find(({ time }) => {
+  const [hour, minute] = time.split(":").map(Number)
+  return currentHour < hour || (currentHour === hour && currentMinute < minute)
+})
 
-const initialHour = currentHour >= 20 ? 10 : nextHour < 10 ? 10 : nextHour
-const initialMinute = currentHour >= 20 ? 0 : nextHour < 10 ? 0 : nextHalfHour
+// If no time is available for today, return the first time (next day logic)
+const initialTime = nextAvailableTime ? nextAvailableTime.time : appointmentTimesMSK[0].time
 
 // if now 19:23 - show 20:00
 // if now 19:44 - show 20:30
-// if now 20:00 - show 10:00
-// if now 8:40 - show 10:00
-// if now 9:30 - show 10:30
-// if now 9:29 - show 10:00
-const initialTime = `${String(initialHour).padStart(2, "0")}:${String(initialMinute).padStart(2, "0")}`
+// if now 22:00 - show 12:00
+// if now 8:40 - show 12:00
+// if now 12:00 - show 13:00
+// if now 11:59 - show 12:30
 
 export const useSelectedTimeStore = create<SelectedTimeStore>()(set => ({
   selectedTime: initialTime,
