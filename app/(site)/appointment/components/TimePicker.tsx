@@ -37,15 +37,11 @@ export function TimePicker({ bookings }: Bookings) {
   const tomorrow = moment().add(1, "day").toDate()
 
   // Check if the current time is outside the time window
-  const disableAllToday = now.isBefore(startWindow) || now.isAfter(endWindow)
+  const disableAllToday = now.isBefore(startWindow) || now.isSameOrAfter(endWindow)
 
   // if time outside the time window, set to first time window (12:00 MSK)
   useEffect(() => {
-    if (disableAllToday) {
-      const firstTimeMSK = convertCurrentToTargetTimezone("12:00", "Europe/Moscow", "Europe/Moscow")
-      console.log(47, "firstTimeMSK - ", firstTimeMSK)
-      setSelectedTime(firstTimeMSK)
-    }
+    if (disableAllToday) setSelectedTime("12:00")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [disableAllToday, selectedTimezone])
 
