@@ -12,7 +12,7 @@ export default function Project22() {
           <br />
           Responsive + Fluid
           <br />
-          19.06.2023 - now (~51h)
+          19.06.2023 - 26.08.2023 (~101h)
         </>
       }
       moreInfoButton={MoreInfoButton22}
